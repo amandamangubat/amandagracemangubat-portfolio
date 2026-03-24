@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - PLUG&PLAY Gaming Hardware Store</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#B47AEA", secondary: "#5ADEEB" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      .pixel-font {
+        font-family: monospace;
+        text-shadow: 2px 2px 0px rgba(180, 122, 234, 0.8);
+        letter-spacing: 2px;
+        font-weight: bold;
+      }
+      .contact-section {
+        position: relative;
+        overflow: hidden;
+      }
+      .contact-section::before {
+        content: "";
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        width: 60px;
+        height: 60px;
+        background: radial-gradient(
+          circle,
+          rgba(180, 122, 234, 0.3) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .contact-section::after {
+        content: "";
+        position: absolute;
+        top: 60%;
+        right: 8%;
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(
+          circle,
+          rgba(93, 222, 235, 0.3) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .contact-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(180, 122, 234, 0.2);
+        transition: all 0.3s ease;
+      }
+      .contact-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(180, 122, 234, 0.15);
+      }
+      .map-container {
+        background-image: url("MAP-Placeholder.png");
+        background-size: cover;
+        background-position: center;
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+      }
+      .map-overlay {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(1px);
+      }
+      .login-popup {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        width: 280px;
+        height: 380px;
+        background-image: url("2-BG.jpg");
+        background-size: cover;
+        background-position: center;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+      .signup-popup {
+        height: 480px;
+      }
+      .login-popup.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      .login-popup-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+      }
+      .contact-form {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(180, 122, 234, 0.1);
+      }
+    </style>
+  </head>
+
+  <body style="background-color: #110b39" class="text-gray-900">
+    <!-- Login Popup -->
+    <div id="loginPopup" class="login-popup">
+      <div class="login-popup-overlay"></div>
+      <div class="relative p-6 h-full flex flex-col justify-center">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">SIGN IN</h3>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input
+              type="text"
+              placeholder="Email or Phone Number"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div class="text-center">
+            <a
+              href="#"
+              id="forgotPasswordLink"
+              class="text-sm text-gray-600 hover:text-primary"
+              >Forgot Password?</a
+            >
+          </div>
+          <button
+            class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold"
+          >
+            Log In
+          </button>
+          <div class="text-center pt-4">
+            <p class="text-sm text-gray-600">Don't have an account yet?</p>
+            <a
+              href="#"
+              id="createAccountLink"
+              class="text-sm text-primary underline font-medium"
+              >Create an account</a
+            >
+          </div>
+        </div>
+        <button
+          id="closeLoginPopup"
+          class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800"
+        >
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sign Up Popup -->
+    <div id="signupPopup" class="login-popup signup-popup">
+      <div class="login-popup-overlay"></div>
+      <div class="relative p-6 h-full flex flex-col justify-center">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">SIGN UP</h3>
+          <p class="text-sm text-gray-600">
+            Please fill in the information below:
+          </p>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input
+              type="text"
+              placeholder="First Name"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Last Name"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Email Address"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div class="flex items-start space-x-2 text-xs text-gray-600">
+            <input type="checkbox" id="agreeTerms" class="opacity-0 absolute" />
+            <label for="agreeTerms" class="relative cursor-pointer">
+              <div
+                class="w-4 h-4 border-2 border-gray-400 rounded bg-white flex items-center justify-center"
+              >
+                <i
+                  class="ri-check-line text-xs text-primary opacity-0"
+                  id="checkIcon"
+                ></i>
+              </div>
+            </label>
+            <span
+              >By continuing, I agree to Plug&Play's Privacy Policy and Terms of
+              Use</span
+            >
+          </div>
+          <button
+            class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold"
+          >
+            Create My Account
+          </button>
+          <div class="text-center pt-2">
+            <p class="text-sm text-gray-600">
+              Already have an account?
+              <a
+                href="#"
+                id="loginHereLink"
+                class="text-primary underline font-medium"
+                >Login Here</a
+              >
+            </p>
+          </div>
+        </div>
+        <button
+          id="closeSignupPopup"
+          class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800"
+        >
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Forgot Password Popup -->
+    <div id="forgotPasswordPopup" class="login-popup">
+      <div class="login-popup-overlay"></div>
+      <div class="relative p-6 h-full flex flex-col justify-center">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">FORGOT PASSWORD</h3>
+          <p class="text-sm text-gray-600">
+            Enter your email address to reset your password:
+          </p>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input
+              type="email"
+              placeholder="Email Address"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <button
+            class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold"
+          >
+            Send Reset Link
+          </button>
+          <div class="text-center pt-4">
+            <p class="text-sm text-gray-600">
+              Remember your password?
+              <a
+                href="#"
+                id="backToLoginLink"
+                class="text-primary underline font-medium"
+                >Back to Login</a
+              >
+            </p>
+          </div>
+        </div>
+        <button
+          id="closeForgotPasswordPopup"
+          class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800"
+        >
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      style="background-color: #110b39"
+      class="text-white px-8 py-4 fixed w-full top-0 z-50"
+    >
+      <div class="flex items-center justify-between">
+        <img src="PP-Logo.png" alt="PLUG&PLAY Logo" class="h-8" />
+        <div class="flex items-center space-x-8">
+          <a href="home.html" class="hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a href="products.html" class="hover:text-primary transition-colors"
+            >Products</a
+          >
+          <a href="about-us.html" class="hover:text-primary transition-colors"
+            >About Us</a
+          >
+          <a href="contact.html" class="text-primary">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Search products..."
+              class="bg-gray-800 text-white px-4 py-2 pr-10 rounded-button border-none text-sm"
+            />
+            <div
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center"
+            >
+              <i class="ri-search-line text-gray-400"></i>
+            </div>
+          </div>
+          <div class="w-8 h-8 flex items-center justify-center">
+            <i
+              class="ri-shopping-cart-line text-xl hover:text-primary cursor-pointer transition-colors"
+            ></i>
+          </div>
+          <div
+            id="loginButton"
+            class="w-8 h-8 flex items-center justify-center"
+          >
+            <i
+              class="ri-user-line text-xl hover:text-primary cursor-pointer transition-colors"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section
+      class="w-full pt-20 pb-20 min-h-screen relative"
+      style="
+        background-image: url('5-BG.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      "
+    >
+        <div class="max-w-7xl mx-auto px-8 py-16">
+          <div class="text-center mb-16">
+            <h1 class="text-6xl mb-8 pixel-font" style="color: #110b39">
+              NEED HELP?
+            </h1>
+            <h2 class="text-2xl font-bold mb-12" style="color: #110b39">
+              CONTACT US THROUGH:
+            </h2>
+          </div>
+
+          <!-- Contact Information Cards - 3x2 Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div class="contact-card p-6 rounded-xl">
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-secondary rounded-full"
+                >
+                  <i class="ri-mail-line text-2xl text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-gray-800">Email</h3>
+                  <p class="text-gray-600">support@plugandplaygaming.com</p>
+                  <p class="text-sm text-gray-500">We reply within 24 hours</p>
+                </div>
+              </div>
+            </div>
+            <div class="contact-card p-6 rounded-xl">
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary rounded-full"
+                >
+                  <i class="ri-phone-line text-2xl text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-gray-800">Telephone</h3>
+                  <p class="text-gray-600">(02) 8234-5678</p>
+                  <p class="text-sm text-gray-500">
+                    Mon-Fri: 9:00 AM - 6:00 PM
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="contact-card p-6 rounded-xl">
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-secondary rounded-full"
+                >
+                  <i class="ri-smartphone-line text-2xl text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-gray-800">Mobile Number</h3>
+                  <p class="text-gray-600">+63 917 234 5678</p>
+                  <p class="text-sm text-gray-500">
+                    Available for WhatsApp & Viber
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="contact-card p-6 rounded-xl">
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary rounded-full"
+                >
+                  <i class="ri-map-pin-line text-2xl text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-gray-800">
+                    Store Location
+                  </h3>
+                  <p class="text-gray-600">Unit 2A, Cyberzone Mall</p>
+                  <p class="text-gray-600">Ortigas Center, Pasig City</p>
+                  <p class="text-sm text-gray-500">
+                    Metro Manila, Philippines 1605
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="contact-card p-6 rounded-xl">
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-secondary rounded-full"
+                >
+                  <i class="ri-time-line text-2xl text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-gray-800">
+                    Business Hours
+                  </h3>
+                  <p class="text-gray-600">
+                    Monday - Friday: 9:00 AM - 8:00 PM
+                  </p>
+                  <p class="text-gray-600">Saturday: 10:00 AM - 7:00 PM</p>
+                  <p class="text-gray-600">Sunday: 11:00 AM - 6:00 PM</p>
+                </div>
+              </div>
+            </div>
+            <div class="contact-card p-6 rounded-xl">
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary rounded-full"
+                >
+                  <i class="ri-customer-service-line text-2xl text-white"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-gray-800">
+                    Live Chat Support
+                  </h3>
+                  <p class="text-gray-600">Available on our website</p>
+                  <p class="text-sm text-gray-500">
+                    Instant responses during business hours
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Section -->
+          <div class="mb-16">
+            <div class="map-container h-96">
+              <div
+                class="map-overlay w-full h-full flex items-center justify-center"
+              >
+                <div class="bg-white bg-opacity-90 p-6 rounded-xl text-center">
+                  <div
+                    class="w-12 h-12 flex items-center justify-center mx-auto mb-3 bg-primary rounded-full"
+                  >
+                    <i class="ri-map-pin-fill text-white text-2xl"></i>
+                  </div>
+                  <p class="font-bold text-gray-800 text-lg">
+                    PLUG&PLAY Gaming Store
+                  </p>
+                  <p class="text-gray-600 mb-2">Unit 2A, Cyberzone Mall</p>
+                  <p class="text-gray-600 mb-2">Ortigas Center, Pasig City</p>
+                  <p class="text-sm text-gray-500">
+                    Metro Manila, Philippines 1605
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form and Additional Info -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <!-- Contact Form -->
+            <div class="contact-form p-8 rounded-xl">
+              <h3
+                class="text-2xl font-bold mb-6 text-center"
+                style="color: #110b39"
+              >
+                Send us a Message
+              </h3>
+              <form class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >First Name</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="Enter your first name"
+                      class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Last Name</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="Enter your last name"
+                      class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Phone Number</label
+                  >
+                  <input
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Subject</label
+                  >
+                  <input
+                    type="text"
+                    placeholder="What is this regarding?"
+                    class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Message</label
+                  >
+                  <textarea
+                    rows="4"
+                    placeholder="Tell us how we can help you..."
+                    class="w-full px-4 py-3 border border-gray-300 !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-primary text-white py-4 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold text-lg"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+            <!-- Follow Us & Stay Connected -->
+            <div class="text-center">
+              <h3 class="text-2xl font-bold mb-8" style="color: #110b39">
+                Follow Us & Stay Connected
+              </h3>
+              <div class="flex justify-center space-x-6 mb-8">
+                <a
+                  href="#"
+                  class="w-12 h-12 flex items-center justify-center bg-primary rounded-full hover:bg-opacity-90 transition-all"
+                >
+                  <i class="ri-facebook-fill text-2xl text-white"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-12 h-12 flex items-center justify-center bg-secondary rounded-full hover:bg-opacity-90 transition-all"
+                >
+                  <i class="ri-twitter-fill text-2xl text-white"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-12 h-12 flex items-center justify-center bg-primary rounded-full hover:bg-opacity-90 transition-all"
+                >
+                  <i class="ri-instagram-fill text-2xl text-white"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-12 h-12 flex items-center justify-center bg-secondary rounded-full hover:bg-opacity-90 transition-all"
+                >
+                  <i class="ri-youtube-fill text-2xl text-white"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-12 h-12 flex items-center justify-center bg-primary rounded-full hover:bg-opacity-90 transition-all"
+                >
+                  <i class="ri-discord-fill text-2xl text-white"></i>
+                </a>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="contact-card p-6 rounded-xl text-center">
+                  <div
+                    class="w-12 h-12 flex items-center justify-center mx-auto mb-4 bg-primary rounded-full"
+                  >
+                    <i class="ri-question-answer-line text-2xl text-white"></i>
+                  </div>
+                  <h4 class="font-bold text-gray-800 mb-2">FAQ Section</h4>
+                  <p class="text-sm text-gray-600">
+                    Find quick answers to common questions about our products
+                    and services
+                  </p>
+                </div>
+                <div class="contact-card p-6 rounded-xl text-center">
+                  <div
+                    class="w-12 h-12 flex items-center justify-center mx-auto mb-4 bg-secondary rounded-full"
+                  >
+                    <i class="ri-tools-line text-2xl text-white"></i>
+                  </div>
+                  <h4 class="font-bold text-gray-800 mb-2">
+                    Technical Support
+                  </h4>
+                  <p class="text-sm text-gray-600">
+                    Get help with installation, setup, and troubleshooting for
+                    your gaming gear
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      style="background-color: #110b39"
+      class="text-white py-12 border-t border-gray-800"
+    >
+      <div class="max-w-6xl mx-auto px-8">
+        <div class="flex justify-between items-start mb-8">
+          <img src="PP-Logo.png" alt="PLUG&PLAY Logo" class="h-8" />
+          <div class="flex space-x-12">
+            <a href="home.html" class="hover:text-primary transition-colors"
+              >Home</a
+            >
+            <a href="products.html" class="hover:text-primary transition-colors"
+              >Products</a
+            >
+            <a href="about-us.html" class="hover:text-primary transition-colors"
+              >About Us</a
+            >
+            <a href="contact.html" class="text-primary">Contact</a>
+          </div>
+          <div class="flex space-x-4">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i
+                class="ri-facebook-fill text-xl hover:text-primary cursor-pointer transition-colors"
+              ></i>
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i
+                class="ri-twitter-fill text-xl hover:text-primary cursor-pointer transition-colors"
+              ></i>
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i
+                class="ri-instagram-fill text-xl hover:text-primary cursor-pointer transition-colors"
+              ></i>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 pt-8">
+          <div class="flex justify-between items-center">
+            <p class="text-gray-400">© 2025 BSIS CIIT Philippines Inc.</p>
+            <div class="flex space-x-6">
+              <a
+                href="terms-of-service.html"
+                class="text-gray-400 hover:text-primary transition-colors"
+                >Terms of Service</a
+              >
+              <a
+                href="privacy-policy.html"
+                class="text-gray-400 hover:text-primary transition-colors"
+                >Privacy Policy</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script id="login-popup">
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginButton = document.getElementById("loginButton");
+        const loginPopup = document.getElementById("loginPopup");
+        const signupPopup = document.getElementById("signupPopup");
+        const forgotPasswordPopup = document.getElementById(
+          "forgotPasswordPopup"
+        );
+        const closeLoginPopup = document.getElementById("closeLoginPopup");
+        const closeSignupPopup = document.getElementById("closeSignupPopup");
+        const closeForgotPasswordPopup = document.getElementById(
+          "closeForgotPasswordPopup"
+        );
+        const createAccountLink = document.getElementById("createAccountLink");
+        const forgotPasswordLink =
+          document.getElementById("forgotPasswordLink");
+        const loginHereLink = document.getElementById("loginHereLink");
+        const backToLoginLink = document.getElementById("backToLoginLink");
+        const agreeTermsCheckbox = document.getElementById("agreeTerms");
+        const checkIcon = document.getElementById("checkIcon");
+        function hideAllPopups() {
+          loginPopup.classList.remove("show");
+          signupPopup.classList.remove("show");
+          forgotPasswordPopup.classList.remove("show");
+        }
+        loginButton.addEventListener("click", function () {
+          hideAllPopups();
+          loginPopup.classList.add("show");
+        });
+        createAccountLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          signupPopup.classList.add("show");
+        });
+        forgotPasswordLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          forgotPasswordPopup.classList.add("show");
+        });
+        loginHereLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          loginPopup.classList.add("show");
+        });
+        backToLoginLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          loginPopup.classList.add("show");
+        });
+        closeLoginPopup.addEventListener("click", function () {
+          loginPopup.classList.remove("show");
+        });
+        closeSignupPopup.addEventListener("click", function () {
+          signupPopup.classList.remove("show");
+        });
+        closeForgotPasswordPopup.addEventListener("click", function () {
+          forgotPasswordPopup.classList.remove("show");
+        });
+        agreeTermsCheckbox.addEventListener("change", function () {
+          if (this.checked) {
+            checkIcon.style.opacity = "1";
+          } else {
+            checkIcon.style.opacity = "0";
+          }
+        });
+        document.addEventListener("click", function (e) {
+          if (
+            !loginPopup.contains(e.target) &&
+            !signupPopup.contains(e.target) &&
+            !forgotPasswordPopup.contains(e.target) &&
+            !loginButton.contains(e.target)
+          ) {
+            hideAllPopups();
+          }
+        });
+      });
+    </script>
+    <script id="contact-form">
+      document.addEventListener("DOMContentLoaded", function () {
+        const contactForm = document.querySelector("form");
+        const inputs = contactForm.querySelectorAll("input, textarea");
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          let isValid = true;
+          inputs.forEach((input) => {
+            if (input.hasAttribute("required") && !input.value.trim()) {
+              isValid = false;
+              input.classList.add("border-red-500");
+            } else {
+              input.classList.remove("border-red-500");
+            }
+          });
+          if (isValid) {
+            alert(
+              "Thank you for your message! We will get back to you within 24 hours."
+            );
+            contactForm.reset();
+          }
+        });
+        inputs.forEach((input) => {
+          input.addEventListener("input", function () {
+            this.classList.remove("border-red-500");
+          });
+        });
+      });
+    </script>
+    <script id="smooth-scroll">
+      document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

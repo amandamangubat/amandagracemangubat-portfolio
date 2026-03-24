@@ -1,0 +1,20 @@
+/* src/App.css */
+/* Full-bleed root: remove Vite template constraints */
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;                /* why: let the app touch the viewport edges */
+  background: #0b1220;      /* optional: matches dashboard backdrop */
+}
+
+/* IMPORTANT: override old rules from the Vite template */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: initial;
+}
+
+/* keep any other component styles below if you had them */

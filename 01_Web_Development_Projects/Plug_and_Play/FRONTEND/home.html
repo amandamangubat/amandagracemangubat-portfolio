@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PLUG&PLAY - Gaming Hardware Store</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#B47AEA", secondary: "#5ADEEB" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pixelify+Sans:wght@400..700&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      body {
+        font-family: "Barlow Semi Condensed", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .heading-font,
+      .pixel-font {
+        font-family: "Pixelify Sans", sans-serif;
+      }
+      button,
+      .btn,
+      .nav-button {
+        font-family: "Source Code Pro", monospace;
+        letter-spacing: 0.5px;
+      }
+      .hero-bg {
+        background-image: url("ROG-Home.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+      .pixel-font {
+        font-family: "Pixelify Sans", sans-serif;
+        text-shadow: 2px 2px 0px rgba(180, 122, 234, 0.8);
+        letter-spacing: 2px;
+      }
+      .whats-hot-bg {
+        background-image: url("3-BG.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+      .carousel-item {
+        transition: transform 0.3s ease;
+      }
+      .carousel-item:hover {
+        transform: translateY(-10px);
+      }
+      .floating-card {
+        animation: float 3s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .product-card {
+        background: linear-gradient(
+          135deg,
+          rgba(180, 122, 234, 0.1) 0%,
+          rgba(90, 222, 235, 0.1) 100%
+        );
+      }
+      .login-popup {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        width: 280px;
+        height: 380px;
+        background-image: url("2-BG.jpg");
+        background-size: cover;
+        background-position: center;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+      .signup-popup {
+        height: 480px;
+      }
+      .login-popup.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      .login-popup-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+      }
+      .checkbox-custom input[type="checkbox"]:checked + label .check-icon {
+        opacity: 1;
+      }
+      .account-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 200px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        overflow: hidden;
+      }
+      .account-dropdown.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .account-dropdown-header {
+        background-image: url("2-BG.jpg");
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+      .account-dropdown-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.9);
+      }
+      .account-dropdown-header h3 {
+        position: relative;
+        z-index: 1;
+        font-size: 18px;
+        font-weight: bold;
+        color: #1f2937;
+        margin: 0;
+        font-family: monospace;
+        letter-spacing: 2px;
+      }
+      .account-dropdown-menu {
+        padding: 8px 0;
+      }
+      .account-dropdown-item {
+        display: block;
+        padding: 12px 20px;
+        color: #4b5563;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+      }
+      .account-dropdown-item:hover {
+        background-color: #f3f4f6;
+        color: #b47aea;
+      }
+    </style>
+  </head>
+  <body style="background-color: #110b39" class="text-gray-900">
+    <!-- Login Popup -->
+    <div id="loginPopup" class="login-popup">
+      <div class="login-popup-overlay"></div>
+      <div class="relative p-6 h-full flex flex-col justify-center">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">SIGN IN</h3>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input
+              type="text"
+              id="loginEmail"
+              placeholder="Email or Phone Number"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Password"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div
+            id="loginErrorMessage"
+            class="text-center text-red-500 text-sm hidden"
+          >
+            Invalid credentials. Please try again.
+          </div>
+          <div class="text-center">
+            <a
+              href="#"
+              id="forgotPasswordLink"
+              class="text-sm text-gray-600 hover:text-primary"
+              >Forgot Password?</a
+            >
+          </div>
+          <button
+            id="loginButton"
+            class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold"
+          >
+            Log In
+          </button>
+          <div class="text-center pt-4">
+            <p class="text-sm text-gray-600">Don't have an account yet?</p>
+            <a
+              href="#"
+              id="createAccountLink"
+              class="text-sm text-primary underline font-medium"
+              >Create an account</a
+            >
+          </div>
+        </div>
+        <button
+          id="closeLoginPopup"
+          class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800"
+        >
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sign Up Popup -->
+    <div id="signupPopup" class="login-popup signup-popup">
+      <div class="login-popup-overlay"></div>
+      <div class="relative p-6 h-full flex flex-col justify-center">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">SIGN UP</h3>
+          <p class="text-sm text-gray-600">
+            Please fill in the information below:
+          </p>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input
+              type="text"
+              placeholder="First Name"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Last Name"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Email Address"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div class="flex items-start space-x-2 text-xs text-gray-600">
+            <input
+              type="checkbox"
+              id="agreeTerms"
+              class="mt-1 opacity-0 absolute"
+            />
+            <label for="agreeTerms" class="relative cursor-pointer">
+              <div
+                class="w-4 h-4 border-2 border-gray-400 rounded bg-white flex items-center justify-center"
+              >
+                <i
+                  class="ri-check-line text-xs text-primary opacity-0"
+                  id="checkIcon"
+                ></i>
+              </div>
+            </label>
+            <span
+              >By continuing, I agree to Plug&Play's Privacy Policy and Terms of
+              Use</span
+            >
+          </div>
+          <button
+            class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold"
+          >
+            Create My Account
+          </button>
+          <div class="text-center pt-2">
+            <p class="text-sm text-gray-600">
+              Already have an account?
+              <a
+                href="#"
+                id="loginHereLink"
+                class="text-primary underline font-medium"
+                >Login Here</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <button
+          id="closeSignupPopup"
+          class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800"
+        >
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Forgot Password Popup -->
+    <div id="forgotPasswordPopup" class="login-popup">
+      <div class="login-popup-overlay"></div>
+      <div class="relative p-6 h-full flex flex-col justify-center">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">FORGOT PASSWORD</h3>
+          <p class="text-sm text-gray-600">
+            Enter your email address to reset your password:
+          </p>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input
+              type="email"
+              placeholder="Email Address"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <button
+            class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold"
+          >
+            Send Reset Link
+          </button>
+          <div class="text-center pt-4">
+            <p class="text-sm text-gray-600">
+              Remember your password?
+              <a
+                href="#"
+                id="backToLoginLink"
+                class="text-primary underline font-medium"
+                >Back to Login</a
+              >
+            </p>
+          </div>
+        </div>
+        <button
+          id="closeForgotPasswordPopup"
+          class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800"
+        >
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      style="background-color: #110b39"
+      class="text-white px-8 py-4 fixed w-full top-0 z-50"
+    >
+      <div class="flex items-center justify-between">
+        <img src="PP-Logo.png" alt="PLUG&PLAY Logo" class="h-8 ml-6" />
+        <div class="flex items-center space-x-8">
+          <a href="home.html" class="hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a href="products.html" class="hover:text-primary transition-colors"
+            >Products</a
+          >
+          <a href="about-us.html" class="hover:text-primary transition-colors"
+            >About Us</a
+          >
+          <a href="contact.html" class="hover:text-primary transition-colors"
+            >Contact</a
+          >
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Search products..."
+              class="bg-gray-800 text-white px-4 py-2 pr-10 rounded-button border-none text-sm"
+            />
+            <div
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center"
+            >
+              <i class="ri-search-line text-gray-400"></i>
+            </div>
+          </div>
+          <div class="w-8 h-8 flex items-center justify-center">
+            <a href="cart.html">
+              <i
+                class="ri-shopping-cart-line text-xl hover:text-primary cursor-pointer transition-colors"
+              ></i>
+            </a>
+          </div>
+          <div
+            id="userProfileButton"
+            class="relative w-8 h-8 flex items-center justify-center"
+          >
+            <i
+              class="ri-user-line text-xl hover:text-primary cursor-pointer transition-colors"
+            ></i>
+            <div id="accountDropdown" class="account-dropdown">
+              <div class="account-dropdown-header">
+                <h3>ACCOUNT</h3>
+              </div>
+              <div class="account-dropdown-menu">
+                <a
+                  href="profile.html"
+                  data-readdy="true"
+                  class="account-dropdown-item"
+                >
+                  <i class="ri-user-line mr-3"></i>Profile
+                </a>
+
+                <a
+                  href="orders.html"
+                  data-readdy="true"
+                  class="account-dropdown-item"
+                >
+                  <i class="ri-shopping-bag-line mr-3"></i>Orders
+                </a>
+                <a
+                  href="logout.html"
+                  data-readdy="true"
+                  class="account-dropdown-item"
+                >
+                  <i class="ri-logout-box-line mr-3"></i>Log Out
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center pt-20">
+      <div class="w-full px-8">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex items-start justify-between">
+            <div class="flex-1 max-w-xl pr-20">
+              <h1
+                class="text-7xl font-bold text-black mb-6 leading-tight pixel-font"
+              >
+                ROG ALLY X
+              </h1>
+              <p class="text-xl text-black-200 mb-8 leading-relaxed">
+                Experience the ultimate portable gaming with the ROG ALLY X.
+                Featuring AMD Ryzen Z1 Extreme processor, 24GB LPDDR5X RAM, and
+                up to 1TB of SSD storage, this advanced handheld console
+                delivers exceptional performance for gaming on the go.
+              </p>
+            </div>
+            <div class="flex space-x-4 ml-8 mt-80">
+              <a
+                href="product-desc.html"
+                class="bg-primary text-white px-8 py-4 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap text-lg font-semibold"
+                >Learn More</a
+              >
+              <button
+                class="bg-secondary text-dark px-8 py-4 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap text-lg font-semibold"
+              >
+                Buy Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's Hot Section -->
+    <section class="whats-hot-bg pt-20 pb-40" style="background-color: #110b39">
+      <div class="max-w-6xl mx-auto px-8">
+        <h2 class="text-5xl font-bold text-white text-center mb-16 pixel-font">
+          WHAT'S HOT
+        </h2>
+        <div class="grid grid-cols-5 gap-8">
+          <div
+            class="carousel-item bg-gray-900 rounded-lg overflow-hidden cursor-pointer"
+          >
+            <img
+              src="LS9.jpg"
+              alt="Gaming Laptop"
+              class="w-full h-40 object-cover object-top"
+            />
+            <div class="p-5">
+              <h3 class="text-white font-semibold mb-2">LEGION SERIES 9</h3>
+              <p class="text-gray-400 text-sm mb-4">GAMING LAPTOP</p>
+              <button
+                class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap text-sm font-medium w-full"
+              >
+                Buy Now
+              </button>
+            </div>
+          </div>
+          <div
+            class="carousel-item bg-gray-900 rounded-lg overflow-hidden cursor-pointer"
+          >
+            <img
+              src="ROG.webp"
+              alt="Gaming Laptop"
+              class="w-full h-40 object-cover object-top"
+            />
+            <div class="p-5">
+              <h3 class="text-white font-semibold mb-2">ASUS ROG STRIX</h3>
+              <p class="text-gray-400 text-sm mb-4">GAMING LAPTOP</p>
+              <button
+                class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap text-sm font-medium w-full"
+              >
+                Buy Now
+              </button>
+            </div>
+          </div>
+          <div
+            class="carousel-item bg-gray-900 rounded-lg overflow-hidden cursor-pointer"
+          >
+            <img
+              src="NITRO5.webp"
+              alt="Gaming Laptop"
+              class="w-full h-40 object-cover object-top"
+            />
+            <div class="p-5">
+              <h3 class="text-white font-semibold mb-2">ACER NITRO 5</h3>
+              <p class="text-gray-400 text-sm mb-4">GAMING LAPTOP</p>
+              <button
+                class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap text-sm font-medium w-full"
+              >
+                Buy Now
+              </button>
+            </div>
+          </div>
+          <div
+            class="carousel-item bg-gray-900 rounded-lg overflow-hidden cursor-pointer"
+          >
+            <img
+              src="ALIENWAREM15.jpg"
+              alt="Gaming Laptop"
+              class="w-full h-40 object-cover object-top"
+            />
+            <div class="p-5">
+              <h3 class="text-white font-semibold mb-2">ALIENWARE M15</h3>
+              <p class="text-gray-400 text-sm mb-4">GAMING LAPTOP</p>
+              <button
+                class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap text-sm font-medium w-full"
+              >
+                Buy Now
+              </button>
+            </div>
+          </div>
+          <div
+            class="carousel-item bg-primary bg-opacity-20 rounded-lg overflow-hidden cursor-pointer border-2 border-primary"
+          >
+            <div
+              class="flex flex-col items-center justify-center h-40 text-center"
+            >
+              <div class="w-12 h-12 flex items-center justify-center mb-4">
+                <i class="ri-grid-line text-4xl text-primary"></i>
+              </div>
+              <h3 class="text-white font-semibold text-lg">VIEW ALL</h3>
+            </div>
+            <div class="p-5">
+              <a
+                href="products.html"
+                class="block bg-secondary text-dark px-4 py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap text-sm font-medium w-full text-center"
+                >See Products</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="bg-cover bg-center"
+      style="background-image: url('5-BG.jpg')"
+    >
+      <div class="py-20">
+        <!-- Floating Features Card -->
+        <div class="max-w-6xl mx-auto px-8">
+          <div class="relative -mt-40 mb-20 z-10">
+            <div class="max-w-4xl mx-auto">
+              <div class="floating-card bg-white rounded-xl shadow-2xl p-8">
+                <div class="grid grid-cols-3 gap-8">
+                  <div class="text-center">
+                    <div
+                      class="w-12 h-12 flex items-center justify-center mx-auto mb-4"
+                    >
+                      <i class="ri-gamepad-line text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">
+                      Your Plug-in Trusted Plug & Play
+                    </h3>
+                    <p class="text-gray-600 text-sm">
+                      With all our new Plug and Play setup
+                    </p>
+                  </div>
+                  <div class="text-center">
+                    <div
+                      class="w-12 h-12 flex items-center justify-center mx-auto mb-4"
+                    >
+                      <i class="ri-truck-line text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">
+                      Fast & Shipping Nationwide
+                    </h3>
+                    <p class="text-gray-600 text-sm">
+                      Shipping all over the Philippines
+                    </p>
+                  </div>
+                  <div class="text-center">
+                    <div
+                      class="w-12 h-12 flex items-center justify-center mx-auto mb-4"
+                    >
+                      <i class="ri-shield-check-line text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">
+                      100% Safe and Secured
+                    </h3>
+                    <p class="text-gray-600 text-sm">Your payment</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PS5 block -->
+        <div class="max-w-6xl mx-auto px-8">
+          <div class="relative mb-0">
+            <!-- Purple rectangle -->
+            <div
+              class="rounded-[32px] bg-primary px-12 py-12 text-white shadow-2xl"
+            >
+              <div class="flex justify-end">
+                <div class="w-2/3 pl-16">
+                  <h2 class="text-4xl font-bold mb-4 pixel-font tracking-wide">
+                    SONY PLAYSTATION 5 CONSOLE
+                  </h2>
+
+                  <p class="text-lg mb-6 leading-relaxed max-w-xl">
+                    Experience next-generation gaming with the PlayStation 5.
+                    Featuring lightning-fast SSD, ray tracing capabilities, and
+                    exclusive games that redefine what's possible in gaming.
+                  </p>
+
+                  <div class="flex justify-start mt-4">
+                    <a
+                      href="product-desc.html"
+                      class="bg-white text-primary px-10 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all whitespace-nowrap"
+                    >
+                      Learn More
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- OVERLAPPING PS5 image -->
+            <img
+              src="PS5.webp"
+              alt="PlayStation 5"
+              class="absolute left-0 top-1/2 -translate-y-1/2 w-[850px] drop-shadow-2xl -ml-52"
+            />
+          </div>
+        </div>
+
+        <!-- Built for Every Kind of Player -->
+        <div class="max-w-4xl mx-auto px-8 text-center pt-16 pb-4">
+          <h2 class="text-4xl font-bold mb-8">
+            Built for Every Kind of Player
+          </h2>
+          <div class="mb-16">
+            <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+              Plug and Play was born from a simple idea — that gaming and tech
+              should be exciting, accessible, and built for everyone. We started
+              as a small team of enthusiasts who knew the thrill of a smooth
+              frame rate, the satisfaction of a responsive keyboard, and the joy
+              of gear that just works. Today, we offer a curated lineup of
+              laptops, desktops, consoles, accessories, and peripherals designed
+              to power every kind of player — from students and streamers to
+              competitive gamers and casual explorers. Whether you're building
+              your dream setup or upgrading your everyday essentials, our goal
+              is to make sure you plug in with confidence and play without
+              limits. Because at Plug and Play, we don’t just sell tech — we
+              deliver the tools to unlock your next level.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+              We believe that great gear should never be out of reach. That’s
+              why our catalog includes everything from budget-friendly entry
+              laptops to high-performance gaming rigs, from sleek accessories to
+              pro-grade peripherals. Whether you're looking for a reliable
+              school laptop, a streaming-ready microphone, or a 144Hz monitor
+              that keeps up with your reflexes, we’ve got you covered. Every
+              product we stock is handpicked for quality, value, and gamer
+              appeal — because we know what it means to invest in your setup.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+              Our platform is built for simplicity and control. Customers enjoy
+              a smooth, secure shopping experience with clear product specs,
+              fast checkout, and responsive support. Behind the scenes, our
+              admin dashboard empowers store managers with real-time insights,
+              inventory tools, and order tracking — making Plug and Play not
+              just a store, but a smart retail ecosystem. We’re constantly
+              evolving to meet the needs of both shoppers and sellers, with
+              features that scale as you grow.
+            </p>
+            <p class="text-gray-700 leading-relaxed text-lg">
+              At the heart of it all is our community — the players, creators,
+              students, and tech lovers who inspire us every day. Plug and Play
+              is more than a brand; it’s a mindset. It’s about jumping into the
+              game, embracing the grind, and having the gear to back you up. So
+              whether you're chasing high scores or high productivity, we’re
+              here to help you plug in, play on, and power up.
+            </p>
+          </div>
+          <div class="mb-12">
+            <img src="PP-Logo.png" alt="PLUG&PLAY Logo" class="mx-auto h-20" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#110b39] text-white pt-10 pb-6">
+      <!-- TOP FOOTER CONTENT (centered) -->
+      <div
+        class="max-w-6xl mx-auto px-8 flex justify-between items-center mb-6"
+      >
+        <img src="PP-Logo.png" class="h-8" />
+
+        <nav class="flex gap-10 text-sm">
+          <a href="home.html" class="hover:text-primary">Home</a>
+          <a href="products.html" class="hover:text-primary">Products</a>
+          <a href="about-us.html" class="hover:text-primary">About Us</a>
+          <a href="contact.html" class="hover:text-primary">Contact</a>
+        </nav>
+
+        <div class="flex gap-6 text-xl">
+          <i class="ri-facebook-fill"></i>
+          <i class="ri-twitter-fill"></i>
+          <i class="ri-instagram-line"></i>
+        </div>
+      </div>
+      <div class="w-full border-t border-gray-700"></div>
+
+      <!-- BOTTOM FOOTER CONTENT (centered) -->
+      <div
+        class="max-w-6xl mx-auto px-8 flex justify-between items-center mt-4 text-sm text-gray-300"
+      >
+        <p>© 2025 BSIS CIIT Philippines Inc.</p>
+
+        <div class="flex gap-6">
+          <a href="terms-of-service.html" class="hover:text-white"
+            >Terms of Service</a
+          >
+          <a href="privacy-policy.html" class="hover:text-white"
+            >Privacy Policy</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script id="login-popup">
+      document.addEventListener("DOMContentLoaded", function () {
+        let isLoggedIn = false;
+        const userProfileButton = document.getElementById("userProfileButton");
+        const accountDropdown = document.getElementById("accountDropdown");
+        const loginPopup = document.getElementById("loginPopup");
+        const signupPopup = document.getElementById("signupPopup");
+        const forgotPasswordPopup = document.getElementById(
+          "forgotPasswordPopup"
+        );
+        const closeLoginPopup = document.getElementById("closeLoginPopup");
+        const closeSignupPopup = document.getElementById("closeSignupPopup");
+        const closeForgotPasswordPopup = document.getElementById(
+          "closeForgotPasswordPopup"
+        );
+        const createAccountLink = document.getElementById("createAccountLink");
+        const forgotPasswordLink =
+          document.getElementById("forgotPasswordLink");
+        const loginHereLink = document.getElementById("loginHereLink");
+        const backToLoginLink = document.getElementById("backToLoginLink");
+        const agreeTermsCheckbox = document.getElementById("agreeTerms");
+        const checkIcon = document.getElementById("checkIcon");
+        const logoutButton = document.getElementById("logoutButton");
+        function hideAllPopups() {
+          loginPopup.classList.remove("show");
+          signupPopup.classList.remove("show");
+          forgotPasswordPopup.classList.remove("show");
+          accountDropdown.classList.remove("show");
+        }
+        userProfileButton.addEventListener("click", function (e) {
+          e.stopPropagation();
+          if (isLoggedIn) {
+            hideAllPopups();
+            accountDropdown.classList.add("show");
+          } else {
+            hideAllPopups();
+            loginPopup.classList.add("show");
+          }
+        });
+        createAccountLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          signupPopup.classList.add("show");
+        });
+        forgotPasswordLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          forgotPasswordPopup.classList.add("show");
+        });
+        loginHereLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          loginPopup.classList.add("show");
+        });
+        backToLoginLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          loginPopup.classList.add("show");
+        });
+        closeLoginPopup.addEventListener("click", function () {
+          loginPopup.classList.remove("show");
+        });
+        closeSignupPopup.addEventListener("click", function () {
+          signupPopup.classList.remove("show");
+        });
+        closeForgotPasswordPopup.addEventListener("click", function () {
+          forgotPasswordPopup.classList.remove("show");
+        });
+        logoutButton.addEventListener("click", function () {
+          isLoggedIn = false;
+          hideAllPopups();
+        });
+        const loginButton = document.getElementById("loginButton");
+        const loginEmail = document.getElementById("loginEmail");
+        const loginPassword = document.getElementById("loginPassword");
+        const loginErrorMessage = document.getElementById("loginErrorMessage");
+        const signupSubmitButton = signupPopup.querySelector(
+          'button[type="button"]:last-of-type'
+        );
+        function validateCredentials(email, password) {
+          return email.length > 0 && password.length >= 6;
+        }
+        if (loginButton) {
+          loginButton.addEventListener("click", function () {
+            const email = loginEmail.value.trim();
+            const password = loginPassword.value.trim();
+            loginErrorMessage.classList.add("hidden");
+            if (validateCredentials(email, password)) {
+              isLoggedIn = true;
+              hideAllPopups();
+              loginEmail.value = "";
+              loginPassword.value = "";
+            } else {
+              loginErrorMessage.classList.remove("hidden");
+            }
+          });
+        }
+        if (signupSubmitButton) {
+          signupSubmitButton.addEventListener("click", function () {
+            isLoggedIn = true;
+            hideAllPopups();
+          });
+        }
+        agreeTermsCheckbox.addEventListener("change", function () {
+          if (this.checked) {
+            checkIcon.style.opacity = "1";
+          } else {
+            checkIcon.style.opacity = "0";
+          }
+        });
+        document.addEventListener("click", function (e) {
+          if (
+            !loginPopup.contains(e.target) &&
+            !signupPopup.contains(e.target) &&
+            !forgotPasswordPopup.contains(e.target) &&
+            !userProfileButton.contains(e.target) &&
+            !accountDropdown.contains(e.target)
+          ) {
+            hideAllPopups();
+          }
+        });
+      });
+    </script>
+    <script id="carousel-interaction">
+      document.addEventListener("DOMContentLoaded", function () {
+        const carouselItems = document.querySelectorAll(".carousel-item");
+        carouselItems.forEach((item) => {
+          item.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-10px) scale(1.05)";
+          });
+          item.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0) scale(1)";
+          });
+        });
+      });
+    </script>
+    <script id="smooth-scroll">
+      document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+      });
+    </script>
+    <script id="floating-animation">
+      document.addEventListener("DOMContentLoaded", function () {
+        const floatingCard = document.querySelector(".floating-card");
+        if (floatingCard) {
+          let isHovered = false;
+          floatingCard.addEventListener("mouseenter", function () {
+            isHovered = true;
+            this.style.animationPlayState = "paused";
+          });
+          floatingCard.addEventListener("mouseleave", function () {
+            isHovered = false;
+            this.style.animationPlayState = "running";
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

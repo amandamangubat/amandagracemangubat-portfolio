@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service - PLUG&PLAY Gaming Hardware Store</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#B47AEA", secondary: "#5ADEEB" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      .pixel-font {
+        font-family: monospace;
+        text-shadow: 2px 2px 0px rgba(180, 122, 234, 0.8);
+        letter-spacing: 2px;
+      }
+      .terms-bg {
+        background-image: url("3-BG.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+      .sidebar-item {
+        transition: all 0.3s ease;
+      }
+      .sidebar-item:hover {
+        background-color: rgba(180, 122, 234, 0.1);
+        transform: translateX(5px);
+      }
+      .sidebar-item.active {
+        background-color: rgba(180, 122, 234, 0.2);
+        border-left: 4px solid #b47aea;
+      }
+      .content-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease;
+      }
+      .content-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .login-popup {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        width: 280px;
+        height: 380px;
+        background-image: url('2-BG.jpg');
+        background-size: cover;
+        background-position: center;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+      .signup-popup {
+        height: 480px;
+      }
+      .login-popup.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      .login-popup-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+      }
+      .checkbox-custom input[type="checkbox"]:checked + label .check-icon {
+        opacity: 1;
+      }
+      .account-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 200px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        overflow: hidden;
+      }
+      .account-dropdown.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .account-dropdown-header {
+        background-image: url('2-BG.jpg');
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+      .account-dropdown-header::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.9);
+      }
+      .account-dropdown-header h3 {
+        position: relative;
+        z-index: 1;
+        font-size: 18px;
+        font-weight: bold;
+        color: #1f2937;
+        margin: 0;
+        font-family: monospace;
+        letter-spacing: 2px;
+      }
+      .account-dropdown-menu {
+        padding: 8px 0;
+      }
+      .account-dropdown-item {
+        display: block;
+        padding: 12px 20px;
+        color: #4b5563;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+      }
+      .account-dropdown-item:hover {
+        background-color: #f3f4f6;
+        color: #B47AEA;
+      }
+    </style>
+  </head>
+  <body style="background-color: #110b39" class="text-gray-900">
+    <!-- Login Popup -->
+    <div id="loginPopup" class="login-popup">
+      <div class="login-popup-overlay"></div>
+      <div class="relative p-6 h-full flex flex-col justify-center">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">SIGN IN</h3>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input type="text" id="loginEmail" placeholder="Email or Phone Number" class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+          </div>
+          <div>
+            <input type="password" id="loginPassword" placeholder="Password" class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+          </div>
+          <div id="loginErrorMessage" class="text-center text-red-500 text-sm hidden">Invalid credentials. Please try again.</div>
+          <div class="text-center">
+            <a href="#" id="forgotPasswordLink" class="text-sm text-gray-600 hover:text-primary">Forgot Password?</a>
+          </div>
+            <button id="loginButton" class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold">Log In</button>
+            <div class="text-center pt-4">
+              <p class="text-sm text-gray-600">Don't have an account yet?</p>
+              <a href="#" id="createAccountLink" class="text-sm text-primary underline font-medium">Create an account</a>
+            </div>
+          </div>
+          <button id="closeLoginPopup" class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+      </div>
+    
+      <!-- Sign Up Popup -->
+      <div id="signupPopup" class="login-popup signup-popup">
+        <div class="login-popup-overlay"></div>
+        <div class="relative p-6 h-full flex flex-col justify-center">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">SIGN UP</h3>
+            <p class="text-sm text-gray-600">Please fill in the information below:</p>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <input type="text" placeholder="First Name" class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+            <div>
+              <input type="text" placeholder="Last Name" class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+            <div>
+              <input type="email" placeholder="Email Address" class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+            <div>
+              <input type="password" placeholder="Password" class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+            <div class="flex items-start space-x-2 text-xs text-gray-600">
+              <input type="checkbox" id="agreeTerms" class="mt-1 opacity-0 absolute">
+              <label for="agreeTerms" class="relative cursor-pointer">
+                <div class="w-4 h-4 border-2 border-gray-400 rounded bg-white flex items-center justify-center">
+                  <i class="ri-check-line text-xs text-primary opacity-0" id="checkIcon"></i>
+                </div>
+              </label>
+              <span>By continuing, I agree to Plug&Play's Privacy Policy and Terms of Use</span>
+            </div>
+            <button class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold">Create My Account</button>
+            <div class="text-center pt-2">
+              <p class="text-sm text-gray-600">Already have an account? <a href="#" id="loginHereLink" class="text-primary underline font-medium">Login Here</a></p>
+            </div>
+          </div>
+    
+          <button id="closeSignupPopup" class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+      </div>
+        
+      <!-- Forgot Password Popup -->
+      <div id="forgotPasswordPopup" class="login-popup">
+        <div class="login-popup-overlay"></div>
+        <div class="relative p-6 h-full flex flex-col justify-center">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">FORGOT PASSWORD</h3>
+            <p class="text-sm text-gray-600">Enter your email address to reset your password:</p>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input type="email" placeholder="Email Address" class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+          </div>
+          <button class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold">Send Reset Link</button>
+          <div class="text-center pt-4">
+            <p class="text-sm text-gray-600">Remember your password? <a href="#" id="backToLoginLink" class="text-primary underline font-medium">Back to Login</a></p>
+          </div>
+        </div>
+        <button id="closeForgotPasswordPopup" class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav style="background-color: #110b39" class="text-white px-8 py-4 fixed w-full top-0 z-50">
+      <div class="flex items-center justify-between">
+          <img src="PP-Logo.png" alt="PLUG&PLAY Logo" class="h-8"/></a>
+        <div class="flex items-center space-x-8">
+          <a href="home.html" class="hover:text-primary transition-colors">Home</a>
+          <a href="products.html" class="hover:text-primary transition-colors">Products</a>
+          <a href="about-us.html" class="hover:text-primary transition-colors">About Us</a>
+          <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input type="text" placeholder="Search products..." class="bg-gray-800 text-white px-4 py-2 pr-10 rounded-button border-none text-sm"/>
+            <div class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+              <i class="ri-search-line text-gray-400"></i>
+            </div>
+          </div>
+          <div class="w-8 h-8 flex items-center justify-center">
+            <a href="cart.html">
+              <i class="ri-shopping-cart-line text-xl hover:text-primary cursor-pointer transition-colors"></i>
+            </a>
+          </div>
+          <div id="userProfileButton" class="relative w-8 h-8 flex items-center justify-center">
+            <i class="ri-user-line text-xl hover:text-primary cursor-pointer transition-colors"></i>
+            <div id="accountDropdown" class="account-dropdown">
+              <div class="account-dropdown-header">
+                <h3>ACCOUNT</h3>
+              </div>
+              <div class="account-dropdown-menu">
+                <a href="profile.html" data-readdy="true" class="account-dropdown-item">
+                  <i class="ri-user-line mr-3"></i>Profile
+                </a>
+
+                <a href="orders.html" data-readdy="true" class="account-dropdown-item">
+                  <i class="ri-shopping-bag-line mr-3"></i>Orders
+                </a>
+                <a href="logout.html" data-readdy="true" class="account-dropdown-item">
+                  <i class="ri-logout-box-line mr-3"></i>Log Out
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-white min-h-96 flex items-center pt-32 pb-8 relative">
+      <div class="w-full px-8">
+        <div class="max-w-8xl mx-auto text-center">
+          <div
+            class="terms-bg rounded-3xl p-20 shadow-2xl mx-auto max-w-7xl relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-black bg-opacity-40 rounded-3xl"
+            ></div>
+            <div class="relative z-10">
+              <h1 class="text-6xl font-bold text-white mb-6 leading-tight pixel-font">TERMS OF SERVICE</h1>
+              <p class="text-xl text-gray-200 mb-8 leading-relaxed max-w-4xl mx-auto">
+                Please read these Terms of Service carefully before using our
+                gaming hardware store. By accessing or using our services, you
+                agree to be bound by these terms and conditions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Main Content -->
+    <section class="pt-8 pb-20 bg-white min-h-screen">
+      <div class="max-w-7xl mx-auto px-8">
+        <div class="flex gap-12">
+          <!-- Sidebar Table of Contents -->
+          <div class="w-80 flex-shrink-0">
+            <div class="sticky top-32">
+              <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h3 class="text-lg font-bold mb-6 text-gray-800">
+                  Table of Contents
+                </h3>
+                <nav class="space-y-2">
+                  <a href="#acceptance" class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer" data-section="acceptance">
+                    <div class="w-6 h-6 flex items-center justify-center mr-3 inline-block">
+                      <i class="ri-check-line text-primary"></i>
+                    </div>
+                    Acceptance of Terms
+                  </a>
+                  <a href="#use-website" class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer" data-section="use-website">
+                    <div class="w-6 h-6 flex items-center justify-center mr-3 inline-block">
+                      <i class="ri-global-line text-primary"></i>
+                    </div>
+                    Use of the Website
+                  </a>
+                  <a href="#user-accounts" class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer" data-section="user-accounts">
+                    <div class="w-6 h-6 flex items-center justify-center mr-3 inline-block">
+                      <i class="ri-user-settings-line text-primary"></i>
+                    </div>
+                    User Accounts & Registration
+                  </a>
+                  <a
+                    href="#product-info"
+                    class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer"
+                    data-section="product-info"
+                  >
+                    <div
+                      class="w-6 h-6 flex items-center justify-center mr-3 inline-block"
+                    >
+                      <i class="ri-information-line text-primary"></i>
+                    </div>
+                    Product Information & Pricing
+                  </a>
+                  <a
+                    href="#payment-billing"
+                    class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer"
+                    data-section="payment-billing"
+                  >
+                    <div
+                      class="w-6 h-6 flex items-center justify-center mr-3 inline-block"
+                    >
+                      <i class="ri-bank-card-line text-primary"></i>
+                    </div>
+                    Payment & Billing
+                  </a>
+                  <a
+                    href="#shipping-delivery"
+                    class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer"
+                    data-section="shipping-delivery"
+                  >
+                    <div
+                      class="w-6 h-6 flex items-center justify-center mr-3 inline-block"
+                    >
+                      <i class="ri-truck-line text-primary"></i>
+                    </div>
+                    Shipping & Delivery
+                  </a>
+                  <a
+                    href="#returns-refunds"
+                    class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer"
+                    data-section="returns-refunds"
+                  >
+                    <div
+                      class="w-6 h-6 flex items-center justify-center mr-3 inline-block"
+                    >
+                      <i class="ri-arrow-go-back-line text-primary"></i>
+                    </div>
+                    Returns & Refunds
+                  </a>
+                  <a
+                    href="#intellectual-property"
+                    class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer"
+                    data-section="intellectual-property"
+                  >
+                    <div
+                      class="w-6 h-6 flex items-center justify-center mr-3 inline-block"
+                    >
+                      <i class="ri-copyright-line text-primary"></i>
+                    </div>
+                    Intellectual Property Rights
+                  </a>
+                  <a
+                    href="#user-conduct"
+                    class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer"
+                    data-section="user-conduct"
+                  >
+                    <div
+                      class="w-6 h-6 flex items-center justify-center mr-3 inline-block"
+                    >
+                      <i class="ri-shield-user-line text-primary"></i>
+                    </div>
+                    User Conduct
+                  </a>
+                  <a
+                    href="#limitation-liability"
+                    class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer"
+                    data-section="limitation-liability"
+                  >
+                    <div
+                      class="w-6 h-6 flex items-center justify-center mr-3 inline-block"
+                    >
+                      <i class="ri-alert-line text-primary"></i>
+                    </div>
+                    Limitation of Liability
+                  </a>
+                  <a
+                    href="#privacy-policy"
+                    class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer"
+                    data-section="privacy-policy"
+                  >
+                    <div
+                      class="w-6 h-6 flex items-center justify-center mr-3 inline-block"
+                    >
+                      <i class="ri-shield-check-line text-primary"></i>
+                    </div>
+                    Privacy Policy Reference
+                  </a>
+                  <a
+                    href="#dispute-resolution"
+                    class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer"
+                    data-section="dispute-resolution"
+                  >
+                    <div
+                      class="w-6 h-6 flex items-center justify-center mr-3 inline-block"
+                    >
+                      <i class="ri-scales-line text-primary"></i>
+                    </div>
+                    Dispute Resolution
+                  </a>
+                  <a
+                    href="#contact-info"
+                    class="sidebar-item block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 cursor-pointer"
+                    data-section="contact-info"
+                  >
+                    <div
+                      class="w-6 h-6 flex items-center justify-center mr-3 inline-block"
+                    >
+                      <i class="ri-phone-line text-primary"></i>
+                    </div>
+                    Contact Information
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <!-- Main Content Area -->
+          <div class="flex-1">
+            <div class="space-y-12">
+              <!-- Acceptance of Terms -->
+              <div id="acceptance" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-check-line text-2xl text-primary"></i>
+                    </div>
+                    ACCEPTANCE OF TERMS
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">
+                      By visiting, accessing, or using the PLUG&PLAY website,
+                      you acknowledge that you have read, understood, and agree
+                      to be bound by these Terms of Service. These terms
+                      constitute a legally binding agreement between you and
+                      PLUG&PLAY Gaming Hardware Store.
+                    </p>
+                    <p class="mb-4">
+                      If you do not agree to these terms, please discontinue
+                      using the website immediately. Your continued use of our
+                      services constitutes acceptance of any modifications to
+                      these terms.
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                      <li>
+                        You must be at least 18 years old to make purchases
+                      </li>
+                      <li>
+                        You are responsible for maintaining the confidentiality
+                        of your account
+                      </li>
+                      <li>
+                        You agree to provide accurate and complete information
+                      </li>
+                      <li>
+                        You understand that these terms may be updated
+                        periodically
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Use of the Website -->
+              <div id="use-website" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-global-line text-2xl text-primary"></i>
+                    </div>
+                    USE OF THE WEBSITE
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">
+                      PLUG&PLAY grants you a limited, non-exclusive,
+                      non-transferable license to access and use our website for
+                      personal and commercial purposes in accordance with these
+                      Terms of Service.
+                    </p>
+                    <p class="mb-4">You may NOT use our website:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-6">
+                      <li>
+                        For any unlawful purpose or to solicit others to engage
+                        in unlawful acts
+                      </li>
+                      <li>
+                        To violate any international, federal, provincial, or
+                        state regulations, rules, laws, or local ordinances
+                      </li>
+                      <li>
+                        To infringe upon or violate our intellectual property
+                        rights or the intellectual property rights of others
+                      </li>
+                      <li>
+                        To harass, abuse, insult, harm, defame, slander,
+                        disparage, intimidate, or discriminate
+                      </li>
+                      <li>To submit false or misleading information</li>
+                      <li>
+                        To upload or transmit viruses or any other type of
+                        malicious code
+                      </li>
+                    </ul>
+                    <p>
+                      We reserve the right to terminate your use of the service
+                      or any related website for violating any of the prohibited
+                      uses.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- User Accounts & Registration -->
+              <div id="user-accounts" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i
+                        class="ri-user-settings-line text-2xl text-primary"
+                      ></i>
+                    </div>
+                    USER ACCOUNTS & REGISTRATION
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">
+                      When you create an account with us, you must provide
+                      information that is accurate, complete, and current at all
+                      times. You are responsible for safeguarding the password
+                      and for all activities that occur under your account.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                      <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-lg mb-3 text-gray-800">
+                          Account Requirements:
+                        </h4>
+                        <ul class="list-disc pl-6 space-y-1 text-sm">
+                          <li>Valid email address</li>
+                          <li>Secure password (minimum 8 characters)</li>
+                          <li>Accurate personal information</li>
+                          <li>Agreement to terms and conditions</li>
+                        </ul>
+                      </div>
+                      <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-lg mb-3 text-gray-800">
+                          Account Responsibilities:
+                        </h4>
+                        <ul class="list-disc pl-6 space-y-1 text-sm">
+                          <li>Keep login credentials secure</li>
+                          <li>Update information when necessary</li>
+                          <li>Report unauthorized access immediately</li>
+                          <li>Comply with all terms of service</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p>
+                      You agree to immediately notify PLUG&PLAY of any
+                      unauthorized use of your account or any other breach of
+                      security. We will not be liable for any loss or damage
+                      arising from your failure to comply with this security
+                      obligation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Product Information & Pricing -->
+              <div id="product-info" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-information-line text-2xl text-primary"></i>
+                    </div>
+                    PRODUCT INFORMATION & PRICING
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">
+                      We strive to provide accurate product descriptions,
+                      specifications, and pricing information. However, we do
+                      not warrant that product descriptions or other content on
+                      our website is accurate, complete, reliable, current, or
+                      error-free.
+                    </p>
+                    <p class="mb-4">
+                      All prices are subject to change without notice. We
+                      reserve the right to:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 mb-6">
+                      <li>Modify or discontinue products at any time</li>
+                      <li>
+                        Correct pricing errors, even after an order has been
+                        submitted
+                      </li>
+                      <li>Limit quantities available for purchase</li>
+                      <li>Refuse service to anyone for any reason</li>
+                    </ul>
+                    <div
+                      class="bg-primary bg-opacity-10 p-6 rounded-lg border-l-4 border-primary"
+                    >
+                      <p class="font-semibold text-primary mb-2">
+                        Important Notice:
+                      </p>
+                      <p class="text-sm">
+                        In the event of a pricing error, we will contact you
+                        before processing your order. You will have the option
+                        to confirm the order at the correct price or cancel your
+                        order.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Payment & Billing -->
+              <div id="payment-billing" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-bank-card-line text-2xl text-primary"></i>
+                    </div>
+                    PAYMENT & BILLING
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">By placing an order, you agree that:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-6">
+                      <li>All information provided is accurate and complete</li>
+                      <li>
+                        You are authorized to use the payment method provided
+                      </li>
+                      <li>
+                        You will pay all charges incurred by you or any users of
+                        your account
+                      </li>
+                      <li>
+                        Orders may be cancelled if payment cannot be processed
+                      </li>
+                    </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+                      <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <div
+                          class="w-12 h-12 flex items-center justify-center mx-auto mb-3"
+                        >
+                          <i class="ri-visa-fill text-2xl text-blue-600"></i>
+                        </div>
+                        <p class="font-semibold text-sm">Credit Cards</p>
+                        <p class="text-xs text-gray-600">
+                          Visa, MasterCard, Amex
+                        </p>
+                      </div>
+                      <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <div
+                          class="w-12 h-12 flex items-center justify-center mx-auto mb-3"
+                        >
+                          <i class="ri-paypal-fill text-2xl text-blue-700"></i>
+                        </div>
+                        <p class="font-semibold text-sm">PayPal</p>
+                        <p class="text-xs text-gray-600">
+                          Secure online payments
+                        </p>
+                      </div>
+                      <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <div
+                          class="w-12 h-12 flex items-center justify-center mx-auto mb-3"
+                        >
+                          <i class="ri-bank-line text-2xl text-green-600"></i>
+                        </div>
+                        <p class="font-semibold text-sm">Bank Transfer</p>
+                        <p class="text-xs text-gray-600">
+                          Direct bank payments
+                        </p>
+                      </div>
+                    </div>
+                    <p>
+                      All prices are listed in Philippine Peso (PHP) and include
+                      applicable taxes unless otherwise stated. Payment
+                      processing is handled by secure third-party payment
+                      processors.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Shipping & Delivery -->
+              <div id="shipping-delivery" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-truck-line text-2xl text-primary"></i>
+                    </div>
+                    SHIPPING & DELIVERY
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">
+                      We offer shipping services nationwide within the
+                      Philippines. Delivery times and costs vary depending on
+                      your location and the shipping method selected.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                      <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-lg mb-3 text-gray-800">
+                          Standard Shipping:
+                        </h4>
+                        <ul class="list-disc pl-6 space-y-1 text-sm">
+                          <li>Metro Manila: 1-2 business days</li>
+                          <li>Luzon: 2-4 business days</li>
+                          <li>Visayas & Mindanao: 3-7 business days</li>
+                          <li>Remote areas: 5-10 business days</li>
+                        </ul>
+                      </div>
+                      <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-lg mb-3 text-gray-800">
+                          Express Shipping:
+                        </h4>
+                        <ul class="list-disc pl-6 space-y-1 text-sm">
+                          <li>Metro Manila: Same day or next day</li>
+                          <li>Major cities: 1-2 business days</li>
+                          <li>Additional charges apply</li>
+                          <li>Subject to availability</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p class="mb-4">
+                      Risk of loss and title for items purchased pass to you
+                      upon delivery to the carrier. We are not responsible for
+                      lost, stolen, or damaged packages once they have been
+                      delivered to the address you provided.
+                    </p>
+                    <p>
+                      You will receive tracking information via email once your
+                      order has been shipped. Please ensure someone is available
+                      to receive the package at the delivery address.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Returns & Refunds -->
+              <div id="returns-refunds" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i
+                        class="ri-arrow-go-back-line text-2xl text-primary"
+                      ></i>
+                    </div>
+                    RETURNS & REFUNDS
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">
+                      We want you to be completely satisfied with your purchase.
+                      If you are not satisfied, you may return eligible items
+                      within 30 days of delivery for a full refund or exchange.
+                    </p>
+                    <div
+                      class="bg-secondary bg-opacity-10 p-6 rounded-lg border-l-4 border-secondary mb-6"
+                    >
+                      <h4 class="font-semibold text-lg mb-3 text-gray-800">
+                        Return Policy Conditions:
+                      </h4>
+                      <ul class="list-disc pl-6 space-y-2 text-sm">
+                        <li>
+                          Items must be in original condition and packaging
+                        </li>
+                        <li>
+                          All accessories and documentation must be included
+                        </li>
+                        <li>Items must not show signs of use or damage</li>
+                        <li>
+                          Return shipping costs are the responsibility of the
+                          customer unless the item is defective
+                        </li>
+                        <li>
+                          Refunds will be processed within 5-10 business days
+                          after we receive the returned item
+                        </li>
+                      </ul>
+                    </div>
+                    <p class="mb-4">
+                      The following items are NOT eligible for return:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 mb-6">
+                      <li>
+                        Software products that have been opened or downloaded
+                      </li>
+                      <li>Personalized or customized items</li>
+                      <li>Items damaged by misuse or normal wear</li>
+                      <li>
+                        Items purchased with special promotions or discounts
+                        (unless defective)
+                      </li>
+                    </ul>
+                    <p>
+                      To initiate a return, please contact our customer service
+                      team with your order number and reason for return. We will
+                      provide you with return instructions and a return
+                      authorization number.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Intellectual Property Rights -->
+              <div id="intellectual-property" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-copyright-line text-2xl text-primary"></i>
+                    </div>
+                    INTELLECTUAL PROPERTY RIGHTS
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">
+                      The content on this website, including but not limited to
+                      text, graphics, logos, images, audio clips, digital
+                      downloads, and software, is the property of PLUG&PLAY or
+                      its content suppliers and is protected by international
+                      copyright laws.
+                    </p>
+                    <p class="mb-4">
+                      You may not copy, modify, distribute, or use any content
+                      without written permission from PLUG&PLAY, except as
+                      necessary for your personal, non-commercial use of our
+                      services.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                      <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-lg mb-3 text-gray-800">
+                          Protected Content:
+                        </h4>
+                        <ul class="list-disc pl-6 space-y-1 text-sm">
+                          <li>PLUG&PLAY logo and branding</li>
+                          <li>Website design and layout</li>
+                          <li>Product descriptions and images</li>
+                          <li>Marketing materials and content</li>
+                        </ul>
+                      </div>
+                      <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-lg mb-3 text-gray-800">
+                          Prohibited Uses:
+                        </h4>
+                        <ul class="list-disc pl-6 space-y-1 text-sm">
+                          <li>Commercial redistribution</li>
+                          <li>Reverse engineering</li>
+                          <li>Creating derivative works</li>
+                          <li>Unauthorized reproduction</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p>
+                      All trademarks, service marks, and trade names used on
+                      this website are the property of their respective owners.
+                      The use of any trademark, service mark, or trade name is
+                      for identification and reference purposes only and does
+                      not imply any association with the trademark holder.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- User Conduct -->
+              <div id="user-conduct" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-shield-user-line text-2xl text-primary"></i>
+                    </div>
+                    USER CONDUCT
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">
+                      As a user of our website and services, you agree to
+                      conduct yourself in a manner that is respectful, lawful,
+                      and in accordance with these Terms of Service.
+                    </p>
+                    <p class="mb-4">You agree NOT to:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-6">
+                      <li>
+                        Use our services for any illegal or unauthorized purpose
+                      </li>
+                      <li>
+                        Violate any laws in your jurisdiction (including but not
+                        limited to copyright laws)
+                      </li>
+                      <li>
+                        Transmit worms, viruses, or any code of a destructive
+                        nature
+                      </li>
+                      <li>
+                        Attempt to gain unauthorized access to our systems or
+                        networks
+                      </li>
+                      <li>
+                        Interfere with or disrupt the integrity or performance
+                        of our services
+                      </li>
+                      <li>Create false accounts or impersonate others</li>
+                      <li>Harass, threaten, or intimidate other users</li>
+                      <li>
+                        Post or transmit any content that is offensive,
+                        defamatory, or inappropriate
+                      </li>
+                    </ul>
+                    <div
+                      class="bg-red-50 p-6 rounded-lg border-l-4 border-red-500"
+                    >
+                      <p class="font-semibold text-red-700 mb-2">
+                        Violation Consequences:
+                      </p>
+                      <p class="text-sm text-red-600">
+                        Violation of these conduct rules may result in immediate
+                        suspension or termination of your account and legal
+                        action where appropriate.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Limitation of Liability -->
+              <div id="limitation-liability" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-alert-line text-2xl text-primary"></i>
+                    </div>
+                    LIMITATION OF LIABILITY
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">PLUG&PLAY shall not be responsible for:</p>
+                    <ul class="list-disc pl-6 space-y-2 mb-6">
+                      <li>
+                        Any damages arising from your use or inability to use
+                        our website
+                      </li>
+                      <li>Loss of data, profits, or business opportunities</li>
+                      <li>Indirect, incidental, or consequential damages</li>
+                      <li>
+                        Damages resulting from unauthorized access to your
+                        account
+                      </li>
+                      <li>
+                        Third-party content or services accessed through our
+                        website
+                      </li>
+                    </ul>
+                    <p class="mb-4">
+                      Our total liability to you for any damages, losses, and
+                      causes of action (whether in contract, tort, or otherwise)
+                      shall not exceed the amount you paid for the products or
+                      services that gave rise to the claim.
+                    </p>
+                    <div
+                      class="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-500"
+                    >
+                      <p class="font-semibold text-yellow-700 mb-2">
+                        Service Availability:
+                      </p>
+                      <p class="text-sm text-yellow-600">
+                        We do not guarantee that our website will be available
+                        100% of the time. We may experience hardware, software,
+                        or other problems that could lead to interruptions,
+                        delays, or errors.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Privacy Policy Reference -->
+              <div id="privacy-policy" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-shield-check-line text-2xl text-primary"></i>
+                    </div>
+                    PRIVACY POLICY REFERENCE
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">
+                      Your privacy is important to us. Our Privacy Policy
+                      explains how we collect, use, and protect your information
+                      when you use our services. By using our website, you agree
+                      to the collection and use of information in accordance
+                      with our Privacy Policy.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                      <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-lg mb-3 text-gray-800">
+                          Information We Collect:
+                        </h4>
+                        <ul class="list-disc pl-6 space-y-1 text-sm">
+                          <li>Personal identification information</li>
+                          <li>Contact information</li>
+                          <li>Payment and billing information</li>
+                          <li>Usage data and preferences</li>
+                        </ul>
+                      </div>
+                      <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-lg mb-3 text-gray-800">
+                          How We Use Information:
+                        </h4>
+                        <ul class="list-disc pl-6 space-y-1 text-sm">
+                          <li>Process orders and payments</li>
+                          <li>Provide customer support</li>
+                          <li>Improve our services</li>
+                          <li>Send promotional communications</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p class="mb-4">
+                      We do not sell, trade, or otherwise transfer your personal
+                      information to third parties without your consent, except
+                      as described in our Privacy Policy.
+                    </p>
+                    <div class="text-center">
+                      <a
+                        href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/490f0598-9839-4153-ae34-7928f8c40105"
+                        data-readdy="true"
+                        class="inline-flex items-center bg-primary text-white px-6 py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold"
+                      >
+                        <div
+                          class="w-5 h-5 flex items-center justify-center mr-2"
+                        >
+                          <i class="ri-file-text-line"></i>
+                        </div>
+                        Read Full Privacy Policy
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Dispute Resolution -->
+              <div id="dispute-resolution" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-scales-line text-2xl text-primary"></i>
+                    </div>
+                    DISPUTE RESOLUTION
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-4">
+                      In the event of any dispute arising out of or relating to
+                      these Terms of Service or your use of our website, we
+                      encourage you to first contact us directly to seek a
+                      resolution.
+                    </p>
+                    <div class="bg-gray-50 p-6 rounded-lg mb-6">
+                      <h4 class="font-semibold text-lg mb-3 text-gray-800">
+                        Resolution Process:
+                      </h4>
+                      <ol class="list-decimal pl-6 space-y-2 text-sm">
+                        <li>
+                          Contact our customer service team with details of your
+                          concern
+                        </li>
+                        <li>
+                          We will investigate and respond within 5 business days
+                        </li>
+                        <li>
+                          If unresolved, the matter may be escalated to
+                          management
+                        </li>
+                        <li>
+                          Final resolution attempts will be made within 30 days
+                        </li>
+                      </ol>
+                    </div>
+                    <p class="mb-4">
+                      These Terms of Service shall be governed by and construed
+                      in accordance with the laws of the Republic of the
+                      Philippines. Any legal action or proceeding arising under
+                      these terms shall be brought exclusively in the courts of
+                      the Philippines.
+                    </p>
+                    <p>
+                      You agree that any dispute resolution proceedings will be
+                      conducted only on an individual basis and not in a class,
+                      consolidated, or representative action.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- Contact Information -->
+              <div id="contact-info" class="content-section">
+                <div
+                  class="bg-white rounded-xl p-8 border border-gray-200 shadow-sm"
+                >
+                  <h2
+                    class="text-3xl font-bold mb-6 text-gray-800 flex items-center"
+                  >
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                      <i class="ri-phone-line text-2xl text-primary"></i>
+                    </div>
+                    CONTACT INFORMATION
+                  </h2>
+                  <div
+                    class="prose prose-lg max-w-none text-gray-700 leading-relaxed"
+                  >
+                    <p class="mb-6">
+                      If you have any questions about these Terms of Service or
+                      need assistance with legal matters, please contact us
+                      using the information below:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                          <div
+                            class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-primary bg-opacity-10 rounded-lg"
+                          >
+                            <i class="ri-building-line text-primary"></i>
+                          </div>
+                          <div>
+                            <h4 class="font-semibold text-gray-800">
+                              Company Address
+                            </h4>
+                            <p class="text-sm text-gray-600">
+                              PLUG&PLAY Gaming Hardware Store<br />123 Gaming
+                              Street, Tech District<br />Makati City, Metro
+                              Manila 1200<br />Philippines
+                            </p>
+                          </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                          <div
+                            class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-primary bg-opacity-10 rounded-lg"
+                          >
+                            <i class="ri-phone-line text-primary"></i>
+                          </div>
+                          <div>
+                            <h4 class="font-semibold text-gray-800">
+                              Phone Numbers
+                            </h4>
+                            <p class="text-sm text-gray-600">
+                              Customer Service: +63 2 8123 4567<br />Legal
+                              Department: +63 2 8765 4321<br />Toll-Free:
+                              1-800-PLUG-PLAY
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                          <div
+                            class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-primary bg-opacity-10 rounded-lg"
+                          >
+                            <i class="ri-mail-line text-primary"></i>
+                          </div>
+                          <div>
+                            <h4 class="font-semibold text-gray-800">
+                              Email Addresses
+                            </h4>
+                            <p class="text-sm text-gray-600">
+                              General Inquiries: info@plugandplay.ph<br />Legal
+                              Matters: legal@plugandplay.ph<br />Customer
+                              Support: support@plugandplay.ph
+                            </p>
+                          </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                          <div
+                            class="w-8 h-8 flex items-center justify-center flex-shrink-0 bg-primary bg-opacity-10 rounded-lg"
+                          >
+                            <i class="ri-time-line text-primary"></i>
+                          </div>
+                          <div>
+                            <h4 class="font-semibold text-gray-800">
+                              Business Hours
+                            </h4>
+                            <p class="text-sm text-gray-600">
+                              Monday - Friday: 9:00 AM - 6:00 PM<br />Saturday:
+                              10:00 AM - 4:00 PM<br />Sunday: Closed<br />Philippine
+                              Standard Time (PST)
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="mt-8 p-6 bg-primary bg-opacity-10 rounded-lg border-l-4 border-primary"
+                    >
+                      <p class="font-semibold text-primary mb-2">
+                        Last Updated:
+                      </p>
+                      <p class="text-sm text-gray-700">
+                        These Terms of Service were last updated on November 29,
+                        2025. We reserve the right to update these terms at any
+                        time. Continued use of our services after any changes
+                        constitutes acceptance of the new terms.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer style="background-color: #110b39" class="text-white py-12">
+      <div class="max-w-6xl mx-auto px-8">
+        <div class="flex justify-between items-start mb-8">
+          <img
+            src="https://readdy.ai/api/search-image?query=modern gaming tech logo PLUG&PLAY text with purple and cyan colors on transparent background futuristic gaming brand identity clean minimalist design&width=150&height=40&seq=footerlogo&orientation=landscape"
+            alt="PLUG&PLAY Logo"
+            class="h-8"
+          />
+          <div class="flex space-x-12">
+            <a
+              href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/67e48715-7210-4a02-879a-ab7e7b7adde0"
+              data-readdy="true"
+              class="hover:text-primary transition-colors"
+              >Home</a
+            >
+            <a href="#" class="hover:text-primary transition-colors"
+              >Products</a
+            >
+            <a href="#" class="hover:text-primary transition-colors"
+              >About Us</a
+            >
+            <a href="#" class="hover:text-primary transition-colors">Contact</a>
+          </div>
+          <div class="flex space-x-4">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i
+                class="ri-facebook-fill text-xl hover:text-primary cursor-pointer transition-colors"
+              ></i>
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i
+                class="ri-twitter-fill text-xl hover:text-primary cursor-pointer transition-colors"
+              ></i>
+            </div>
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i
+                class="ri-instagram-fill text-xl hover:text-primary cursor-pointer transition-colors"
+              ></i>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 pt-8">
+          <div class="flex justify-between items-center">
+            <p class="text-gray-400">© 2025 BSIS CIIT Philippines Inc.</p>
+            <div class="flex space-x-6">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-primary transition-colors"
+                >Terms of Service</a
+              >
+              <a
+                href="#"
+                class="text-gray-400 hover:text-primary transition-colors"
+                >Privacy Policy</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script id="login-popup">
+            document.addEventListener('DOMContentLoaded', function() {
+                let isLoggedIn = false;
+                const userProfileButton = document.getElementById('userProfileButton');
+                const accountDropdown = document.getElementById('accountDropdown');
+                const loginPopup = document.getElementById('loginPopup');
+                const signupPopup = document.getElementById('signupPopup');
+                const forgotPasswordPopup = document.getElementById('forgotPasswordPopup');
+                const closeLoginPopup = document.getElementById('closeLoginPopup');
+                const closeSignupPopup = document.getElementById('closeSignupPopup');
+                const closeForgotPasswordPopup = document.getElementById('closeForgotPasswordPopup');
+                const createAccountLink = document.getElementById('createAccountLink');
+                const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+                const loginHereLink = document.getElementById('loginHereLink');
+                const backToLoginLink = document.getElementById('backToLoginLink');
+                const agreeTermsCheckbox = document.getElementById('agreeTerms');
+                const checkIcon = document.getElementById('checkIcon');
+                const logoutButton = document.getElementById('logoutButton');
+                function hideAllPopups() {
+                    loginPopup.classList.remove('show');
+                    signupPopup.classList.remove('show');
+                    forgotPasswordPopup.classList.remove('show');
+                    accountDropdown.classList.remove('show');
+                }
+                userProfileButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (isLoggedIn) {
+                        hideAllPopups();
+                        accountDropdown.classList.add('show');
+                    } else {
+                        hideAllPopups();
+                        loginPopup.classList.add('show');
+                    }
+                });
+                createAccountLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    hideAllPopups();
+                    signupPopup.classList.add('show');
+                });
+                forgotPasswordLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    hideAllPopups();
+                    forgotPasswordPopup.classList.add('show');
+                });
+                loginHereLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    hideAllPopups();
+                    loginPopup.classList.add('show');
+                });
+                backToLoginLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    hideAllPopups();
+                    loginPopup.classList.add('show');
+                });
+                closeLoginPopup.addEventListener('click', function() {
+                    loginPopup.classList.remove('show');
+                });
+                closeSignupPopup.addEventListener('click', function() {
+                    signupPopup.classList.remove('show');
+                });
+                closeForgotPasswordPopup.addEventListener('click', function() {
+                    forgotPasswordPopup.classList.remove('show');
+                });
+                logoutButton.addEventListener('click', function() {
+                    isLoggedIn = false;
+                    hideAllPopups();
+                });
+                const loginButton = document.getElementById('loginButton');
+                const loginEmail = document.getElementById('loginEmail');
+                const loginPassword = document.getElementById('loginPassword');
+                const loginErrorMessage = document.getElementById('loginErrorMessage');
+                const signupSubmitButton = signupPopup.querySelector('button[type="button"]:last-of-type');
+                function validateCredentials(email, password) {
+                    return email.length > 0 && password.length >= 6;
+                }
+                if (loginButton) {
+                    loginButton.addEventListener('click', function() {
+                        const email = loginEmail.value.trim();
+                        const password = loginPassword.value.trim();
+                        loginErrorMessage.classList.add('hidden');
+                        if (validateCredentials(email, password)) {
+                            isLoggedIn = true;
+                            hideAllPopups();
+                            loginEmail.value = '';
+                            loginPassword.value = '';
+                        } else {
+                            loginErrorMessage.classList.remove('hidden');
+                        }
+                    });
+                }
+                if (signupSubmitButton) {
+                    signupSubmitButton.addEventListener('click', function() {
+                        isLoggedIn = true;
+                        hideAllPopups();
+                    });
+                }
+                agreeTermsCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        checkIcon.style.opacity = '1';
+                    } else {
+                        checkIcon.style.opacity = '0';
+                    }
+                });
+                document.addEventListener('click', function(e) {
+                    if (!loginPopup.contains(e.target) && !signupPopup.contains(e.target) && !forgotPasswordPopup.contains(e.target) && !userProfileButton.contains(e.target) && !accountDropdown.contains(e.target)) {
+                        hideAllPopups();
+                    }
+                });
+            });
+      </script>
+    <script id="sidebar-navigation">
+      document.addEventListener("DOMContentLoaded", function () {
+        const sidebarItems = document.querySelectorAll(".sidebar-item");
+        const contentSections = document.querySelectorAll(".content-section");
+        function setActiveSection(targetId) {
+          sidebarItems.forEach((item) => item.classList.remove("active"));
+          const activeItem = document.querySelector(
+            `[data-section="${targetId}"]`
+          );
+          if (activeItem) {
+            activeItem.classList.add("active");
+          }
+        }
+        function showSection(targetId) {
+          contentSections.forEach((section) => {
+            section.classList.remove("visible");
+            if (section.id === targetId) {
+              setTimeout(() => section.classList.add("visible"), 100);
+            }
+          });
+        }
+        sidebarItems.forEach((item) => {
+          item.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetSection = this.getAttribute("data-section");
+            const targetElement = document.getElementById(targetSection);
+            if (targetElement) {
+              setActiveSection(targetSection);
+              showSection(targetSection);
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+        const observerOptions = {
+          threshold: 0.3,
+          rootMargin: "-100px 0px -50% 0px",
+        };
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(entry.target.id);
+              entry.target.classList.add("visible");
+            }
+          });
+        }, observerOptions);
+        contentSections.forEach((section) => {
+          observer.observe(section);
+        });
+        setTimeout(() => {
+          contentSections.forEach((section) => {
+            section.classList.add("visible");
+          });
+          if (sidebarItems.length > 0) {
+            sidebarItems[0].classList.add("active");
+          }
+        }, 500);
+      });
+    </script>
+    <script id="smooth-scroll-navigation">
+      document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

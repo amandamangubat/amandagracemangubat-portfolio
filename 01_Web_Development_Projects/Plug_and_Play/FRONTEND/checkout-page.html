@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - PLUG&PLAY Gaming Hardware Store</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#B47AEA", secondary: "#5ADEEB" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      .checkout-gradient {
+        background: linear-gradient(
+          135deg,
+          rgba(173, 216, 230, 0.2) 0%,
+          rgba(255, 255, 255, 0.95) 50%,
+          rgba(180, 122, 234, 0.15) 100%
+        );
+      }
+      .payment-card {
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+      .payment-card.selected {
+        border-color: #b47aea;
+        background: rgba(180, 122, 234, 0.05);
+      }
+      .custom-radio {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #d1d5db;
+        border-radius: 50%;
+        position: relative;
+        cursor: pointer;
+      }
+      .custom-radio:checked {
+        border-color: #b47aea;
+      }
+      .custom-radio:checked::after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background: #b47aea;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .custom-checkbox {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #d1d5db;
+        border-radius: 4px;
+        position: relative;
+        cursor: pointer;
+      }
+      .custom-checkbox:checked {
+        border-color: #b47aea;
+        background: #b47aea;
+      }
+      .custom-checkbox:checked::after {
+        content: "✓";
+        color: white;
+        font-size: 12px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .progress-step {
+        position: relative;
+      }
+      .progress-step::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 100px;
+        height: 2px;
+        background: #e5e7eb;
+        transform: translateY(-50%);
+        z-index: -1;
+      }
+      .progress-step:last-child::after {
+        display: none;
+      }
+      .progress-step.active::after {
+        background: #b47aea;
+      }
+      .progress-step.completed::after {
+        background: #b47aea;
+      }
+    </style>
+  </head>
+  <body class="checkout-gradient min-h-screen text-gray-900">
+    <!-- Navigation -->
+    <nav
+      style="background-color: #110b39"
+      class="text-white px-8 py-4 fixed w-full top-0 z-50"
+    >
+      <div class="flex items-center justify-between">
+        <img src="PP-Logo.png" alt="PLUG&PLAY Logo" class="h-8" />
+        <div class="flex items-center space-x-8">
+          <a href="home.html" class="hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a href="products.html" class="hover:text-primary transition-colors"
+            >Products</a
+          >
+          <a href="about.html" class="hover:text-primary transition-colors"
+            >About Us</a
+          >
+          <a href="contact.html" class="hover:text-primary transition-colors"
+            >Contact</a
+          >
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Search products..."
+              class="bg-gray-800 text-white px-4 py-2 pr-10 rounded-button border-none text-sm"
+            />
+            <div
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center"
+            >
+              <i class="ri-search-line text-gray-400"></i>
+            </div>
+          </div>
+          <a
+            href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/00589e42-ff6d-47cb-9450-b9d086f4c18d"
+            data-readdy="true"
+            class="w-8 h-8 flex items-center justify-center"
+          >
+            <i
+              class="ri-shopping-cart-line text-xl text-primary cursor-pointer"
+            ></i>
+          </a>
+          <div class="w-8 h-8 flex items-center justify-center">
+            <i
+              class="ri-user-line text-xl hover:text-primary cursor-pointer transition-colors"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Breadcrumb -->
+    <div class="pt-20 px-8 py-4">
+      <div class="flex items-center space-x-2 text-sm text-gray-600">
+        <a
+          href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/67e48715-7210-4a02-879a-ab7e7b7adde0"
+          data-readdy="true"
+          class="hover:text-primary transition-colors"
+          >Home</a
+        >
+        <i class="ri-arrow-right-s-line"></i>
+        <a
+          href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/91bd0e3a-ca35-4c77-9f9b-1374449c8fcf"
+          data-readdy="true"
+          class="hover:text-primary transition-colors"
+          >Products</a
+        >
+        <i class="ri-arrow-right-s-line"></i>
+        <a
+          href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/00589e42-ff6d-47cb-9450-b9d086f4c18d"
+          data-readdy="true"
+          class="hover:text-primary transition-colors"
+          >Shopping Cart</a
+        >
+        <i class="ri-arrow-right-s-line"></i>
+        <span class="text-gray-900 font-medium">Checkout</span>
+      </div>
+    </div>
+    <!-- Page Title and Progress -->
+    <div class="px-8 py-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+          <h1 class="text-4xl font-bold text-gray-900">CHECKOUT</h1>
+          <a
+            href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/00589e42-ff6d-47cb-9450-b9d086f4c18d"
+            data-readdy="true"
+            class="text-primary hover:text-primary/80 transition-colors flex items-center space-x-2"
+          >
+            <i class="ri-arrow-left-line"></i>
+            <span>Back to Cart</span>
+          </a>
+        </div>
+        <!-- Progress Indicator -->
+        <div class="flex items-center justify-center mb-12">
+          <div class="flex items-center space-x-8">
+            <div class="progress-step completed flex flex-col items-center">
+              <div
+                class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-2"
+              >
+                <i class="ri-shopping-cart-line"></i>
+              </div>
+              <span class="text-sm font-medium text-primary">Cart</span>
+            </div>
+            <div
+              class="progress-step active flex flex-col items-center"
+              id="step-shipping"
+            >
+              <div
+                class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-2"
+              >
+                <i class="ri-truck-line"></i>
+              </div>
+              <span class="text-sm font-medium text-primary">Shipping</span>
+            </div>
+            <div
+              class="progress-step flex flex-col items-center"
+              id="step-payment"
+            >
+              <div
+                class="w-12 h-12 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center mb-2"
+              >
+                <i class="ri-bank-card-line"></i>
+              </div>
+              <span class="text-sm font-medium text-gray-600">Payment</span>
+            </div>
+            <div
+              class="progress-step flex flex-col items-center"
+              id="step-review"
+            >
+              <div
+                class="w-12 h-12 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center mb-2"
+              >
+                <i class="ri-eye-line"></i>
+              </div>
+              <span class="text-sm font-medium text-gray-600">Review</span>
+            </div>
+            <div
+              class="progress-step flex flex-col items-center"
+              id="step-complete"
+            >
+              <div
+                class="w-12 h-12 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center mb-2"
+              >
+                <i class="ri-check-line"></i>
+              </div>
+              <span class="text-sm font-medium text-gray-600">Complete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="px-8 pb-12">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Checkout Form -->
+          <div class="lg:col-span-2 space-y-8">
+            <!-- Step 1: Billing Address -->
+            <div
+              id="step-billing-content"
+              class="bg-white rounded-lg shadow-sm p-6"
+            >
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                Shipping Address
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >First Name</label
+                  >
+                  <input
+                    type="text"
+                    id="shipping-first-name"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    placeholder="Enter your first name"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Last Name</label
+                  >
+                  <input
+                    type="text"
+                    id="billing-last-name"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    placeholder="Enter your last name"
+                  />
+                </div>
+                <div class="md:col-span-2">
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Street Address</label
+                  >
+                  <input
+                    type="text"
+                    id="shipping-address"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    placeholder="Enter your street address"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >City</label
+                  >
+                  <input
+                    type="text"
+                    id="shipping-city"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    placeholder="Enter your city"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >State/Province</label
+                  >
+                  <input
+                    type="text"
+                    id="shipping-state"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    placeholder="Enter state/province"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Postal Code</label
+                  >
+                  <input
+                    type="text"
+                    id="shipping-postal"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    placeholder="Enter postal code"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Country</label
+                  >
+                  <div class="relative">
+                    <button
+                      type="button"
+                      id="billing-country"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm text-left flex items-center justify-between"
+                    >
+                      <span>Philippines</span>
+                      <i class="ri-arrow-down-s-line"></i>
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Phone Number</label
+                  >
+                  <input
+                    type="tel"
+                    id="billing-phone"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    placeholder="+63 9XX XXX XXXX"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    id="billing-email"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                    placeholder="Enter your email"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Shipping Address & Payment -->
+            <div id="step-shipping-payment-content" class="hidden space-y-8">
+              <!-- Shipping Address -->
+              <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-6">
+                  <h2 class="text-2xl font-bold text-gray-900">
+                    Billing Address
+                  </h2>
+                  <label class="flex items-center space-x-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      class="custom-checkbox"
+                      id="sameAsBilling"
+                    />
+                    <span class="text-sm text-gray-700"
+                      >Same as shipping address</span
+                    >
+                  </label>
+                </div>
+                <div
+                  id="shippingForm"
+                  class="grid grid-cols-1 md:grid-cols-2 gap-4"
+                >
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >First Name</label
+                    >
+                    <input
+                      type="text"
+                      id="shipping-first-name"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                      placeholder="Enter your first name"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Last Name</label
+                    >
+                    <input
+                      type="text"
+                      id="shipping-last-name"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                      placeholder="Enter your last name"
+                    />
+                  </div>
+                  <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Street Address</label
+                    >
+                    <input
+                      type="text"
+                      id="shipping-address"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                      placeholder="Enter your street address"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >City</label
+                    >
+                    <input
+                      type="text"
+                      id="shipping-city"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                      placeholder="Enter your city"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >State/Province</label
+                    >
+                    <input
+                      type="text"
+                      id="shipping-state"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                      placeholder="Enter state/province"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Postal Code</label
+                    >
+                    <input
+                      type="text"
+                      id="shipping-postal"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                      placeholder="Enter postal code"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Country</label
+                    >
+                    <div class="relative">
+                      <button
+                        type="button"
+                        id="shipping-country"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm text-left flex items-center justify-between"
+                      >
+                        <span>Philippines</span>
+                        <i class="ri-arrow-down-s-line"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2"
+                      >Phone Number</label
+                    >
+                    <input
+                      type="tel"
+                      id="shipping-phone"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                      placeholder="+63 9XX XXX XXXX"
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- Payment Method -->
+              <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                  Payment Method
+                </h2>
+                <div class="space-y-4">
+                  <!-- Credit Card -->
+                  <div
+                    class="payment-card p-4 border rounded-lg cursor-pointer"
+                    data-payment="credit"
+                  >
+                    <label class="flex items-center space-x-4 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="payment"
+                        value="credit"
+                        class="custom-radio"
+                      />
+                      <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                          <i
+                            class="ri-bank-card-line text-xl text-gray-600"
+                          ></i>
+                        </div>
+                        <div>
+                          <span class="font-semibold text-gray-900"
+                            >Credit/Debit Card</span
+                          >
+                          <p class="text-sm text-gray-600">
+                            Visa, Mastercard, American Express
+                          </p>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                  <!-- PayPal -->
+                  <div
+                    class="payment-card p-4 border rounded-lg cursor-pointer"
+                    data-payment="paypal"
+                  >
+                    <label class="flex items-center space-x-4 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="payment"
+                        value="paypal"
+                        class="custom-radio"
+                      />
+                      <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                          <i class="ri-paypal-fill text-xl text-blue-700"></i>
+                        </div>
+                        <div>
+                          <span class="font-semibold text-gray-900"
+                            >PayPal</span
+                          >
+                          <p class="text-sm text-gray-600">
+                            Pay with your PayPal account
+                          </p>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                  <!-- GCash -->
+                  <div
+                    class="payment-card p-4 border rounded-lg cursor-pointer"
+                    data-payment="gcash"
+                  >
+                    <label class="flex items-center space-x-4 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="payment"
+                        value="gcash"
+                        class="custom-radio"
+                      />
+                      <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                          <i
+                            class="ri-smartphone-line text-xl text-blue-600"
+                          ></i>
+                        </div>
+                        <div>
+                          <span class="font-semibold text-gray-900">GCash</span>
+                          <p class="text-sm text-gray-600">
+                            Pay with GCash mobile wallet
+                          </p>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                  <!-- Bank Transfer -->
+                  <div
+                    class="payment-card p-4 border rounded-lg cursor-pointer"
+                    data-payment="bank"
+                  >
+                    <label class="flex items-center space-x-4 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="payment"
+                        value="bank"
+                        class="custom-radio"
+                      />
+                      <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 flex items-center justify-center">
+                          <i class="ri-bank-line text-xl text-green-600"></i>
+                        </div>
+                        <div>
+                          <span class="font-semibold text-gray-900"
+                            >Bank Transfer</span
+                          >
+                          <p class="text-sm text-gray-600">
+                            Direct bank transfer
+                          </p>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <!-- Credit Card Form -->
+                <div
+                  id="creditCardForm"
+                  class="mt-6 p-4 bg-gray-50 rounded-lg hidden"
+                >
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2">
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                        >Cardholder Name</label
+                      >
+                      <input
+                        type="text"
+                        id="card-name"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                        placeholder="Name on card"
+                      />
+                    </div>
+                    <div class="md:col-span-2">
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                        >Card Number</label
+                      >
+                      <input
+                        type="text"
+                        id="card-number"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                        placeholder="1234 5678 9012 3456"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                        >Expiry Date</label
+                      >
+                      <input
+                        type="text"
+                        id="card-expiry"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                        placeholder="MM/YY"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                        >CVV</label
+                      >
+                      <input
+                        type="text"
+                        id="card-cvv"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                        placeholder="123"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Review Summary -->
+            <div
+              id="step-review-content"
+              class="hidden bg-white rounded-lg shadow-sm p-6"
+            >
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                Review Your Order
+              </h2>
+              <div class="space-y-6">
+                <!-- Billing Address Summary -->
+                <div class="border-b border-gray-200 pb-4">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                    Billing Address
+                  </h3>
+                  <div id="billing-summary" class="text-sm text-gray-700"></div>
+                </div>
+                <!-- Shipping Address Summary -->
+                <div class="border-b border-gray-200 pb-4">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                    Shipping Address
+                  </h3>
+                  <div
+                    id="shipping-summary"
+                    class="text-sm text-gray-700"
+                  ></div>
+                </div>
+                <!-- Payment Method Summary -->
+                <div class="border-b border-gray-200 pb-4">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-3">
+                    Payment Method
+                  </h3>
+                  <div id="payment-summary" class="text-sm text-gray-700"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Order Complete -->
+            <div
+              id="step-complete-content"
+              class="hidden bg-white rounded-lg shadow-sm p-6 text-center"
+            >
+              <div
+                class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <i class="ri-check-line text-4xl text-green-600"></i>
+              </div>
+              <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                Order Completed!
+              </h2>
+              <p class="text-lg text-gray-600 mb-6">
+                Thank you for your purchase. Your order has been successfully
+                placed.
+              </p>
+              <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                <p class="text-sm text-gray-600 mb-2">
+                  Order Number:
+                  <span class="font-semibold text-gray-900"
+                    >#ORD-2025-001234</span
+                  >
+                </p>
+                <p class="text-sm text-gray-600">
+                  Confirmation email sent to your registered email address
+                </p>
+              </div>
+              <a
+                href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/67e48715-7210-4a02-879a-ab7e7b7adde0"
+                data-readdy="true"
+                class="inline-block bg-primary text-white py-3 px-8 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium"
+              >
+                Continue Shopping
+              </a>
+            </div>
+          </div>
+          <!-- Order Summary -->
+          <div class="lg:col-span-1">
+            <div class="bg-white rounded-lg shadow-sm p-6 sticky top-28">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">
+                Order Summary
+              </h2>
+              <!-- Cart Items -->
+              <div class="space-y-4 mb-6">
+                <div
+                  class="flex items-center space-x-3 pb-3 border-b border-gray-100"
+                >
+                  <img
+                    src="https://readdy.ai/api/search-image?query=modern%20gaming%20mechanical%20keyboard%20with%20RGB%20lighting%20purple%20and%20cyan%20colors%20professional%20product%20photography%20clean%20white%20background%20high%20quality%20gaming%20hardware&width=60&height=60&seq=checkout-keyboard&orientation=squarish"
+                    alt="RGB Mechanical Gaming Keyboard"
+                    class="w-12 h-12 object-cover object-top rounded"
+                  />
+                  <div class="flex-1">
+                    <h4 class="font-medium text-gray-900 text-sm">
+                      RGB Mechanical Gaming Keyboard Pro X
+                    </h4>
+                    <p class="text-xs text-gray-600">Qty: 1</p>
+                  </div>
+                  <span class="font-semibold text-gray-900 text-sm"
+                    >₱ 4,299.00</span
+                  >
+                </div>
+                <div
+                  class="flex items-center space-x-3 pb-3 border-b border-gray-100"
+                >
+                  <img
+                    src="https://readdy.ai/api/search-image?query=professional%20gaming%20mouse%20with%20RGB%20lighting%20sleek%20black%20design%20ergonomic%20shape%20product%20photography%20clean%20white%20background%20high%20quality%20gaming%20peripheral&width=60&height=60&seq=checkout-mouse&orientation=squarish"
+                    alt="Gaming Mouse"
+                    class="w-12 h-12 object-cover object-top rounded"
+                  />
+                  <div class="flex-1">
+                    <h4 class="font-medium text-gray-900 text-sm">
+                      Ultra Pro Gaming Mouse Elite
+                    </h4>
+                    <p class="text-xs text-gray-600">Qty: 2</p>
+                  </div>
+                  <span class="font-semibold text-gray-900 text-sm"
+                    >₱ 5,798.00</span
+                  >
+                </div>
+                <div
+                  class="flex items-center space-x-3 pb-3 border-b border-gray-100"
+                >
+                  <img
+                    src="https://readdy.ai/api/search-image?query=premium%20gaming%20headset%20with%20RGB%20lighting%20black%20and%20purple%20design%20professional%20product%20photography%20clean%20white%20background%20high%20quality%20gaming%20audio%20equipment&width=60&height=60&seq=checkout-headset&orientation=squarish"
+                    alt="Gaming Headset"
+                    class="w-12 h-12 object-cover object-top rounded"
+                  />
+                  <div class="flex-1">
+                    <h4 class="font-medium text-gray-900 text-sm">
+                      Surround Sound Gaming Headset X7
+                    </h4>
+                    <p class="text-xs text-gray-600">Qty: 1</p>
+                  </div>
+                  <span class="font-semibold text-gray-900 text-sm"
+                    >₱ 3,599.00</span
+                  >
+                </div>
+              </div>
+              <!-- Promo Code -->
+              <div class="mb-6">
+                <div class="flex space-x-2">
+                  <input
+                    type="text"
+                    placeholder="Enter promo code"
+                    class="flex-1 px-4 py-3 border border-gray-300 rounded-button focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                  />
+                  <button
+                    class="px-4 py-3 bg-gray-100 text-gray-700 rounded-button hover:bg-gray-200 transition-colors !rounded-button whitespace-nowrap text-sm font-medium"
+                  >
+                    Apply
+                  </button>
+                </div>
+              </div>
+              <!-- Price Breakdown -->
+              <div class="space-y-3 mb-6">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span class="font-semibold">₱ 13,696.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Shipping</span>
+                  <span class="text-green-600 font-medium">Free</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Tax (12%)</span>
+                  <span class="font-semibold">₱ 1,643.52</span>
+                </div>
+                <div class="border-t border-gray-200 pt-3">
+                  <div class="flex justify-between items-center">
+                    <span class="text-lg font-bold text-gray-900">Total</span>
+                    <span class="text-2xl font-bold text-gray-900"
+                      >₱ 15,339.52</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Security Badges -->
+              <div class="mb-6 p-4 bg-gray-50 rounded border border-gray-200">
+                <div class="flex items-center justify-center space-x-6 mb-3">
+                  <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-shield-check-line text-green-600"></i>
+                  </div>
+                  <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-lock-line text-gray-600"></i>
+                  </div>
+                  <div class="w-6 h-6 flex items-center justify-center">
+                    <i class="ri-award-line text-yellow-500"></i>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <p class="text-xs text-gray-600 mb-1">
+                    SSL Secured • Money Back Guarantee
+                  </p>
+                  <p class="text-xs text-gray-600">
+                    256-bit encryption protection
+                  </p>
+                </div>
+              </div>
+              <!-- Payment Methods -->
+              <div class="text-center mb-6">
+                <p class="text-sm text-gray-600 mb-3">We accept:</p>
+                <div class="flex justify-center space-x-4">
+                  <div class="w-8 h-8 flex items-center justify-center">
+                    <i class="ri-visa-fill text-2xl text-blue-600"></i>
+                  </div>
+                  <div class="w-8 h-8 flex items-center justify-center">
+                    <i class="ri-mastercard-fill text-2xl text-red-500"></i>
+                  </div>
+                  <div class="w-8 h-8 flex items-center justify-center">
+                    <i class="ri-paypal-fill text-2xl text-blue-700"></i>
+                  </div>
+                  <div class="w-8 h-8 flex items-center justify-center">
+                    <i class="ri-smartphone-line text-xl text-blue-600"></i>
+                  </div>
+                </div>
+              </div>
+              <!-- Action Button -->
+              <button
+                id="checkout-action-btn"
+                class="w-full bg-primary text-white py-4 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-bold text-lg"
+              >
+                NEXT
+              </button>
+              <p class="text-xs text-gray-500 text-center mt-4">
+                By placing your order, you agree to our Terms of Service and
+                Privacy Policy
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-[#110b39] text-white pt-10 pb-6">
+      <!-- TOP FOOTER CONTENT (centered) -->
+      <div
+        class="max-w-6xl mx-auto px-8 flex justify-between items-center mb-6"
+      >
+        <img src="PP-Logo.png" class="h-8" />
+
+        <nav class="flex gap-10 text-sm">
+          <a href="home.html" class="hover:text-primary">Home</a>
+          <a href="products.html" class="hover:text-primary">Products</a>
+          <a href="about-us.html" class="hover:text-primary">About Us</a>
+          <a href="contact.html" class="hover:text-primary">Contact</a>
+        </nav>
+
+        <div class="flex gap-6 text-xl">
+          <i class="ri-facebook-fill"></i>
+          <i class="ri-twitter-fill"></i>
+          <i class="ri-instagram-line"></i>
+        </div>
+      </div>
+      <div class="w-full border-t border-gray-700"></div>
+
+      <!-- BOTTOM FOOTER CONTENT (centered) -->
+      <div
+        class="max-w-6xl mx-auto px-8 flex justify-between items-center mt-4 text-sm text-gray-300"
+      >
+        <p>© 2025 BSIS CIIT Philippines Inc.</p>
+
+        <div class="flex gap-6">
+          <a href="terms-of-service.html" class="hover:text-white"
+            >Terms of Service</a
+          >
+          <a href="privacy-policy.html" class="hover:text-white"
+            >Privacy Policy</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script id="payment-method-selection">
+      document.addEventListener("DOMContentLoaded", function () {
+        const paymentCards = document.querySelectorAll(".payment-card");
+        const paymentRadios = document.querySelectorAll(
+          'input[name="payment"]'
+        );
+        const creditCardForm = document.getElementById("creditCardForm");
+        paymentCards.forEach((card) => {
+          card.addEventListener("click", function () {
+            paymentCards.forEach((c) => c.classList.remove("selected"));
+            this.classList.add("selected");
+            const radio = this.querySelector('input[type="radio"]');
+            radio.checked = true;
+            if (radio.value === "credit") {
+              creditCardForm.classList.remove("hidden");
+            } else {
+              creditCardForm.classList.add("hidden");
+            }
+          });
+        });
+        paymentRadios.forEach((radio) => {
+          radio.addEventListener("change", function () {
+            paymentCards.forEach((card) => {
+              card.classList.remove("selected");
+              if (card.dataset.payment === this.value) {
+                card.classList.add("selected");
+              }
+            });
+            if (this.value === "credit") {
+              creditCardForm.classList.remove("hidden");
+            } else {
+              creditCardForm.classList.add("hidden");
+            }
+          });
+        });
+      });
+    </script>
+    <script id="shipping-address-toggle">
+      document.addEventListener("DOMContentLoaded", function () {
+        const sameAsBillingCheckbox = document.getElementById("sameAsBilling");
+        const shippingForm = document.getElementById("shippingForm");
+        sameAsBillingCheckbox.addEventListener("change", function () {
+          if (this.checked) {
+            shippingForm.style.opacity = "0.5";
+            shippingForm.style.pointerEvents = "none";
+            const inputs = shippingForm.querySelectorAll("input");
+            inputs.forEach((input) => (input.disabled = true));
+          } else {
+            shippingForm.style.opacity = "1";
+            shippingForm.style.pointerEvents = "auto";
+            const inputs = shippingForm.querySelectorAll("input");
+            inputs.forEach((input) => (input.disabled = false));
+          }
+        });
+      });
+    </script>
+    <script id="checkout-flow-control">
+      document.addEventListener("DOMContentLoaded", function () {
+        let currentStep = 1;
+        const totalSteps = 4;
+        const actionBtn = document.getElementById("checkout-action-btn");
+
+        function updateProgressIndicator() {
+          const steps = [
+            "step-shipping",
+            "step-payment",
+            "step-review",
+            "step-complete",
+          ];
+          const stepElements = steps.map((id) => document.getElementById(id));
+
+          stepElements.forEach((element, index) => {
+            const stepNum = index + 2;
+            const circle = element.querySelector("div");
+            const text = element.querySelector("span");
+
+            if (stepNum < currentStep + 1) {
+              element.classList.remove("active");
+              element.classList.add("completed");
+              circle.classList.remove("bg-gray-300", "text-gray-600");
+              circle.classList.add("bg-primary", "text-white");
+              text.classList.remove("text-gray-600");
+              text.classList.add("text-primary");
+            } else if (stepNum === currentStep + 1) {
+              element.classList.remove("completed");
+              element.classList.add("active");
+              circle.classList.remove("bg-gray-300", "text-gray-600");
+              circle.classList.add("bg-primary", "text-white");
+              text.classList.remove("text-gray-600");
+              text.classList.add("text-primary");
+            } else {
+              element.classList.remove("active", "completed");
+              circle.classList.remove("bg-primary", "text-white");
+              circle.classList.add("bg-gray-300", "text-gray-600");
+              text.classList.remove("text-primary");
+              text.classList.add("text-gray-600");
+            }
+          });
+        }
+
+        function showStepContent() {
+          const contentElements = [
+            document.getElementById("step-billing-content"),
+            document.getElementById("step-shipping-payment-content"),
+            document.getElementById("step-review-content"),
+            document.getElementById("step-complete-content"),
+          ];
+
+          contentElements.forEach((element, index) => {
+            if (index === currentStep - 1) {
+              element.classList.remove("hidden");
+            } else {
+              element.classList.add("hidden");
+            }
+          });
+
+          if (currentStep === 3) {
+            populateReviewSummary();
+          }
+
+          if (currentStep === 4) {
+            actionBtn.classList.add("hidden");
+          } else {
+            actionBtn.classList.remove("hidden");
+            actionBtn.textContent = currentStep === 3 ? "PLACE ORDER" : "NEXT";
+          }
+        }
+
+        function populateReviewSummary() {
+          const billingSummary = document.getElementById("billing-summary");
+          const shippingSummary = document.getElementById("shipping-summary");
+          const paymentSummary = document.getElementById("payment-summary");
+
+          const billingData = {
+            firstName:
+              document.getElementById("billing-first-name").value ||
+              "Not provided",
+            lastName:
+              document.getElementById("billing-last-name").value ||
+              "Not provided",
+            address:
+              document.getElementById("billing-address").value ||
+              "Not provided",
+            city:
+              document.getElementById("billing-city").value || "Not provided",
+            state:
+              document.getElementById("billing-state").value || "Not provided",
+            postal:
+              document.getElementById("billing-postal").value || "Not provided",
+            phone:
+              document.getElementById("billing-phone").value || "Not provided",
+            email:
+              document.getElementById("billing-email").value || "Not provided",
+          };
+
+          const sameAsBilling =
+            document.getElementById("sameAsBilling").checked;
+          const shippingData = sameAsBilling
+            ? billingData
+            : {
+                firstName:
+                  document.getElementById("shipping-first-name").value ||
+                  "Not provided",
+                lastName:
+                  document.getElementById("shipping-last-name").value ||
+                  "Not provided",
+                address:
+                  document.getElementById("shipping-address").value ||
+                  "Not provided",
+                city:
+                  document.getElementById("shipping-city").value ||
+                  "Not provided",
+                state:
+                  document.getElementById("shipping-state").value ||
+                  "Not provided",
+                postal:
+                  document.getElementById("shipping-postal").value ||
+                  "Not provided",
+                phone:
+                  document.getElementById("shipping-phone").value ||
+                  "Not provided",
+              };
+
+          const selectedPayment = document.querySelector(
+            'input[name="payment"]:checked'
+          );
+          const paymentMethod = selectedPayment
+            ? selectedPayment.value
+            : "Not selected";
+
+          billingSummary.innerHTML = `
+    <p>${billingData.firstName} ${billingData.lastName}</p>
+    <p>${billingData.address}</p>
+    <p>${billingData.city}, ${billingData.state} ${billingData.postal}</p>
+    <p>Philippines</p>
+    <p>Phone: ${billingData.phone}</p>
+    <p>Email: ${billingData.email}</p>
+    `;
+
+          shippingSummary.innerHTML = sameAsBilling
+            ? "Same as billing address"
+            : `
+    <p>${shippingData.firstName} ${shippingData.lastName}</p>
+    <p>${shippingData.address}</p>
+    <p>${shippingData.city}, ${shippingData.state} ${shippingData.postal}</p>
+    <p>Philippines</p>
+    <p>Phone: ${shippingData.phone}</p>
+    `;
+
+          const paymentLabels = {
+            credit: "Credit/Debit Card",
+            paypal: "PayPal",
+            gcash: "GCash",
+            bank: "Bank Transfer",
+          };
+
+          paymentSummary.innerHTML = `<p>${
+            paymentLabels[paymentMethod] || "Not selected"
+          }</p>`;
+        }
+
+        actionBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          if (currentStep < totalSteps) {
+            currentStep++;
+            updateProgressIndicator();
+            showStepContent();
+          }
+
+          if (currentStep === 4) {
+            setTimeout(() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }, 100);
+          }
+        });
+
+        updateProgressIndicator();
+        showStepContent();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - PLUG&PLAY Gaming Hardware Store</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#B47AEA", secondary: "#5ADEEB" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      .cart-gradient {
+        background: linear-gradient(
+          135deg,
+          rgba(173, 216, 230, 0.3) 0%,
+          rgba(255, 255, 255, 0.9) 50%,
+          rgba(180, 122, 234, 0.2) 100%
+        );
+      }
+      .login-popup {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        width: 280px;
+        height: 380px;
+        background-image: url("https://static.readdy.ai/image/fae3cd0d4b49531fa8b02021f2133637/afb146b11cb6c325c7275238c41ab10a.png");
+        background-size: cover;
+        background-position: center;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+      .signup-popup {
+        height: 480px;
+      }
+      .login-popup.show {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      .login-popup-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+      }
+      .quantity-input {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+      }
+      .quantity-input::-webkit-outer-spin-button,
+      .quantity-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body class="cart-gradient min-h-screen text-gray-900">
+    <!-- Login Popup -->
+    <div id="loginPopup" class="login-popup">
+      <div class="login-popup-overlay"></div>
+      <div class="relative p-6 h-full flex flex-col justify-center">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">SIGN IN</h3>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input
+              type="text"
+              placeholder="Email or Phone Number"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div class="text-center">
+            <a
+              href="#"
+              id="forgotPasswordLink"
+              class="text-sm text-gray-600 hover:text-primary"
+              >Forgot Password?</a
+            >
+          </div>
+          <button
+            class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold"
+          >
+            Log In
+          </button>
+          <div class="text-center pt-4">
+            <p class="text-sm text-gray-600">Don't have an account yet?</p>
+            <a
+              href="#"
+              id="createAccountLink"
+              class="text-sm text-primary underline font-medium"
+              >Create an account</a
+            >
+          </div>
+        </div>
+        <button
+          id="closeLoginPopup"
+          class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800"
+        >
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sign Up Popup -->
+    <div id="signupPopup" class="login-popup signup-popup">
+      <div class="login-popup-overlay"></div>
+      <div class="relative p-6 h-full flex flex-col justify-center">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">SIGN UP</h3>
+          <p class="text-sm text-gray-600">
+            Please fill in the information below:
+          </p>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input
+              type="text"
+              placeholder="First Name"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Last Name"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Email Address"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div class="flex items-start space-x-2 text-xs text-gray-600">
+            <input
+              type="checkbox"
+              id="agreeTerms"
+              class="mt-1 opacity-0 absolute"
+            />
+            <label for="agreeTerms" class="relative cursor-pointer">
+              <div
+                class="w-4 h-4 border-2 border-gray-400 rounded bg-white flex items-center justify-center"
+              >
+                <i
+                  class="ri-check-line text-xs text-primary opacity-0"
+                  id="checkIcon"
+                ></i>
+              </div>
+            </label>
+            <span
+              >By continuing, I agree to Plug&Play's Privacy Policy and Terms of
+              Use</span
+            >
+          </div>
+          <button
+            class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold"
+          >
+            Create My Account
+          </button>
+          <div class="text-center pt-2">
+            <p class="text-sm text-gray-600">
+              Already have an account?
+              <a
+                href="#"
+                id="loginHereLink"
+                class="text-primary underline font-medium"
+                >Login Here</a
+              >
+            </p>
+          </div>
+        </div>
+        <button
+          id="closeSignupPopup"
+          class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800"
+        >
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Forgot Password Popup -->
+    <div id="forgotPasswordPopup" class="login-popup">
+      <div class="login-popup-overlay"></div>
+      <div class="relative p-6 h-full flex flex-col justify-center">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-2">FORGOT PASSWORD</h3>
+          <p class="text-sm text-gray-600">
+            Enter your email address to reset your password:
+          </p>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <input
+              type="email"
+              placeholder="Email Address"
+              class="w-full px-4 py-3 bg-gray-100 border-none !rounded-button text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <button
+            class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-semibold"
+          >
+            Send Reset Link
+          </button>
+          <div class="text-center pt-4">
+            <p class="text-sm text-gray-600">
+              Remember your password?
+              <a
+                href="#"
+                id="backToLoginLink"
+                class="text-primary underline font-medium"
+                >Back to Login</a
+              >
+            </p>
+          </div>
+        </div>
+        <button
+          id="closeForgotPasswordPopup"
+          class="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-500 hover:text-gray-800"
+        >
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      style="background-color: #110b39"
+      class="text-white px-8 py-4 fixed w-full top-0 z-50"
+    >
+      <div class="flex items-center justify-between">
+        <img src="PP-Logo.png" alt="PLUG&PLAY Logo" class="h-8" />
+        <div class="flex items-center space-x-8">
+          <a href="home.html" class="hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a
+            href="products.html"
+            data-readdy="true"
+            class="hover:text-primary transition-colors"
+            >Products</a
+          >
+          <a href="about-us.html" class="hover:text-primary transition-colors"
+            >About Us</a
+          >
+          <a href="contact.html" class="hover:text-primary transition-colors"
+            >Contact</a
+          >
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Search products..."
+              class="bg-gray-800 text-white px-4 py-2 pr-10 rounded-button border-none text-sm"
+            />
+            <div
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center"
+            >
+              <i class="ri-search-line text-gray-400"></i>
+            </div>
+          </div>
+          <div class="w-8 h-8 flex items-center justify-center">
+            <i
+              class="ri-shopping-cart-line text-xl text-primary cursor-pointer"
+            ></i>
+          </div>
+          <div
+            id="loginButton"
+            class="w-8 h-8 flex items-center justify-center"
+          >
+            <i
+              class="ri-user-line text-xl hover:text-primary cursor-pointer transition-colors"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="pt-20 px-8 py-4">
+      <div class="flex items-center space-x-2 text-sm text-gray-600">
+        <a
+          href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/67e48715-7210-4a02-879a-ab7e7b7adde0"
+          data-readdy="true"
+          class="hover:text-primary transition-colors"
+          >Home</a
+        >
+        <i class="ri-arrow-right-s-line"></i>
+        <a
+          href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/91bd0e3a-ca35-4c77-9f9b-1374449c8fcf"
+          data-readdy="true"
+          class="hover:text-primary transition-colors"
+          >Products</a
+        >
+        <i class="ri-arrow-right-s-line"></i>
+        <span class="text-gray-900 font-medium">Shopping Cart</span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="px-8 py-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Cart Items -->
+          <div class="lg:col-span-2">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+              <div class="flex items-center justify-between mb-6">
+                <h1 class="text-3xl font-bold text-gray-900">MY CART</h1>
+                <a
+                  href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/91bd0e3a-ca35-4c77-9f9b-1374449c8fcf"
+                  data-readdy="true"
+                  class="text-primary hover:text-primary/80 transition-colors flex items-center space-x-2"
+                >
+                  <i class="ri-arrow-left-line"></i>
+                  <span>Continue Shopping</span>
+                </a>
+              </div>
+
+              <!-- Cart Item 1 -->
+              <div class="border-b border-gray-200 pb-6 mb-6">
+                <div class="flex items-start space-x-4">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=modern%20gaming%20mechanical%20keyboard%20with%20RGB%20lighting%20purple%20and%20cyan%20colors%20professional%20product%20photography%20clean%20white%20background%20high%20quality%20gaming%20hardware&width=120&height=120&seq=keyboard1&orientation=squarish"
+                    alt="RGB Mechanical Gaming Keyboard"
+                    class="w-24 h-24 object-cover object-top rounded"
+                  />
+                  <div class="flex-1">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                      RGB Mechanical Gaming Keyboard Pro X
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-2">
+                      Cherry MX Blue Switches • RGB Backlight • Anti-Ghosting
+                    </p>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center space-x-3">
+                        <span class="text-sm text-gray-600">Qty:</span>
+                        <div
+                          class="flex items-center border border-gray-300 rounded-button"
+                        >
+                          <button
+                            class="quantity-btn px-3 py-1 hover:bg-gray-100 transition-colors"
+                            data-action="decrease"
+                            data-target="qty1"
+                          >
+                            <i class="ri-subtract-line text-sm"></i>
+                          </button>
+                          <input
+                            type="number"
+                            id="qty1"
+                            value="1"
+                            min="1"
+                            class="quantity-input w-12 text-center border-none focus:outline-none text-sm"
+                          />
+                          <button
+                            class="quantity-btn px-3 py-1 hover:bg-gray-100 transition-colors"
+                            data-action="increase"
+                            data-target="qty1"
+                          >
+                            <i class="ri-add-line text-sm"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="flex items-center space-x-4">
+                        <span
+                          class="text-lg font-bold text-gray-900"
+                          data-price="4299"
+                          >₱ 4,299.00</span
+                        >
+                        <button
+                          class="remove-item w-8 h-8 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors"
+                          data-item="item1"
+                        >
+                          <i class="ri-delete-bin-line"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cart Item 2 -->
+              <div class="border-b border-gray-200 pb-6 mb-6">
+                <div class="flex items-start space-x-4">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=professional%20gaming%20mouse%20with%20RGB%20lighting%20sleek%20black%20design%20ergonomic%20shape%20product%20photography%20clean%20white%20background%20high%20quality%20gaming%20peripheral&width=120&height=120&seq=mouse1&orientation=squarish"
+                    alt="Gaming Mouse"
+                    class="w-24 h-24 object-cover object-top rounded"
+                  />
+                  <div class="flex-1">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                      Ultra Pro Gaming Mouse Elite
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-2">
+                      25,600 DPI • Wireless • RGB Lighting • Ergonomic Design
+                    </p>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center space-x-3">
+                        <span class="text-sm text-gray-600">Qty:</span>
+                        <div
+                          class="flex items-center border border-gray-300 rounded-button"
+                        >
+                          <button
+                            class="quantity-btn px-3 py-1 hover:bg-gray-100 transition-colors"
+                            data-action="decrease"
+                            data-target="qty2"
+                          >
+                            <i class="ri-subtract-line text-sm"></i>
+                          </button>
+                          <input
+                            type="number"
+                            id="qty2"
+                            value="2"
+                            min="1"
+                            class="quantity-input w-12 text-center border-none focus:outline-none text-sm"
+                          />
+                          <button
+                            class="quantity-btn px-3 py-1 hover:bg-gray-100 transition-colors"
+                            data-action="increase"
+                            data-target="qty2"
+                          >
+                            <i class="ri-add-line text-sm"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="flex items-center space-x-4">
+                        <span
+                          class="text-lg font-bold text-gray-900"
+                          data-price="2899"
+                          >₱ 5,798.00</span
+                        >
+                        <button
+                          class="remove-item w-8 h-8 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors"
+                          data-item="item2"
+                        >
+                          <i class="ri-delete-bin-line"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cart Item 3 -->
+              <div class="border-b border-gray-200 pb-6 mb-6">
+                <div class="flex items-start space-x-4">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=premium%20gaming%20headset%20with%20RGB%20lighting%20black%20and%20purple%20design%20professional%20product%20photography%20clean%20white%20background%20high%20quality%20gaming%20audio%20equipment&width=120&height=120&seq=headset1&orientation=squarish"
+                    alt="Gaming Headset"
+                    class="w-24 h-24 object-cover object-top rounded"
+                  />
+                  <div class="flex-1">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                      Surround Sound Gaming Headset X7
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-2">
+                      7.1 Surround Sound • Noise Cancelling • RGB • Wireless
+                    </p>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center space-x-3">
+                        <span class="text-sm text-gray-600">Qty:</span>
+                        <div
+                          class="flex items-center border border-gray-300 rounded-button"
+                        >
+                          <button
+                            class="quantity-btn px-3 py-1 hover:bg-gray-100 transition-colors"
+                            data-action="decrease"
+                            data-target="qty3"
+                          >
+                            <i class="ri-subtract-line text-sm"></i>
+                          </button>
+                          <input
+                            type="number"
+                            id="qty3"
+                            value="1"
+                            min="1"
+                            class="quantity-input w-12 text-center border-none focus:outline-none text-sm"
+                          />
+                          <button
+                            class="quantity-btn px-3 py-1 hover:bg-gray-100 transition-colors"
+                            data-action="increase"
+                            data-target="qty3"
+                          >
+                            <i class="ri-add-line text-sm"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="flex items-center space-x-4">
+                        <span
+                          class="text-lg font-bold text-gray-900"
+                          data-price="3599"
+                          >₱ 3,599.00</span
+                        >
+                        <button
+                          class="remove-item w-8 h-8 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors"
+                          data-item="item3"
+                        >
+                          <i class="ri-delete-bin-line"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="lg:col-span-1">
+            <div class="bg-white rounded-lg shadow-sm p-6 sticky top-28">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">SUMMARY</h2>
+              <div class="space-y-4 mb-6">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span class="font-semibold" id="subtotal">₱ 13,696.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Shipping</span>
+                  <span class="text-green-600 font-medium">Free</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Tax</span>
+                  <span class="font-semibold">₱ 1,643.52</span>
+                </div>
+                <div class="border-t border-gray-200 pt-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-lg font-bold text-gray-900">Total</span>
+                    <span class="text-2xl font-bold text-gray-900" id="total"
+                      >₱ 15,339.52</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <a
+                  href="checkout-page.html"
+                  data-readdy="true"
+                  class="w-full bg-primary text-white py-4 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-bold text-lg block text-center"
+                >
+                  PROCEED TO CHECKOUT
+                </a>
+                <div class="text-center">
+                  <p class="text-sm text-gray-600 mb-2">
+                    Secure checkout with:
+                  </p>
+                  <div class="flex justify-center space-x-4">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                      <i class="ri-visa-fill text-2xl text-blue-600"></i>
+                    </div>
+                    <div class="w-8 h-8 flex items-center justify-center">
+                      <i class="ri-mastercard-fill text-2xl text-red-500"></i>
+                    </div>
+                    <div class="w-8 h-8 flex items-center justify-center">
+                      <i class="ri-paypal-fill text-2xl text-blue-700"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-6 p-4 bg-gray-50 rounded border border-gray-200">
+                <div class="flex items-start space-x-3">
+                  <div class="w-5 h-5 flex items-center justify-center">
+                    <i class="ri-truck-line text-primary"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900 mb-1">
+                      Free Shipping
+                    </h4>
+                    <p class="text-sm text-gray-600">
+                      Orders over ₱ 2,500 qualify for free standard shipping
+                      within Metro Manila.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 p-4 bg-gray-50 rounded border border-gray-200">
+                <div class="flex items-start space-x-3">
+                  <div class="w-5 h-5 flex items-center justify-center">
+                    <i class="ri-shield-check-line text-green-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-900 mb-1">
+                      Secure Payment
+                    </h4>
+                    <p class="text-sm text-gray-600">
+                      Your payment information is encrypted and secure.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#110b39] text-white pt-10 pb-6">
+      <!-- TOP FOOTER CONTENT (centered) -->
+      <div
+        class="max-w-6xl mx-auto px-8 flex justify-between items-center mb-6"
+      >
+        <img src="PP-Logo.png" class="h-8" />
+
+        <nav class="flex gap-10 text-sm">
+          <a href="home.html" class="hover:text-primary">Home</a>
+          <a href="products.html" class="hover:text-primary">Products</a>
+          <a href="about-us.html" class="hover:text-primary">About Us</a>
+          <a href="contact.html" class="hover:text-primary">Contact</a>
+        </nav>
+
+        <div class="flex gap-6 text-xl">
+          <i class="ri-facebook-fill"></i>
+          <i class="ri-twitter-fill"></i>
+          <i class="ri-instagram-line"></i>
+        </div>
+      </div>
+      <div class="w-full border-t border-gray-700"></div>
+
+      <!-- BOTTOM FOOTER CONTENT (centered) -->
+      <div
+        class="max-w-6xl mx-auto px-8 flex justify-between items-center mt-4 text-sm text-gray-300"
+      >
+        <p>© 2025 BSIS CIIT Philippines Inc.</p>
+
+        <div class="flex gap-6">
+          <a href="terms-of-service.html" class="hover:text-white"
+            >Terms of Service</a
+          >
+          <a href="privacy-policy.html" class="hover:text-white"
+            >Privacy Policy</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script id="login-popup">
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginButton = document.getElementById("loginButton");
+        const loginPopup = document.getElementById("loginPopup");
+        const signupPopup = document.getElementById("signupPopup");
+        const forgotPasswordPopup = document.getElementById(
+          "forgotPasswordPopup"
+        );
+        const closeLoginPopup = document.getElementById("closeLoginPopup");
+        const closeSignupPopup = document.getElementById("closeSignupPopup");
+        const closeForgotPasswordPopup = document.getElementById(
+          "closeForgotPasswordPopup"
+        );
+        const createAccountLink = document.getElementById("createAccountLink");
+        const forgotPasswordLink =
+          document.getElementById("forgotPasswordLink");
+        const loginHereLink = document.getElementById("loginHereLink");
+        const backToLoginLink = document.getElementById("backToLoginLink");
+        const agreeTermsCheckbox = document.getElementById("agreeTerms");
+        const checkIcon = document.getElementById("checkIcon");
+        function hideAllPopups() {
+          loginPopup.classList.remove("show");
+          signupPopup.classList.remove("show");
+          forgotPasswordPopup.classList.remove("show");
+        }
+        loginButton.addEventListener("click", function () {
+          hideAllPopups();
+          loginPopup.classList.add("show");
+        });
+        createAccountLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          signupPopup.classList.add("show");
+        });
+        forgotPasswordLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          forgotPasswordPopup.classList.add("show");
+        });
+        loginHereLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          loginPopup.classList.add("show");
+        });
+        backToLoginLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          hideAllPopups();
+          loginPopup.classList.add("show");
+        });
+        closeLoginPopup.addEventListener("click", function () {
+          loginPopup.classList.remove("show");
+        });
+        closeSignupPopup.addEventListener("click", function () {
+          signupPopup.classList.remove("show");
+        });
+        closeForgotPasswordPopup.addEventListener("click", function () {
+          forgotPasswordPopup.classList.remove("show");
+        });
+        agreeTermsCheckbox.addEventListener("change", function () {
+          if (this.checked) {
+            checkIcon.style.opacity = "1";
+          } else {
+            checkIcon.style.opacity = "0";
+          }
+        });
+        document.addEventListener("click", function (e) {
+          if (
+            !loginPopup.contains(e.target) &&
+            !signupPopup.contains(e.target) &&
+            !forgotPasswordPopup.contains(e.target) &&
+            !loginButton.contains(e.target)
+          ) {
+            hideAllPopups();
+          }
+        });
+      });
+    </script>
+    <script id="cart-functionality">
+      document.addEventListener("DOMContentLoaded", function () {
+        const quantityBtns = document.querySelectorAll(".quantity-btn");
+        const removeItemBtns = document.querySelectorAll(".remove-item");
+        const subtotalElement = document.getElementById("subtotal");
+        const totalElement = document.getElementById("total");
+        function updatePrices() {
+          let subtotal = 0;
+          const items = document.querySelectorAll("[data-price]");
+          items.forEach((item) => {
+            const price = parseFloat(item.dataset.price);
+            const qtyInput = item
+              .closest(".border-b")
+              .querySelector('input[type="number"]');
+            const quantity = parseInt(qtyInput.value);
+            const itemTotal = price * quantity;
+            item.textContent = `₱ ${itemTotal.toLocaleString("en-PH", {
+              minimumFractionDigits: 2,
+            })}`;
+            subtotal += itemTotal;
+          });
+          const tax = subtotal * 0.12;
+          const total = subtotal + tax;
+          subtotalElement.textContent = `₱ ${subtotal.toLocaleString("en-PH", {
+            minimumFractionDigits: 2,
+          })}`;
+          totalElement.textContent = `₱ ${total.toLocaleString("en-PH", {
+            minimumFractionDigits: 2,
+          })}`;
+        }
+        quantityBtns.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const action = this.dataset.action;
+            const targetId = this.dataset.target;
+            const input = document.getElementById(targetId);
+            let currentValue = parseInt(input.value);
+            if (action === "increase") {
+              input.value = currentValue + 1;
+            } else if (action === "decrease" && currentValue > 1) {
+              input.value = currentValue - 1;
+            }
+            updatePrices();
+          });
+        });
+        removeItemBtns.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const itemId = this.dataset.item;
+            const itemElement = this.closest(".border-b");
+            itemElement.remove();
+            updatePrices();
+          });
+        });
+        document.querySelectorAll('input[type="number"]').forEach((input) => {
+          input.addEventListener("change", function () {
+            if (parseInt(this.value) < 1) {
+              this.value = 1;
+            }
+            updatePrices();
+          });
+        });
+        updatePrices();
+      });
+    </script>
+  </body>
+</html>

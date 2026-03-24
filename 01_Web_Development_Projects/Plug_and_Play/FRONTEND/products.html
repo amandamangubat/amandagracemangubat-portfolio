@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products - PLUG&PLAY Gaming Hardware Store</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{primary:'#B47AEA',secondary:'#5ADEEB'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before {
+content: "\f3c2";
+}
+.filter-dropdown {
+position: absolute;
+top: 100%;
+left: 0;
+background: white;
+border: 1px solid #e5e7eb;
+border-radius: 8px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+opacity: 0;
+visibility: hidden;
+transform: translateY(-10px);
+transition: all 0.3s ease;
+z-index: 100;
+min-width: 200px;
+}
+.filter-item:hover .filter-dropdown {
+opacity: 1;
+visibility: visible;
+transform: translateY(0);
+}
+.product-card {
+transition: all 0.3s ease;
+}
+.product-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+</style>
+</head>
+<body style="background-color: #f8fafc;" class="text-gray-900">
+<!-- Navigation -->
+<nav style="background-color: #110B39;" class="text-white px-8 py-4 fixed w-full top-0 z-50">
+<div class="flex items-center justify-between">
+<img src="PP-Logo.png" alt="PLUG&PLAY Logo" class="h-8">
+<div class="flex items-center space-x-8">
+<a href="home.html" class="hover:text-primary transition-colors">Home</a>
+<a href="products.html" class="text-primary">Products</a>
+<a href="about-us.html" class="hover:text-primary transition-colors">About Us</a>
+<a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<input type="text" placeholder="Search products..." class="bg-gray-800 text-white px-4 py-2 pr-10 rounded-button border-none text-sm">
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+            <a href="cart.html">
+              <i
+                class="ri-shopping-cart-line text-xl hover:text-primary cursor-pointer transition-colors"
+              ></i>
+            </a>
+          </div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-user-line text-xl hover:text-primary cursor-pointer transition-colors"></i>
+</div>
+</div>
+</div>
+</nav>
+<!-- Filters Bar -->
+<div class="fixed top-40 left-1/2 transform -translate-x-1/2 z-40 bg-white rounded-lg shadow-lg border border-gray-200 py-4 px-8 min-w-max">
+<div class="flex items-center space-x-6 whitespace-nowrap">
+<div class="filter-item relative">
+<button class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-primary transition-colors">
+<span>Filters</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="filter-dropdown">
+<div class="p-4 space-y-3">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">On Sale</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">Free Shipping</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">In Stock</span>
+</label>
+</div>
+</div>
+</div>
+<div class="filter-item relative">
+<button class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-primary transition-colors">
+<span>Brand</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="filter-dropdown">
+<div class="p-4 space-y-3">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">ASUS</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">Lenovo</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">Acer</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">Sony</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">Microsoft</span>
+</label>
+</div>
+</div>
+</div>
+<div class="filter-item relative">
+<button class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-primary transition-colors">
+<span>Price Range</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="filter-dropdown">
+<div class="p-4 space-y-3">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="price" class="rounded border-gray-300">
+<span class="text-sm">Under $500</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="price" class="rounded border-gray-300">
+<span class="text-sm">$500 - $1000</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="price" class="rounded border-gray-300">
+<span class="text-sm">$1000 - $2000</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="price" class="rounded border-gray-300">
+<span class="text-sm">Over $2000</span>
+</label>
+</div>
+</div>
+</div>
+<div class="filter-item relative">
+<button class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-primary transition-colors">
+<span>Specs</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="filter-dropdown">
+<div class="p-4 space-y-3">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">RTX 4090</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">RTX 4080</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">32GB RAM</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">1TB SSD</span>
+</label>
+</div>
+</div>
+</div>
+<div class="filter-item relative">
+<button class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-primary transition-colors">
+<span>Availability</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="filter-dropdown">
+<div class="p-4 space-y-3">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">In Stock</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">Pre-order</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="rounded border-gray-300">
+<span class="text-sm">Coming Soon</span>
+</label>
+</div>
+</div>
+</div>
+<div class="filter-item relative">
+<button class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-primary transition-colors">
+<span>Sort By</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="filter-dropdown">
+<div class="p-4 space-y-3">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="sort" class="rounded border-gray-300">
+<span class="text-sm">Price: Low to High</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="sort" class="rounded border-gray-300">
+<span class="text-sm">Price: High to Low</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="sort" class="rounded border-gray-300">
+<span class="text-sm">Newest First</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="sort" class="rounded border-gray-300">
+<span class="text-sm">Best Sellers</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Categories and Products Grid -->
+<div class="pt-24 pb-8 bg-cover bg-center bg-no-repeat min-h-screen" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20tech%20background%20with%20subtle%20geometric%20patterns%20and%20gaming%20elements%20in%20purple%20and%20cyan%20colors%20soft%20gradients%20minimalist%20design%20for%20product%20showcase&width=1920&height=1080&seq=bgmain&orientation=landscape');">
+<div class="max-w-7xl mx-auto px-8">
+<!-- Product Categories -->
+<div class="pb-12">
+<div class="flex items-center justify-center space-x-8">
+<button class="category-btn px-6 py-3 text-primary hover:text-primary-dark transition-all font-semibold text-lg" data-category="all">ALL</button>
+<button class="category-btn px-6 py-3 text-gray-700 hover:text-gray-900 transition-all font-semibold text-lg" data-category="audio">AUDIO</button>
+<button class="category-btn px-6 py-3 text-gray-700 hover:text-gray-900 transition-all font-semibold text-lg" data-category="laptop">LAPTOP</button>
+<button class="category-btn px-6 py-3 text-gray-700 hover:text-gray-900 transition-all font-semibold text-lg" data-category="console">CONSOLE</button>
+<button class="category-btn px-6 py-3 text-gray-700 hover:text-gray-900 transition-all font-semibold text-lg" data-category="monitor">MONITOR</button>
+<button class="category-btn px-6 py-3 text-gray-700 hover:text-gray-900 transition-all font-semibold text-lg" data-category="storage">STORAGE</button>
+<button class="category-btn px-6 py-3 text-gray-700 hover:text-gray-900 transition-all font-semibold text-lg" data-category="accessories">ACCESSORIES</button>
+</div>
+</div>
+<!-- Products Grid -->
+<div class="pt-20">
+<div class="grid grid-cols-4 gap-8">
+<!-- Gaming Laptops Row 1 -->
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="laptop">
+<a href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/1ddc8551-1035-454f-8667-8706d579f593" data-readdy="true">
+<img src="https://readdy.ai/api/search-image?query=Lenovo%20Legion%205%20gaming%20laptop%20with%20RGB%20keyboard%20and%20sleek%20black%20design%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=laptop1&orientation=landscape" alt="Lenovo Legion 5 Gaming Laptop" class="w-full h-48 object-cover object-top cursor-pointer">
+</a>
+<div class="p-4 flex flex-col h-48">
+<a href="https://readdy.ai/home/21564d5f-2d64-4424-aa78-6791083fa7fa/1ddc8551-1035-454f-8667-8706d579f593" data-readdy="true">
+<h3 class="font-semibold text-lg mb-2 truncate cursor-pointer hover:text-primary transition-colors" title="Lenovo Legion 5 Gaming Laptop">Lenovo Legion 5 Gaming...</h3>
+</a>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="AMD Ryzen 7, RTX 4060, 16GB RAM">AMD Ryzen 7, RTX 4060, 16GB RAM</p>
+<p class="text-xl font-bold text-primary mb-4">$1,299.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="laptop">
+<img src="https://readdy.ai/api/search-image?query=ASUS%20ROG%20Strix%20gaming%20laptop%20with%20colorful%20RGB%20lighting%20and%20modern%20aggressive%20design%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=laptop2&orientation=landscape" alt="ASUS ROG Strix Gaming Laptop" class="w-full h-48 object-cover object-top cursor-pointer" onclick="openProductInfo('ASUS ROG Strix Gaming Laptop', 'Intel i7, RTX 4070, 32GB RAM', '$1,899.99', 'https://readdy.ai/api/search-image?query=ASUS%20ROG%20Strix%20gaming%20laptop%20with%20colorful%20RGB%20lighting%20and%20modern%20aggressive%20design%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=laptop2&orientation=landscape')">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate cursor-pointer hover:text-primary transition-colors" title="ASUS ROG Strix Gaming Laptop" onclick="openProductInfo('ASUS ROG Strix Gaming Laptop', 'Intel i7, RTX 4070, 32GB RAM', '$1,899.99', 'https://readdy.ai/api/search-image?query=ASUS%20ROG%20Strix%20gaming%20laptop%20with%20colorful%20RGB%20lighting%20and%20modern%20aggressive%20design%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=laptop2&orientation=landscape')">ASUS ROG Strix Gaming...</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="Intel i7, RTX 4070, 32GB RAM">Intel i7, RTX 4070, 32GB RAM</p>
+<p class="text-xl font-bold text-primary mb-4">$1,899.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="laptop">
+<img src="https://readdy.ai/api/search-image?query=Acer%20Nitro%205%20red%20gaming%20laptop%20with%20aggressive%20design%20and%20RGB%20lighting%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=laptop3&orientation=landscape" alt="Acer Nitro 5 Gaming Laptop" class="w-full h-48 object-cover object-top">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate" title="Acer Nitro 5 Gaming Laptop">Acer Nitro 5 Gaming...</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="AMD Ryzen 5, RTX 4050, 16GB RAM">AMD Ryzen 5, RTX 4050, 16GB RAM</p>
+<p class="text-xl font-bold text-primary mb-4">$899.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="laptop">
+<img src="https://readdy.ai/api/search-image?query=HP%20Pavilion%20Gaming%20laptop%20blue%20modern%20design%20with%20clean%20aesthetics%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=laptop4&orientation=landscape" alt="HP Pavilion Gaming Laptop" class="w-full h-48 object-cover object-top">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate" title="HP Pavilion Gaming Laptop">HP Pavilion Gaming...</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="Intel i5, GTX 1660Ti, 16GB RAM">Intel i5, GTX 1660Ti, 16GB RAM</p>
+<p class="text-xl font-bold text-primary mb-4">$799.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<!-- Gaming Consoles Row 2 -->
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="console">
+<img src="https://readdy.ai/api/search-image?query=custom%20RGB%20gaming%20desktop%20PC%20with%20tempered%20glass%20case%20and%20colorful%20lighting%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=console1&orientation=landscape" alt="Custom RGB Gaming Desktop PC" class="w-full h-48 object-cover object-top">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate" title="Custom RGB Gaming Desktop PC">Custom RGB Gaming...</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="Intel i9, RTX 4080, 32GB RAM">Intel i9, RTX 4080, 32GB RAM</p>
+<p class="text-xl font-bold text-primary mb-4">$2,499.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="console">
+<img src="https://readdy.ai/api/search-image?query=Sony%20PlayStation%205%20console%20white%20modern%20gaming%20system%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=console2&orientation=landscape" alt="Sony PlayStation 5 Console" class="w-full h-48 object-cover object-top">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate" title="Sony PlayStation 5 Console">Sony PlayStation 5...</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="825GB SSD, 4K Gaming">825GB SSD, 4K Gaming</p>
+<p class="text-xl font-bold text-primary mb-4">$499.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="laptop">
+<img src="https://readdy.ai/api/search-image?query=gaming%20laptop%20with%20purple%20RGB%20lighting%20and%20futuristic%20design%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=laptop5&orientation=landscape" alt="Gaming Laptop X" class="w-full h-48 object-cover object-top">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate" title="Gaming Laptop X">Gaming Laptop X</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="Intel i7, RTX 4060, 16GB RAM">Intel i7, RTX 4060, 16GB RAM</p>
+<p class="text-xl font-bold text-primary mb-4">$1,599.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="accessories">
+<img src="https://readdy.ai/api/search-image?query=wireless%20mechanical%20gaming%20keyboard%20with%20RGB%20backlighting%20black%20modern%20design%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=keyboard1&orientation=landscape" alt="Wireless Mechanical Keyboard" class="w-full h-48 object-cover object-top">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate" title="Wireless Mechanical Keyboard">Wireless Mechanical...</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="RGB Backlit, Cherry MX Switches">RGB Backlit, Cherry MX Switches</p>
+<p class="text-xl font-bold text-primary mb-4">$159.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<!-- Gaming Accessories Row 3 -->
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="accessories">
+<img src="https://readdy.ai/api/search-image?query=Xbox%20wireless%20gamepad%20controller%20lime%20green%20modern%20gaming%20controller%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=controller1&orientation=landscape" alt="Xbox Wireless Gamepad" class="w-full h-48 object-cover object-top">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate" title="Xbox Wireless Gamepad">Xbox Wireless Gamepad</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="Lime Green, Wireless Connectivity">Lime Green, Wireless...</p>
+<p class="text-xl font-bold text-primary mb-4">$59.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="accessories">
+<img src="https://readdy.ai/api/search-image?query=USB-C%20hub%20adapter%20with%20multiple%20ports%20silver%20aluminum%20design%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=hub1&orientation=landscape" alt="USB-C Hub 6-in-1 Adapter" class="w-full h-48 object-cover object-top">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate" title="USB-C Hub 6-in-1 Adapter">USB-C Hub 6-in-1...</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="HDMI, USB 3.0, SD Card Reader">HDMI, USB 3.0, SD Card Reader</p>
+<p class="text-xl font-bold text-primary mb-4">$39.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="monitor">
+<img src="https://readdy.ai/api/search-image?query=curved%20gaming%20monitor%2027%20inch%20with%20thin%20bezels%20and%20modern%20stand%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=monitor1&orientation=landscape" alt="Gaming 27 QHD Gaming Monitor" class="w-full h-48 object-cover object-top">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate" title="Gaming 27 QHD Gaming Monitor">Gaming 27" QHD Gaming...</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="165Hz, 1ms, G-Sync Compatible">165Hz, 1ms, G-Sync Compatible</p>
+<p class="text-xl font-bold text-primary mb-4">$329.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+<div class="product-card bg-white/95 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-200 shadow-lg h-96" data-category="storage">
+<img src="https://readdy.ai/api/search-image?query=external%20portable%20SSD%20drive%20black%20compact%20design%20on%20white%20background%20professional%20product%20photography%20clean%20minimalist&width=300&height=200&seq=storage1&orientation=landscape" alt="SanDisk Portable SSD 1TB" class="w-full h-48 object-cover object-top">
+<div class="p-4 flex flex-col h-48">
+<h3 class="font-semibold text-lg mb-2 truncate" title="SanDisk Portable SSD 1TB">SanDisk Portable...</h3>
+<p class="text-gray-600 text-sm mb-3 flex-1 truncate" title="Up to 1050MB/s Read Speed">Up to 1050MB/s Read Speed</p>
+<p class="text-xl font-bold text-primary mb-4">$149.99</p>
+<button class="w-full bg-primary text-white py-2 !rounded-button hover:bg-opacity-90 transition-all whitespace-nowrap font-medium mt-auto">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer style="background-color: #110B39;" class="text-white py-12">
+<div class="max-w-6xl mx-auto px-8">
+<div class="flex justify-between items-start mb-8">
+<img src="PP-Logo.png" alt="PLUG&PLAY Logo" class="h-8">
+<div class="flex space-x-12">
+<a href="home.html" class="hover:text-primary transition-colors">Home</a>
+<a href="products.html" class="text-primary">Products</a>
+<a href="about-us.html" class="hover:text-primary transition-colors">About Us</a>
+<a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+</div>
+<div class="flex space-x-4">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-facebook-fill text-xl hover:text-primary cursor-pointer transition-colors"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-twitter-fill text-xl hover:text-primary cursor-pointer transition-colors"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-instagram-fill text-xl hover:text-primary cursor-pointer transition-colors"></i>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-700 pt-8">
+<div class="flex justify-between items-center">
+<p class="text-gray-400">© 2025 BSIS CIIT Philippines Inc.</p>
+<div class="flex space-x-6">
+<a href="#" class="text-gray-400 hover:text-primary transition-colors">Terms of Service</a>
+<a href="#" class="text-gray-400 hover:text-primary transition-colors">Privacy Policy</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script id="category-filter">
+document.addEventListener('DOMContentLoaded', function() {
+const categoryButtons = document.querySelectorAll('.category-btn');
+const productCards = document.querySelectorAll('.product-card');
+categoryButtons.forEach(button => {
+button.addEventListener('click', function() {
+const category = this.getAttribute('data-category');
+categoryButtons.forEach(btn => {
+btn.classList.remove('text-primary');
+btn.classList.add('text-gray-700');
+});
+this.classList.remove('text-gray-700');
+this.classList.add('text-primary');
+productCards.forEach(card => {
+if (category === 'all' || card.getAttribute('data-category') === category) {
+card.style.display = 'block';
+} else {
+card.style.display = 'none';
+}
+});
+});
+});
+});
+</script>
+<script id="filter-dropdown-functionality">
+document.addEventListener('DOMContentLoaded', function() {
+const filterItems = document.querySelectorAll('.filter-item');
+let currentOpenDropdown = null;
+
+filterItems.forEach(item => {
+const button = item.querySelector('button');
+const dropdown = item.querySelector('.filter-dropdown');
+
+button.addEventListener('click', function(e) {
+e.stopPropagation();
+
+if (currentOpenDropdown && currentOpenDropdown !== dropdown) {
+currentOpenDropdown.style.opacity = '0';
+currentOpenDropdown.style.visibility = 'hidden';
+currentOpenDropdown.style.transform = 'translateY(-10px)';
+}
+
+if (dropdown.style.visibility === 'visible') {
+dropdown.style.opacity = '0';
+dropdown.style.visibility = 'hidden';
+dropdown.style.transform = 'translateY(-10px)';
+currentOpenDropdown = null;
+} else {
+dropdown.style.opacity = '1';
+dropdown.style.visibility = 'visible';
+dropdown.style.transform = 'translateY(0)';
+currentOpenDropdown = dropdown;
+}
+});
+
+dropdown.addEventListener('click', function(e) {
+e.stopPropagation();
+});
+});
+
+document.addEventListener('click', function() {
+if (currentOpenDropdown) {
+currentOpenDropdown.style.opacity = '0';
+currentOpenDropdown.style.visibility = 'hidden';
+currentOpenDropdown.style.transform = 'translateY(-10px)';
+currentOpenDropdown = null;
+}
+});
+
+const filterCheckboxes = document.querySelectorAll('.filter-dropdown input[type="checkbox"]');
+const filterRadios = document.querySelectorAll('.filter-dropdown input[type="radio"]');
+const productCards = document.querySelectorAll('.product-card');
+
+function applyFilters() {
+const activeFilters = {
+general: [],
+brand: [],
+price: null,
+specs: [],
+availability: [],
+sort: null
+};
+
+filterCheckboxes.forEach(checkbox => {
+if (checkbox.checked) {
+const filterType = checkbox.closest('.filter-item').querySelector('button span').textContent.toLowerCase();
+const filterValue = checkbox.nextElementSibling.textContent.trim();
+
+if (filterType === 'filters') {
+activeFilters.general.push(filterValue.toLowerCase());
+} else if (filterType === 'brand') {
+activeFilters.brand.push(filterValue.toLowerCase());
+} else if (filterType === 'specs') {
+activeFilters.specs.push(filterValue.toLowerCase());
+} else if (filterType === 'availability') {
+activeFilters.availability.push(filterValue.toLowerCase());
+}
+}
+});
+
+filterRadios.forEach(radio => {
+if (radio.checked) {
+const filterType = radio.closest('.filter-item').querySelector('button span').textContent.toLowerCase();
+const filterValue = radio.nextElementSibling.textContent.trim();
+
+if (filterType === 'price range') {
+activeFilters.price = filterValue.toLowerCase();
+} else if (filterType === 'sort by') {
+activeFilters.sort = filterValue.toLowerCase();
+}
+}
+});
+
+let visibleCards = Array.from(productCards);
+
+if (activeFilters.brand.length > 0) {
+visibleCards = visibleCards.filter(card => {
+const productName = card.querySelector('h3').textContent.toLowerCase();
+return activeFilters.brand.some(brand => productName.includes(brand));
+});
+}
+
+if (activeFilters.price) {
+visibleCards = visibleCards.filter(card => {
+const priceText = card.querySelector('.text-primary').textContent.replace('$', '').replace(',', '');
+const price = parseFloat(priceText);
+
+if (activeFilters.price.includes('under $500')) return price < 500;
+if (activeFilters.price.includes('$500 - $1000')) return price >= 500 && price <= 1000;
+if (activeFilters.price.includes('$1000 - $2000')) return price >= 1000 && price <= 2000;
+if (activeFilters.price.includes('over $2000')) return price > 2000;
+return true;
+});
+}
+
+if (activeFilters.sort) {
+if (activeFilters.sort.includes('low to high')) {
+visibleCards.sort((a, b) => {
+const priceA = parseFloat(a.querySelector('.text-primary').textContent.replace('$', '').replace(',', ''));
+const priceB = parseFloat(b.querySelector('.text-primary').textContent.replace('$', '').replace(',', ''));
+return priceA - priceB;
+});
+} else if (activeFilters.sort.includes('high to low')) {
+visibleCards.sort((a, b) => {
+const priceA = parseFloat(a.querySelector('.text-primary').textContent.replace('$', '').replace(',', ''));
+const priceB = parseFloat(b.querySelector('.text-primary').textContent.replace('$', '').replace(',', ''));
+return priceB - priceA;
+});
+}
+}
+
+productCards.forEach(card => {
+card.style.display = 'none';
+});
+
+visibleCards.forEach(card => {
+card.style.display = 'block';
+});
+
+if (activeFilters.sort) {
+const grid = document.querySelector('.grid.grid-cols-4');
+visibleCards.forEach(card => {
+grid.appendChild(card);
+});
+}
+}
+
+filterCheckboxes.forEach(checkbox => {
+checkbox.addEventListener('change', applyFilters);
+});
+
+filterRadios.forEach(radio => {
+radio.addEventListener('change', applyFilters);
+});
+});
+</script>
+<script id="product-interactions">
+document.addEventListener('DOMContentLoaded', function() {
+const productCards = document.querySelectorAll('.product-card');
+const addToCartButtons = document.querySelectorAll('.product-card button');
+productCards.forEach(card => {
+card.addEventListener('mouseenter', function() {
+this.style.transform = 'translateY(-5px)';
+this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+});
+card.addEventListener('mouseleave', function() {
+this.style.transform = 'translateY(0)';
+this.style.boxShadow = 'none';
+});
+});
+addToCartButtons.forEach(button => {
+button.addEventListener('click', function(e) {
+e.preventDefault();
+const originalText = this.textContent;
+this.textContent = 'Added!';
+this.style.backgroundColor = '#22c55e';
+setTimeout(() => {
+this.textContent = originalText;
+this.style.backgroundColor = '';
+}, 2000);
+});
+});
+});
+</script>
+<script id="search-functionality">
+document.addEventListener('DOMContentLoaded', function() {
+const searchInput = document.querySelector('input[placeholder="Search products..."]');
+const productCards = document.querySelectorAll('.product-card');
+searchInput.addEventListener('input', function() {
+const searchTerm = this.value.toLowerCase();
+productCards.forEach(card => {
+const productName = card.querySelector('h3').textContent.toLowerCase();
+const productDesc = card.querySelector('p').textContent.toLowerCase();
+if (productName.includes(searchTerm) || productDesc.includes(searchTerm)) {
+card.style.display = 'block';
+} else {
+card.style.display = 'none';
+}
+});
+});
+});
+</script>
+</body>
+</html>
