@@ -1,36 +1,37 @@
-# Amanda Grace Mangubat
+# Jacob Conrad Quendangan
 
-### Information Systems Student | Aspiring Systems Analyst & Digital Solutions Builder
+### Information Systems Specialist | Aspiring Solutions Architect
 
-> "Creating structured, user-centered digital solutions through design, development, and data."
+![Deployment Status](https://vercelbadge.vercel.app/api/jacobconradquendangan-portfolio/my-portfolio-six-pi-33?style=for-the-badge)
+
+> "Turning complex data into functional, human-centric systems."
 
 ---
 
 ## Featured Tracks
 
-### [01: Web Development Projects](./01_Web_Development_Projects)
+### [01: Industry Wins & Awards](./01_Industry_Wins_Awards)
 
-- **Plug & Play** – Full-stack e-commerce website built with modern web technologies, featuring product browsing, authentication, and responsive UI design.
-- **CIIT Website Redesign** – Website redesign concept focused on improving usability, navigation, and overall digital experience.
-- **CIIT Flix** – Media-based platform concept designed to present content in a clean, engaging, and user-friendly way.
-- **Ciel d'Or** – Luxury restaurant website created during a hackathon, featuring elegant branding, booking functionality, and polished presentation.
+- **MNLFlow Transit App:** 1st Place Industry Choice (evaluated by Cebu Pacific).
+- **Aegis IDaaS:** 2nd Place Institutional Hackathon.
+- **CESCon Sales Blitz:** #1 Sales Rank in Food Category.
 
-### [02: Systems & Innovation Projects](./02_Systems_Innovation_Projects)
+### [02: Systems Architecture & Dev](./02_Systems_Architecture_Dev)
 
-- **AEGIS** – Privacy-first token-based verification platform designed for secure institutional identity validation.
-- **Nextep** – AI-powered career guidance and job tracking platform that helps students and institutions improve career readiness.
-- **Pawlax** – Digital platform concept focused on improving accessibility and convenience for pet-related services.
+- **EduTrack Tech Com:** High-performance Vanilla JS enrollment prototype.
+- **SAD Hotel Management:** Full-cycle System Analysis & Design with UML/SRS.
+- **Bulls & Cows Engine:** Algorithmic logic and deductive comparison engine in C++.
 
 ### [03: Data Analytics & Dashboards](./03_Data_Analytics_Dashboards)
 
-- **Medicine Insight Dashboard** – Data dashboard project designed to present healthcare insights through clear and organized visual reporting.
-- **Medical and Hospital Dashboard & Reporting System** – Metabase-integrated analytics platform for hospital and pharmacy reporting.
-- **Heart Attack Prediction Project** – Machine learning project using medical data, feature engineering, and model evaluation for predictive analysis.
-- **Student Dropout Prediction Project** – Classification project focused on identifying student outcomes using data preparation, modeling, and evaluation techniques.
+- **Diabetes Prediction:** Python-based ML model and feature engineering.
+- **BI HR Attrition:** Interactive Power BI & Excel dashboard suite.
+- **EDM Medical SQL:** Relational database schema and Metabase analytics.
 
-### [04: Creative & Branding Projects](./04_Creative_Branding_Projects)
+### [04: Credentials & Leadership](./04_Credentials_Leadership)
 
-- **Lila Tinig** – Creative concept project that combines storytelling, design, and visual communication into a cohesive presentation.
+- **Certifications:** HubSpot Sales & Marketing Hub Software Certified.
+- **Leadership:** Tech Lead (CIIT Open House) & Project Lead (Sustainability Roundtable).
 
 ---
 
