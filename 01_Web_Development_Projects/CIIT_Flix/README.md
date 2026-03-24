@@ -1,47 +1,36 @@
-# CIIT-Flix
-### Media Platform Concept and Website Project
+# CIIT-Flix: Media Platform Website Project
 
-> "Designing engaging digital experiences through content, structure, and interface."
+Course: Web Development / Academic Project  
+Type: Frontend Website Project  
+Role: UI and Layout Development Contributor
 
----
+## The Problem
 
-## Overview
+Creative and media-focused content needs a platform that presents information in a way that is organized, engaging, and easy for users to explore. CIIT-Flix was developed as a website project that applies modern media-inspired design principles to create a clean and user-friendly viewing experience.
 
-**CIIT-Flix** is a media-focused website project designed to present content in a clean, engaging, and user-friendly platform. It highlights organized content presentation, interface structure, and visual design inspired by modern streaming and media websites.
+## Technical Stack
 
----
-
-## Key Highlights
-
-- Media-style content presentation
-- Clean and organized interface
-- User-friendly page structure
-- Responsive layout
-- Visually engaging design
-- Improved content accessibility
-
----
-
-## Technology Stack
-
-- **Front-End:** HTML, CSS, JavaScript
+- **Frontend:** HTML, CSS, JavaScript
 - **Design Tools:** Figma, Canva
-- **Tools:** GitHub
+- **Other Tools:** GitHub
 
----
+## System Architecture & Logic
 
-## My Contribution
+### 1. Media-Inspired Interface
+The platform uses a media-style layout to present content in a visually engaging and structured way.
 
-I worked on the concept, layout, and visual presentation of the platform, focusing on creating an organized and engaging user experience.
+### 2. Organized Content Presentation
+Sections are arranged to help users view featured content clearly and navigate the platform more easily.
 
----
+### 3. Responsive Layout Design
+The interface is designed to remain readable and visually balanced across different screen sizes.
 
-## Screenshots
+### 4. User Experience Focus
+The project emphasizes clarity, accessibility, and polished presentation to improve overall interaction with the site.
 
-Project screenshots are available in the `screenshots` folder.
+### 5. Frontend Structure
+The website is built through organized page sections and interface components that support a smoother content-browsing experience.
 
----
+## Project Outcome
 
-## Project Status
-
-Completed academic project for portfolio and creative showcase.
+This project helped me strengthen my skills in frontend development, interface layout, and user-focused visual presentation. It also improved my ability to design a website that balances structure, engagement, and usability.

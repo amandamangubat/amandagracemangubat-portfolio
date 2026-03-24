@@ -1,47 +1,36 @@
-# CIIT Website Redesign
-### Website Redesign Concept and User Experience Improvement Project
+# CIIT Website Redesign: User Experience Improvement Project
 
-> "Improving digital experiences through cleaner design, better structure, and user-focused interfaces."
+Course: Web Development / Academic Project  
+Type: Frontend Website Redesign Project  
+Role: UI and Layout Development Contributor
 
----
+## The Problem
 
-## Overview
+School websites need to present information clearly while remaining visually organized and easy to navigate. The CIIT Website Redesign project was developed to improve the structure, layout, and overall user experience of the CIIT website through a cleaner and more modern interface.
 
-**CIIT Website Redesign** is a website redesign project focused on improving the visual layout, navigation, and overall user experience of the CIIT website. The project highlights interface refinement, clearer information flow, and a more modern and accessible presentation for students and visitors.
+## Technical Stack
 
----
-
-## Key Highlights
-
-- Improved website layout and structure
-- More organized navigation flow
-- Cleaner and more modern interface
-- User-friendly page design
-- Better visual hierarchy
-- Responsive presentation
-
----
-
-## Technology Stack
-
-- **Front-End:** HTML, CSS, JavaScript
+- **Frontend:** HTML, CSS, JavaScript
 - **Design Tools:** Figma, Canva
-- **Tools:** GitHub
+- **Other Tools:** GitHub
 
----
+## System Architecture & Logic
 
-## My Contribution
+### 1. Improved Layout Structure
+The redesign focuses on creating a cleaner page arrangement that makes information easier to understand and access.
 
-I worked on the redesign concept, layout improvement, and interface presentation, focusing on making the website more organized, visually appealing, and easier to use.
+### 2. Better Navigation Flow
+The project improves how users move through the website by making sections more organized and intuitive.
 
----
+### 3. Modern Visual Presentation
+The interface applies a more polished and user-friendly design to improve readability and overall appeal.
 
-## Screenshots
+### 4. Responsive Design Approach
+The layout is designed to remain clear and usable across different screen sizes.
 
-Project screenshots are available in the `screenshots` folder.
+### 5. User Experience Focus
+The project emphasizes accessibility, clarity, and smoother interaction to create a better experience for students and visitors.
 
----
+## Project Outcome
 
-## Project Status
-
-Completed academic project for portfolio and design showcase.
+This project helped me improve my skills in frontend design, layout planning, and user experience thinking. It also strengthened my ability to redesign an existing platform in a way that is more organized, modern, and user-centered.

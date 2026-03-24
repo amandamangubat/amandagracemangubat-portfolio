@@ -1,48 +1,37 @@
-# Plug and Play
-### Full-Stack E-Commerce Management System
+# Plug and Play: E-Commerce Management System
 
-> "Building structured and user-friendly retail experiences through design and development."
+Course: Web Development / Academic Project  
+Type: Full-Stack Website  
+Role: Frontend and Backend Development Contributor
 
----
+## The Problem
 
-## Overview
+Many online retail platforms need a structured way to manage products, categories, suppliers, and customer interactions while still providing a smooth and user-friendly shopping experience. Plug and Play was developed to simulate a modern e-commerce system that combines organized inventory handling with a responsive and accessible interface.
 
-**Plug and Play** is a full-stack e-commerce management system designed to create a smooth and organized online shopping experience. It highlights product browsing, responsive design, authentication flow, and structured product management in a modern retail platform.
+## Technical Stack
 
----
-
-## Key Highlights
-
-- Product browsing and detail pages
-- Category-based organization
-- Supplier and inventory structure
-- Shopping cart interaction
-- User authentication interface
-- Responsive and user-friendly layout
-
----
-
-## Technology Stack
-
-- **Front-End:** HTML, CSS, JavaScript, React, Tailwind CSS
-- **Back-End:** Node.js, Express.js
+- **Frontend:** React, HTML, CSS, JavaScript, Tailwind CSS
+- **Backend:** Node.js, Express.js
 - **Database:** MongoDB
-- **Tools:** GitHub, REST APIs, JWT Authentication, Multer
+- **Other Tools:** JWT Authentication, Multer, GitHub
 
----
+## System Architecture & Logic
 
-## My Contribution
+### 1. Product Browsing and Display
+The platform presents products in a clean and organized layout, allowing users to browse items efficiently and access detailed product information.
 
-I worked on the structure and development of the website, focusing on interface design, product presentation, responsiveness, and the integration of core system features.
+### 2. Product and Inventory Structure
+The system connects products to categories and suppliers, helping maintain a more structured inventory and product management workflow.
 
----
+### 3. Shopping Cart and User Interaction
+Users can view products, add items to the cart, and interact with account-related features through a responsive interface.
 
-## Screenshots
+### 4. Authentication Flow
+The project includes login and signup interactions that support controlled access and improve the overall user experience.
 
-Project screenshots are available in the `screenshots` folder.
+### 5. Full-Stack Integration
+The frontend communicates with backend routes and database records to retrieve product data, manage interactions, and support the overall e-commerce flow.
 
----
+## Project Outcome
 
-## Project Status
-
-Completed academic project for portfolio and technical showcase.
+This project strengthened my experience in full-stack web development, responsive UI design, and structured e-commerce system building. It also helped me improve my skills in integrating frontend components, backend logic, and database-driven content into one working platform.
