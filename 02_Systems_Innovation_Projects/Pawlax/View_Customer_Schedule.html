@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Scheduled Services</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
+            }
+            #schedule-container {
+                max-width: 1500px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                font-size: 24px;
+                color: #333;
+            }
+            .button-container {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 20px;
+            }
+            .button-container button {
+                margin-left: 10px;
+                padding: 8px 16px;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+            .add-button {
+                background-color: #28a745;
+                color: #fff;
+            }
+            .delete-button {
+                background-color: #dc3545;
+                color: #fff;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+            .actions {
+                display: flex;
+                gap: 10px;
+            }
+            .edit-icon, .delete-icon {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="schedule-container">
+            <h1>Scheduled Services</h1>
+            <div class="button-container">
+                <button class="add-button" id="myButton">Add New Schedule</button>
+                <!--<button class="add-button" onclick="addNewSchedule()">Add New Schedule</button>-->
+                <!--<button class="add-button" onclick="addNewSchedule()">Add New Schedule</button>-->
+                <!--<button class="delete-button">Delete</button>-->
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Services Availed</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- schedule rows will go here -->
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            // Function to populate schedule rows
+            function populateschedules(paramName) {
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+
+            // Construct the URL with the parameter
+            const url = `http://localhost/contacts/get_customer_schedule_list.php?paramName=${encodeURIComponent(paramName)}`;
+
+           // Make an AJAX request to get actual data
+           fetch(url)
+               .then(response => response.json())
+               .then(data => {
+                   data.forEach(schedule => {
+                       const row = document.createElement('tr');
+                       row.innerHTML = `
+                           <td>${schedule.services_availed}</td>
+                           <td>${schedule.date}</td>
+                           <td>${schedule.time}</td>
+                           <td class="actions">
+                            <span class="edit-icon" title="Edit" onclick="UpdateSchedule('${schedule.email_add}', '${schedule.service_no}')">✎</span>
+                           <span class="delete-icon" title="Delete" onclick="DeleteSchedule('${schedule.email_add}', '${schedule.service_no}')">🗑</span>
+                           </td>
+                       `;
+                       tbody.appendChild(row);
+                   });
+               })
+               .catch(error => console.error('Error fetching data:', error));
+            }    
+        </script>
+
+        <script>
+            function addNewSchedule(paramValue) {
+                //window.location.href = 'http://localhost/contacts/Customer_Create_Booking.html'; 
+                //window.location.href = `add_Service_Schedule.html?paramName=${email}`;
+                window.location.href = `add_Service_Schedule.html?paramName=${encodeURIComponent(paramValue)}`;
+             
+            }
+            // Call the function to populate initial data
+        </script>        
+
+        <script>
+            function DeleteSchedule(email, service_no) {
+            // Construct the URL with the actual email value
+            const url = `http://localhost/contacts/delete_record.php?email=${encodeURIComponent(email)}&service_no=${encodeURIComponent(service_no)}`;
+            
+            // Make an AJAX request to delete the record
+            fetch(url, {
+                type: 'POST',
+                method: 'DELETE', // Adjust the HTTP method as needed (e.g., POST, GET, etc.)
+            })
+            .then(response => {
+                if (response.ok) {
+                    const myParam = getQueryParam('paramName');
+                    console.log('myParam:', myParam); // Log myParam
+                    populateschedules(myParam);
+                } else {
+                    console.error('Error deleting record:', response.statusText);
+                    const myParam = getQueryParam('paramName');
+                    console.log('myParam:', myParam); // Log myParam
+                    populateschedules(myParam);
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+        }
+        </script>
+
+
+        <script>
+        function UpdateSchedule(email, service_no) {
+            console.log('myParam1:', email);
+            console.log('myParam2:', service_no);
+            window.location.href = `Update_Service_Schedule.html?paramName=${email}&service_no=${service_no}`;
+        }
+        </script>
+
+        <script>
+            // Function to get the value of a query parameter
+            function getQueryParam(paramName) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const paramValue = urlParams.get(paramName);
+                console.log(`QueryParam ${paramName}:`, paramValue); // Log the value
+                return paramValue;
+            }
+        </script>
+
+        <script>
+            const myParam = getQueryParam('paramName');
+            console.log('myParam:', myParam); // Log myParam
+            populateschedules(myParam);
+        </script>
+
+
+<script>
+    document.getElementById('myButton').addEventListener('click', function() {
+    const myParam1 = getQueryParam('paramName');
+    console.log('myParam:', myParam1); // Log myParam
+    addNewSchedule( myParam1);
+    });
+</script>
+
+<!--<script>
+    document.getElementById('myButton').addEventListener('click', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const paramValue = urlParams.get(paramName);
+        addNewSchedule(paramValue);
+    });
+</script>-->
+
+    </body>
+</html>

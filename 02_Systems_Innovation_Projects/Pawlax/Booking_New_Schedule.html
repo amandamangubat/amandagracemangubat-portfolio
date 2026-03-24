@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scheduled Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        #schedule-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        .button-container button {
+            margin-left: 10px;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .add-button {
+            background-color: #28a745;
+            color: #fff;
+        }
+        .delete-button {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .edit-icon, .delete-icon {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="schedule-container">
+        <h1>Scheduled Services</h1>
+        <div class="button-container">
+            <button class="add-button" onclick="addNewSchedule()">Add New Schedule</button>
+            <!--<button class="delete-button">Delete</button>-->
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Services Availed</th>
+                    <th>Email Addr</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- schedule rows will go here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to populate schedule rows
+        function populateschedules() {
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+
+            // Make an AJAX request to get actual data
+            fetch('http://localhost/contacts/get_schedule_list.php')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(schedule => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${schedule.first_name} ${schedule.last_name}</td>
+                            <td>${schedule.services_availed}</td>
+                            <td>${schedule.email_add}</td>                           
+                            <td>${schedule.date}</td>
+                            <td>${schedule.time}</td>                           
+                            <td class="actions">
+                                <span class="edit-icon" title="Edit" onclick="UpdateSchedule('${schedule.email_add}', '${schedule.service_no}')">✎</span>
+                                <span class="delete-icon" title="Delete" onclick="DeleteSchedule('${schedule.email_add}', '${schedule.service_no}')">🗑</span>
+                            </td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+            
+        // Call the function to populate initial data
+        populateschedules();
+    </script>
+
+    <script>
+        function addNewSchedule() {
+        window.location.href = 'http://localhost/contacts/Create_Booking.html'; 
+        populateschedules();
+       }
+    </script>
+
+<script>
+    function DeleteSchedule(email, service_no) {
+    // Construct the URL with the actual email value
+    const url = `http://localhost/contacts/delete_record.php?email=${encodeURIComponent(email)}&service_no=${encodeURIComponent(service_no)}`;
+    
+    // Make an AJAX request to delete the record
+    fetch(url, {
+        type: 'POST',
+        method: 'DELETE', // Adjust the HTTP method as needed (e.g., POST, GET, etc.)
+    })
+    .then(response => {
+        if (response.ok) {
+            populateschedules();
+        } else {
+            console.error('Error deleting record:', response.statusText);
+            populateschedules();
+        }
+    })
+    .catch(error => console.error('Error fetching data:', error));
+}
+</script>
+
+<script>
+    function UpdateSchedule(email, service_no) {
+    console.log('myParam1:', email);
+    console.log('myParam2:', service_no);
+    window.location.href = `Update_Schedule.html?paramName=${email}&service_no=${service_no}`;
+}
+</script>
+
+    <!--<script>
+        function DeleteSchedule(email) {
+        // Construct the URL with the actual email value
+        const url = `http://localhost/contacts/delete_record.php?email=${encodeURIComponent(email)}`;
+
+        // Make an AJAX request to delete the record
+        fetch(url, {
+            method: 'DELETE', // Adjust the HTTP method as needed (e.g., POST, GET, etc.)
+        })
+        .then(response => {
+            if (response.ok) {
+                populateschedules();
+            } else {
+                console.error('Error deleting record:', response.statusText);
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+        }
+    </script>-->
+
+
+<!--<script>
+    function UpdateSchedule(email) {
+        window.location.href = `Update_Service_Schedule.html?paramName=${email}`;
+}
+</script>-->
+
+</body>
+</html>

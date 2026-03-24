@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pet Services Booking Form</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                background-color: #ffffff;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .form-container {
+                width: 400px;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .form-label {
+                font-weight: bold;
+            }
+            .form-input {
+                width: calc(100% - 22px);
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+            }
+            .form-button {
+                background-color: #af85bc;
+                color: #ffffff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 20px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="form-container">
+            <h2>Book Pet Services</h2>
+            <form id="myForm" action="http://localhost/contacts/Customer_Create_Booking.php" method="post">
+                <label class="form-label" for="firstname">First Name</label>
+                <input class="form-input" type="text" id="firstname" name="firstname" required>
+
+                <label class="form-label" for="lastname">Last Name</label>
+                <input class="form-input" type="text" id="lastname" name="lastname" required>
+
+                <label class="form-label" for="mobilenumber">Mobile Number</label>
+                <input class="form-input" type="tel" id="mobilenumber" name="mobilenumber" required>
+
+                <label class="form-label" for="appointment_date">Date</label>
+                <input class="form-input" type="date" id="appointment_date" name = "appointment_date" required>
+
+                <label class="form-label" for="services">Select a Service:</label>
+                <select class="form-input" id="services" name="selectedService[]" multiple>
+                </select>
+            
+                <label class="form-label" for="appointment_time">Time</label>
+                <select class="form-input" type = "time" id="appointment_time" name = "appointment_time" required>
+                    <option value="09:00:00">9:00 AM</option>
+                    <option value="10:00:00">10:00 AM</option>
+                    <option value="11:00:00">11:00 AM</option>
+                    <option value="12:00:00">12:00 PM</option>
+                    <option value="01:00:00">1:00 PM</option>
+                    <option value="02:00:00">2:00 PM</option>
+                    <option value="03:00:00">3:00 PM</option>
+                    <option value="04:00:00">4:00 PM</option>
+                    <option value="05:00:00">5:00 PM</option>
+                    <option value="06:00:00">6:00 PM</option>
+                </select>
+                <button class="form-button" type="submit"  name="submit">BOOK NOW</button>
+            </form>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        
+        <script>
+            // this will get the available services in service_info table thru display_list.php
+            $(document).ready(function() {
+                // Initialize Select2
+                $('#services').select2();
+
+                // Fetch values and populate the Select2 dropdown
+                fetchValues();
+            });
+
+            function fetchValues() {
+                // Triggered when the text box is clicked
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'http://localhost/contacts/Get_Services_List.php', true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // Parse the response and assign it to 'values'
+                        const values = JSON.parse(xhr.responseText);
+
+                        // Now you can use 'values' here or in other parts of your code
+                        console.log('Values from the server:', values);
+
+                        const select = document.getElementById('services');
+
+                        // Populate the Select2 dropdown
+                        values.forEach(function (value) {
+                            const option = document.createElement('option');
+                            option.value = value;
+                            option.text = value;
+                            select.appendChild(option);
+                        });
+                    }
+                };
+                xhr.send();
+            }
+        </script>
+
+        <script>
+            // this will disable prior current date
+            $(document).ready(function () {
+                const today = new Date().toISOString().split('T')[0];
+                $('#appointment_date').attr('min', today);
+            });
+        </script>
+
+
+<script>
+    function updateFormAction(paramName) {
+        //const paramName = "your_value_here"; // Replace with your actual value
+        const form = document.getElementById("myForm");
+        form.action = `http://localhost/contacts/Customer_Create_Booking.php?paramName=${encodeURIComponent(paramName)}`;
+    }
+</script>
+
+<script>
+    // Function to get the value of a query parameter
+    function getQueryParam(paramName) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const paramValue = urlParams.get(paramName);
+        console.log(`QueryParam ${paramName}:`, paramValue); // Log the value
+        return paramValue;
+    }
+
+</script>
+<script>
+    const myParam = getQueryParam('paramName');
+    console.log('myParam:', myParam); // Log myParam
+    updateFormAction(myParam);
+</script>
+
+    </body> 
+</html>
