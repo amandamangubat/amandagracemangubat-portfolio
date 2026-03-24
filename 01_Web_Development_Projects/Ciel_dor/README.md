@@ -1,47 +1,36 @@
-# Ciel d'Or
-### Luxury Restaurant Website and Branding Project
+# Ciel d'Or: Luxury Restaurant Website Project
 
-> "Creating elegant digital experiences through refined design, branding, and presentation."
+Course: Hackathon / Web Design Project  
+Type: Frontend Branding and Website Project  
+Role: UI, Layout, and Presentation Contributor
 
----
+## The Problem
 
-## Overview
+Luxury dining brands need a digital presence that reflects elegance, refinement, and clear communication. Ciel d'Or was developed as a restaurant website project that combines branding, layout design, and polished presentation to create a premium online experience.
 
-**Ciel d'Or** is a luxury restaurant website project developed to showcase a refined dining brand through an elegant and visually polished digital experience. The project highlights website presentation, branding, layout design, and user-friendly navigation inspired by premium restaurant websites.
+## Technical Stack
 
----
-
-## Key Highlights
-
-- Luxury-inspired website design
-- Elegant and polished interface
-- Restaurant information presentation
-- User-friendly navigation
-- Branding-focused visual style
-- Responsive layout
-
----
-
-## Technology Stack
-
-- **Front-End:** HTML, CSS, JavaScript
+- **Frontend:** HTML, CSS, JavaScript
 - **Design Tools:** Figma, Canva
-- **Tools:** GitHub
+- **Other Tools:** GitHub
 
----
+## System Architecture & Logic
 
-## My Contribution
+### 1. Luxury Brand Presentation
+The website was designed to reflect a refined restaurant identity through elegant visuals and polished layout choices.
 
-I worked on the concept, layout, and presentation of the website, focusing on creating a refined interface that matched the luxury identity of the brand.
+### 2. Organized Information Flow
+The project presents restaurant details in a way that is easy to read and visually structured for users.
 
----
+### 3. User-Friendly Navigation
+Sections are arranged to guide users smoothly through the website experience.
 
-## Screenshots
+### 4. Responsive Interface Design
+The layout is designed to remain visually balanced across different screen sizes.
 
-Project screenshots are available in the `screenshots` folder.
+### 5. Branding-Focused Web Experience
+The project combines interface design and brand presentation to create a more memorable and cohesive digital identity.
 
----
+## Project Outcome
 
-## Project Status
-
-Completed hackathon project for portfolio and creative showcase.
+This project helped me strengthen my skills in visual presentation, interface layout, and branding-focused web design. It also improved my ability to create a polished and user-friendly experience for a concept-based website.
