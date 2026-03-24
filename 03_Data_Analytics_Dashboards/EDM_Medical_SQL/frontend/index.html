@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title> Hospital Dashboard </title>
+  <link rel="stylesheet" href="styles.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <div class="sidebar close">
+    <div class="logo-details" id="logo">
+      <i class='bx bx-plus-medical'></i>
+      <span class="logo_name">MediCare</span>
+    </div>
+    <hr class="section-divider">
+    <ul class="nav-links">
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-group'></i>
+            <span class="link_name long-link">Patient Analytics</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
+        </div>
+        <ul class="sub-menu">
+          <h3>Dashboards</h3>
+          <hr class="section-divider">
+          <li><a href="#">Patient Overview</a></li>
+
+
+          <h3>Reports</h3>
+          <hr class="section-divider">
+          <li><a href="#">Monthly Patient</a></li>
+          <li><a href="#">Schedule Report</a></li>
+          <li><a href="#">Patient Demographics</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-calendar-check'></i>
+            <span class="link_name long-link">Appointments & Doctor Insights</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
+        </div>
+        <ul class="sub-menu">
+          <h3>Dashboards</h3>
+          <hr class="section-divider">
+          <li><a href="#">Appointments Overview</a></li>
+          <h3>Reports</h3>
+          <hr class="section-divider">
+          <li><a href="#">Doctor List</a></li>
+          <li><a href="#">Canceled Appointments</a></li>
+          <li><a href="#">Appointment Summary</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-credit-card'></i>
+            <span class="link_name long-link">Financial & Inventory</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
+        </div>
+        <ul class="sub-menu">
+          <h3>Dashboards</h3>
+          <hr class="section-divider">
+          <li><a href="#">Financial Overview</a></li>
+
+
+          <h3>Reports</h3>
+          <hr class="section-divider">
+          <li><a href="#">Financial Report</a></li>
+          <li><a href="#">Medication & Inventory</a></li>
+          <li><a href="#">Hospital Expense</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-history'></i>
+          <span class="link_name long-link">History</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">History</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-cog'></i>
+          <span class="link_name long-link">Setting</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Setting</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="profile-details">
+          <div class="profile-content">
+            <img src="img/logo3.svg" alt="profileImg">
+          </div>
+          <div class="name-job">
+            <div class="profile_name">Joe B. Ang</div>
+            <div class="job">Administrator</div>
+          </div>
+          <i class='bx bx-log-out'></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <span class="text"></span>
+    </div>
+
+    <div class="dashboard-container">
+      <div class="dashboard-view" id="dashboardView">
+        <div class="welcome-message">
+          <h2>Welcome to MediCare Dashboard</h2>
+          <p>Select a report from the sidebar to view analytics</p>
+        </div>
+      </div>
+
+      <div class="report-view" id="reportView" style="display:none;">
+        <div class="report-header">
+          <h2 id="reportTitle">Report</h2>
+          <button class="back-button" id="backButton">
+            <i class='bx bx-arrow-back'></i> Back to Dashboard
+          </button>
+        </div>
+        <div class="metabase-container">
+          <iframe id="metabaseFrame" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="script.js"></script>
+</body>
+
+</html>

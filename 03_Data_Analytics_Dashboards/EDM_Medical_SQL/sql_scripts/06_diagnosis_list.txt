@@ -1,0 +1,14 @@
+CREATE TABLE diagnosis_list (
+    diagnosis_code INT PRIMARY KEY AUTO_INCREMENT,
+    diagnosis_name VARCHAR(255) NOT NULL UNIQUE
+);
+
+INSERT INTO diagnosis_list (diagnosis_name) VALUES
+('Migraine'),
+('Flu'),
+('Asthma'),
+('Diabetes'),
+('Arthritis'),
+('Hypertension'),
+('Depression'),
+('Viral Respiratory Infection');

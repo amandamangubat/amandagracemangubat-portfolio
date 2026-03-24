@@ -1,0 +1,8 @@
+CREATE TABLE genders (
+    gender_id INT PRIMARY KEY AUTO_INCREMENT,
+    gender_name ENUM('Male', 'Female') NOT NULL UNIQUE
+);
+
+INSERT INTO genders (gender_name) VALUES
+('Male'),
+('Female');

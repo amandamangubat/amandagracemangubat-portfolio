@@ -1,0 +1,7 @@
+CREATE TABLE payment_methods (
+    payment_method_id INT PRIMARY KEY AUTO_INCREMENT,
+    method_name VARCHAR(50) UNIQUE NOT NULL
+);
+
+INSERT INTO payment_methods (method_name) VALUES
+('Cash'), ('Insurance'), ('Credit Card');

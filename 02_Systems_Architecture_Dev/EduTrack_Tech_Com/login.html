@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduTrack</title>
+  <link rel="stylesheet" href="login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/favicon.svg" type="image/png" sizes="favicon-96x96">
+
+</head>
+
+<body>
+  <div class="container">
+    <!-- Left Side (Image) -->
+    <div class="split left">
+      <img src="img/loginlogo.jpg" id="logoimg" alt="Logo">
+      <div class="content">
+        <h1>Announcement!</h1>
+        <p>The design of EduTrack is a direct result of survey data collected between February 10 and 15, leading up to the Technical Communication midterm.</p> 
+        <p>"While core functionality is available on mobile, certain features may not be fully optimized at this time. We are focused on improving this."</p>
+        <p>"To help us improve, we invite you to provide feedback via the form link following your prototype testing. Rest assured, your responses will remain anonymous, in accordance with the Republic Act No. 10173, the Data Privacy Act of 2012."</p>
+      </div>
+    </div>
+    <!-- Right Side (Login Form) -->
+    <div class="split right">
+      <div class="content">
+        <h2 class="logo-heading"><img src="img/mainlogoupdate.png" id="mainimg" alt="mainlogo"><span
+            class="logo-text">EduTrack</span></h2>
+        <p>CIIT College of Arts and Technology</p>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your CIIT email" required>
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password</label>
+            <input type="password" id="pwd" name="pwd" placeholder="Enter your password" required>
+          </div>
+          <button type="submit" class="btn">Login</button>
+          <div class="forgot-password">
+            <a href="#" id="forgot-password-link">Forgot Password?</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+
+</html>

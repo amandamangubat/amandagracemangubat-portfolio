@@ -1,0 +1,19 @@
+CREATE TABLE doctors (
+    doctor_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    specialization_id INT,
+    FOREIGN KEY (specialization_id) REFERENCES specializations(specialization_id)
+);
+
+INSERT INTO doctors (first_name, last_name, specialization_id) VALUES
+('John', 'Pena', 1),
+('Maria', 'Santos', 2),
+('Carlos', 'Garcia', 3),
+('Ella', 'Ramos', 2),
+('Miguel', 'Flores', 4),
+('Lily', 'Cruz', 5),
+('Jose', 'Villanueva', 3),
+('Angela', 'Reyes', 4),
+('Mark', 'Dela Rosa', 2),
+('Carla', 'Bautista', 6);

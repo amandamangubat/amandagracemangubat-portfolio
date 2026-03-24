@@ -1,0 +1,12 @@
+CREATE TABLE specializations (
+    specialization_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE 
+);
+
+INSERT INTO specializations (name) VALUES
+('Gastroenterology'), 
+('Neurology'), 
+('Pediatrics'),
+('Oncology'),
+('Psychiatry'),
+('Ophthalmology');

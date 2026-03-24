@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jacob Conrad Quendangan | BSIS Institutional Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #020617;
+        --card: rgba(30, 41, 59, 0.7);
+        --accent: #38bdf8;
+        --text: #f8fafc;
+        --text-dim: #94a3b8;
+        --glass-border: rgba(255, 255, 255, 0.1);
+      }
+      * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: radial-gradient(circle at top right, #0c4a6e, #020617);
+        color: var(--text);
+        margin: 0;
+        min-height: 100vh;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(2, 6, 23, 0.8);
+        backdrop-filter: blur(12px);
+        z-index: 1000;
+        border-bottom: 1px solid var(--glass-border);
+      }
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+        align-items: center;
+      }
+      .logo {
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 1px;
+      }
+      .nav-links a {
+        color: var(--text-dim);
+        text-decoration: none;
+        margin-left: 1.2rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        transition: 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      header {
+        padding: 8rem 2rem 4rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      h1 {
+        font-size: 3.5rem;
+        margin: 1rem 0;
+        font-weight: 700;
+      }
+      .hero-sub {
+        color: var(--text-dim);
+        max-width: 700px;
+        margin: 0 auto 2rem;
+      }
+
+      section {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .section-title {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--accent);
+        margin-bottom: 2rem;
+        display: block;
+        border-left: 3px solid var(--accent);
+        padding-left: 15px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+      .card {
+        background: var(--card);
+        padding: 2rem;
+        border-radius: 20px;
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(10px);
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .card:hover {
+        border-color: var(--accent);
+        transform: translateY(-5px);
+        background: rgba(30, 41, 59, 0.9);
+      }
+      .card h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.1rem;
+        color: #fff;
+      }
+      .card p {
+        color: var(--text-dim);
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+      }
+
+      .folder-path {
+        font-family: monospace;
+        font-size: 0.7rem;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+      .btn-link {
+        text-decoration: none;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        border: 1px solid var(--glass-border);
+        transition: 0.3s;
+        text-align: center;
+        font-weight: 600;
+      }
+      .btn-link:hover {
+        background: var(--accent);
+        color: var(--bg);
+      }
+
+      footer {
+        text-align: center;
+        padding: 4rem;
+        color: var(--text-dim);
+        font-size: 0.75rem;
+        border-top: 1px solid var(--glass-border);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="logo">J. QUENDANGAN</div>
+        <div class="nav-links">
+          <a href="#industry">Awards</a>
+          <a href="#systems">Architecture</a>
+          <a href="#data">Data</a>
+          <a href="#creds">Credentials</a>
+        </div>
+      </div>
+    </nav>
+
+    <header>
+      <h1>Institutional Portfolio</h1>
+      <p class="hero-sub">
+        Bachelor of Science in Information Systems | CIIT College of Innovation
+        and Integrated Technology
+      </p>
+    </header>
+
+    <section id="industry">
+      <span class="section-title">Track 01: Industry Wins & Awards</span>
+      <div class="grid">
+        <div class="card">
+          <span class="folder-path">/MNLFlow_CebuPac</span>
+          <h3>MNLFlow Transit</h3>
+          <p>
+            1st Place Industry Choice Award. Flight tracking and regional
+            transit logic.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/01_Industry_Wins_Awards/MNLFlow_ALIAC"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/Rosemary_Thyme_Restaurant</span>
+          <h3>Rosemary & Thyme</h3>
+          <p>
+            Entrepreneurship analysis and functional restaurant reservation
+            system design.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/01_Industry_Wins_Awards/Rosemary_Thyme_Restaurant"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/CESCon_Sales_Blitz</span>
+          <h3>CESCon Sales Blitz</h3>
+          <p>
+            Highest Sales Award. Documentation of bazaar performance and demand
+            forecasting.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/01_Industry_Wins_Awards/CESCon_Sales_Blitz"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/Institutional_Hackathon</span>
+          <h3>Aegis: IDaaS Prototype</h3>
+          <p>
+            2nd Place Hackathon. Next.js/Firebase authentication and
+            verification system.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/01_Industry_Wins_Awards/Institutional_Hackathon"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="systems">
+      <span class="section-title">Track 02: Systems Architecture & Dev</span>
+      <div class="grid">
+        <div class="card">
+          <span class="folder-path">/MetroStay_Technopreneurship</span>
+          <h3>MetroStay Platform</h3>
+          <p>
+            Technopreneurship case study, business strategy, and mobile
+            application build (.apk).
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/02_Systems_Architecture_Dev/MetroStay_Technopreneurship"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/EduTrack_Enrollment</span>
+          <h3>EduTrack Enrollment</h3>
+          <p>
+            Full-cycle enrollment system with complex subject prerequisite
+            logic.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/02_Systems_Architecture_Dev/EduTrack_Tech_Com"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/SAD_Hotel_Management</span>
+          <h3>Hotel Management SAD</h3>
+          <p>
+            Structural and behavioral blueprints (UML, DFD) and SRS
+            documentation.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/02_Systems_Architecture_Dev/SAD_Hotel_Management"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/DSA_Bulls_Cows</span>
+          <h3>Bulls & Cows Engine</h3>
+          <p>
+            C++ source code and algorithmic breakdown for a deductive logic
+            game.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/02_Systems_Architecture_Dev/DSA_Bulls_Cows"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="data">
+      <span class="section-title">Track 03: Data Analytics & Dashboards</span>
+      <div class="grid">
+        <div class="card">
+          <span class="folder-path">/Airline_Service_Regression</span>
+          <h3>Airline Regression</h3>
+          <p>
+            Statistical regression analysis of service quality fit measures and
+            coefficients.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/03_Data_Analytics_Dashboards/Airline_Service_Regression"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/BI_HR_Attrition</span>
+          <h3>BI HR Dashboards</h3>
+          <p>
+            Workforce analytics suite covering recruitment, wellness, and
+            headcount.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/03_Data_Analytics_Dashboards/BI_HR_Attrition"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/Diabetes_Prediction_ML</span>
+          <h3>Diabetes ML Classifier</h3>
+          <p>
+            Python-based machine learning model for health risk predictive
+            analysis.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/03_Data_Analytics_Dashboards/Diabetes_Prediction_ML"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/EDM_Medical_SQL</span>
+          <h3>EDM Medical Schema</h3>
+          <p>
+            Hospital database architecture with SQL scripts and Metabase
+            analytics.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/03_Data_Analytics_Dashboards/EDM_Medical_SQL"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/SCM_Inventory_Excel</span>
+          <h3>SCM Inventory Health</h3>
+          <p>
+            Automated supply chain inventory logic and health monitoring via
+            Excel.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/03_Data_Analytics_Dashboards/SCM_Inventory_Excel"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/Wine_Quality_Data_Mining</span>
+          <h3>Wine Data Mining</h3>
+          <p>
+            RapidMiner processes including Decision Trees and Logistic
+            Regression.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/03_Data_Analytics_Dashboards/Wine_Quality_Data_Mining"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section id="creds">
+      <span class="section-title">Track 04: Credentials & Leadership</span>
+      <div class="grid">
+        <div class="card">
+          <span class="folder-path">/HubSpot_Certs</span>
+          <h3>Professional Certs</h3>
+          <p>Certified in HubSpot Sales and Marketing Hub Software.</p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/04_Credentials_Leadership/HubSpot_Certs"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+        <div class="card">
+          <span class="folder-path">/Leadership_Speaking</span>
+          <h3>Leadership Portfolio</h3>
+          <p>
+            Proof of Tech Lead roles and institutional speaking engagements.
+          </p>
+          <a
+            href="https://github.com/jacobconradquendangan-portfolio/My-Portfolio/tree/main/04_Credentials_Leadership/Leadership_Speaking"
+            target="_blank"
+            class="btn-link"
+            >View Project</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>Jacob Conrad Quendangan | BSIS Student Portfolio | 2026</footer>
+  </body>
+</html>
