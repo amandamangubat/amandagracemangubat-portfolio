@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIIT Student Showcase</title>
+    <link rel="icon" type="image/png" href="CIIT logo.png" />
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Krona+One&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        .skewed-banner {
+            transform: skewY(-2deg);
+            margin: -10px 0;
+        }
+        
+        .skewed-content {
+            transform: skewY(2deg);
+        }
+
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+      
+        .diamond-container {
+            transform: rotate(45deg);
+            overflow: hidden;
+        }
+      
+        .diamond-content {
+            transform: rotate(-45deg);
+            width: 141.42%;
+            height: 141.42%;
+            margin: -20.71%;
+            position: relative;
+        }
+      
+        .diamond-tile {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      
+        .diamond-tile:hover {
+            transform: rotate(45deg) scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+      
+        .diamond-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+      
+        .diamond-tile:hover .diamond-overlay {
+            opacity: 1;
+        }
+      
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+        }
+      
+        .zoom-container {
+            cursor: grab;
+        }
+      
+        .zoom-container:active {
+            cursor: grabbing;
+        }
+      
+        .filter-dropdown {
+            position: relative;
+        }
+      
+        .dropdown-content {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+        }
+      
+        .dropdown-content.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
+    
+</head>
+
+<body class="bg-white">
+
+    <!-- Navigation -->
+    <nav class="bg-[#00364D] px-6 py-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-15 h-10">
+                    <img src="CIITLOGO.png" alt="CIIT Logo" class="w-full h-full object-contain" />
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-8">
+                <a href="#" class="text-white hover:text-gray-300 transition-colors">Showcase</a>
+                <a href="Feature_creator.html" class="text-white hover:text-gray-300 transition-colors">Featured Creators</a>
+                <a href="About.html" class="text-white hover:text-gray-300 transition-colors">About</a>
+                <a href="worksubmission.html" target="_blank" rel="noopener noreferrer">
+                <button class="bg-secondary text-white px-6 py-2 !rounded-button font-medium hover:bg-yellow-500 transition-colors whitespace-nowrap">
+                    Submit Your Work
+                </button>
+            </a>
+                <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
+                    <i class="ri-user-line text-white text-sm"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-primary relative overflow-hidden" style="background-image: url('FWBG.png'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-primary bg-opacity-70"></div>
+        <div class="relative z-10 text-center py-10 px-6">
+            <h1 class="text-[45px] font-bold text-white mb-4 tracking-wide font-['Krona_One']">CIIT STUDENT SHOWCASE</h1>
+            <p class="text-[20px] text-gray-200 max-w-4xl mx-auto font-['Montserrat']">Highlighting the best works of CIITzens</p>
+        </div>
+    </section>
+
+    <!-- Featured Works -->
+    <section class="h-screen">
+        <div class="h-full">
+            <div class="relative h-full overflow-hidden">
+                <h2 class="absolute top-8 left-8 text-4xl font-['Krona_One'] text-white z-20">Featured Works</h2>
+                <div class="absolute inset-0 bg-black/20 z-10"></div>
+                <div class="relative h-full">
+                    <img src="NewlyOpen.PNG"
+                    alt="Featured Artwork"
+                    class="featured-image w-full h-full object-cover object-top">
+                    <div class="absolute bottom-8 right-8 text-right z-20">
+                        <h3 class="featured-title text-3xl font-['Montserrat'] font-bold text-white mb-2">Newly Open</h3>
+                        <p class="featured-artist text-xl font-['Montserrat'] text-white/90">by Maia Elise Sano</p>
+                    </div>
+                </div>
+    
+                <!-- Navigation arrows -->
+                <button class="slider-prev absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-colors z-20">
+                    <i class="ri-arrow-left-line text-gray-800"></i>
+                </button>
+                <button class="slider-next absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-colors z-20">
+                    <i class="ri-arrow-right-line text-gray-800"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's New Banner -->
+    <section class="py-16 relative overflow-hidden" style="background: url('WNBG.png') center/cover;">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center">
+                <h1 class="text-4xl font-['Krona_One'] text-white tracking-wider">WHAT'S NEW?</h1>
+            </div>
+        </div>
+        <div class="absolute inset-0 bg-[#562C6E]/20"></div>
+    </section>
+
+    <!-- Animation Section -->
+    <body class="bg-gray-50 font-inter">
+    <div class="min-h-screen py-16 px-4 bg-[#ffdf00]">
+      <div class="max-w-7xl mx-auto">
+        <link
+          href="https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-gray-900 mb-4 font-['Krona_One']">
+            Student Showcase
+          </h1>
+          <p
+            class="text-lg text-gray-600 max-w-2xl mx-auto font-['Montserrat']"
+          >
+            Discover exceptional creative works from our talented students
+            across various disciplines and years
+          </p>
+        </div>
+        <div class="mb-12">
+          <div
+            class="flex flex-wrap items-center justify-center gap-6 bg-white rounded-xl p-6 shadow-sm"
+          >
+            <div class="filter-dropdown">
+              <button
+                class="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-button text-gray-700 font-medium whitespace-nowrap transition-colors"
+                onclick="toggleDropdown('category')"
+              >
+                <span>Category</span>
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-arrow-down-s-line"></i>
+                </div>
+              </button>
+              <div
+                id="category-dropdown"
+                class="dropdown-content absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 min-w-48 z-50"
+              >
+                <div class="p-2">
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('category', 'all')"
+                  >
+                    All Categories
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('category', 'animation')"
+                  >
+                    Animation
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('category', 'game')"
+                  >
+                    Game Development
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('category', 'programming')"
+                  >
+                    Programming
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('category', 'design')"
+                  >
+                    Graphic Design
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('category', 'film')"
+                  >
+                    Film & Video
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="filter-dropdown">
+              <button
+                class="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-button text-gray-700 font-medium whitespace-nowrap transition-colors"
+                onclick="toggleDropdown('type')"
+              >
+                <span>Project Type</span>
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-arrow-down-s-line"></i>
+                </div>
+              </button>
+              <div
+                id="type-dropdown"
+                class="dropdown-content absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 min-w-48 z-50"
+              >
+                <div class="p-2 max-h-[400px] overflow-y-auto">
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'all')"
+                  >
+                    All Types
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'illustrations')"
+                  >
+                    Illustrations
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', '2d-animation')"
+                  >
+                    2D Animation
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', '3d-animation')"
+                  >
+                    3D Animation
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'traditional-animation')"
+                  >
+                    Traditional Animation
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'logo-branding')"
+                  >
+                    Logo Branding
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'branding-identity')"
+                  >
+                    Branding Identity
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'motion-graphics')"
+                  >
+                    Motion Graphics
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'packaging')"
+                  >
+                    Packaging
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'student-films')"
+                  >
+                    Student Films
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'photography')"
+                  >
+                    Photography
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'desktop-games')"
+                  >
+                    On Windows/MacOS
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'mobile-games')"
+                  >
+                    Mobile Games
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'websites')"
+                  >
+                    Websites
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('type', 'mobile-ux-ui')"
+                  >
+                    Mobile UX/UI
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="filter-dropdown">
+              <button
+                class="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-button text-gray-700 font-medium whitespace-nowrap transition-colors"
+                onclick="toggleDropdown('year')"
+              >
+                <span>Year</span>
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-arrow-down-s-line"></i>
+                </div>
+              </button>
+              <div
+                id="year-dropdown"
+                class="dropdown-content absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 min-w-32 z-50"
+              >
+                <div class="p-2">
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('year', 'all')"
+                  >
+                    All Years
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('year', '2024')"
+                  >
+                    2024
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('year', '2023')"
+                  >
+                    2023
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('year', '2022')"
+                  >
+                    2022
+                  </button>
+                  <button
+                    class="w-full text-left px-3 py-2 hover:bg-gray-50 rounded text-gray-700"
+                    onclick="filterBy('year', '2021')"
+                  >
+                    2021
+                  </button>
+                </div>
+              </div>
+            </div>
+            <button
+              class="px-4 py-2 text-primary hover:text-primary/80 font-medium whitespace-nowrap transition-colors"
+              onclick="clearAllFilters()"
+            >
+              Clear All
+            </button>
+          </div>
+          <div
+            id="active-filters"
+            class="flex flex-wrap gap-2 mt-4 justify-center"
+          ></div>
+        </div>
+        <div
+          id="showcase-grid"
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+        >
+          <div
+            class="diamond-tile aspect-square"
+            data-category="design"
+            data-type="academic"
+            data-year="2024"
+          >
+            <div class="diamond-container w-full h-full bg-white shadow-md">
+              <div class="diamond-content">
+                <img
+                  src="https://readdy.ai/api/search-image?query=modern%20minimalist%20poster%20design%20with%20geometric%20shapes%20and%20clean%20typography%2C%20professional%20graphic%20design%20portfolio%20piece%2C%20white%20background%20with%20colorful%20accents&width=400&height=400&seq=1&orientation=squarish"
+                  alt="Brand Identity Design"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="diamond-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center"
+                >
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-lg font-semibold mb-1">Brand Identity</h3>
+                    <p class="text-sm mb-2">Sarah Johnson</p>
+                    <span
+                      class="inline-block bg-primary text-white text-xs px-2 py-1 rounded-full"
+                      >Design</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="diamond-tile aspect-square"
+            data-category="photography"
+            data-type="personal"
+            data-year="2024"
+          >
+            <div class="diamond-container w-full h-full bg-white shadow-md">
+              <div class="diamond-content">
+                <img
+                  src="https://readdy.ai/api/search-image?query=artistic%20portrait%20photography%20with%20dramatic%20lighting%20and%20shadows%2C%20professional%20studio%20photography%2C%20black%20and%20white%20aesthetic%20with%20subtle%20color%20accents&width=400&height=400&seq=2&orientation=squarish"
+                  alt="Portrait Series"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="diamond-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center"
+                >
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-lg font-semibold mb-1">Portrait Series</h3>
+                    <p class="text-sm mb-2">Michael Chen</p>
+                    <span
+                      class="inline-block bg-secondary text-white text-xs px-2 py-1 rounded-full"
+                      >Photography</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="diamond-tile aspect-square"
+            data-category="illustration"
+            data-type="commercial"
+            data-year="2023"
+          >
+            <div class="diamond-container w-full h-full bg-white shadow-md">
+              <div class="diamond-content">
+                <img
+                  src="https://readdy.ai/api/search-image?query=digital%20illustration%20artwork%20with%20vibrant%20colors%20and%20creative%20composition%2C%20fantasy%20character%20design%20with%20detailed%20textures%2C%20artistic%20portfolio%20piece&width=400&height=400&seq=3&orientation=squarish"
+                  alt="Character Design"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="diamond-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center"
+                >
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-lg font-semibold mb-1">Character Design</h3>
+                    <p class="text-sm mb-2">Emma Rodriguez</p>
+                    <span
+                      class="inline-block bg-green-500 text-white text-xs px-2 py-1 rounded-full"
+                      >Illustration</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="diamond-tile aspect-square"
+            data-category="web"
+            data-type="academic"
+            data-year="2024"
+          >
+            <div class="diamond-container w-full h-full bg-white shadow-md">
+              <div class="diamond-content">
+                <img
+                  src="https://readdy.ai/api/search-image?query=modern%20web%20interface%20design%20mockup%20with%20clean%20layout%20and%20user-friendly%20elements%2C%20responsive%20website%20design%20showcase%2C%20professional%20UI%20UX%20design&width=400&height=400&seq=4&orientation=squarish"
+                  alt="E-commerce Platform"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="diamond-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center"
+                >
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-lg font-semibold mb-1">
+                      E-commerce Platform
+                    </h3>
+                    <p class="text-sm mb-2">David Kim</p>
+                    <span
+                      class="inline-block bg-orange-500 text-white text-xs px-2 py-1 rounded-full"
+                      >Web Design</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="diamond-tile aspect-square"
+            data-category="animation"
+            data-type="personal"
+            data-year="2023"
+          >
+            <div class="diamond-container w-full h-full bg-white shadow-md">
+              <div class="diamond-content">
+                <img
+                  src="https://readdy.ai/api/search-image?query=3D%20animation%20scene%20with%20dynamic%20motion%20and%20creative%20visual%20effects%2C%20animated%20character%20in%20colorful%20environment%2C%20professional%20animation%20portfolio&width=400&height=400&seq=5&orientation=squarish"
+                  alt="Motion Graphics"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="diamond-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center"
+                >
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-lg font-semibold mb-1">Motion Graphics</h3>
+                    <p class="text-sm mb-2">Lisa Wang</p>
+                    <span
+                      class="inline-block bg-purple-500 text-white text-xs px-2 py-1 rounded-full"
+                      >Animation</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="diamond-tile aspect-square"
+            data-category="design"
+            data-type="collaboration"
+            data-year="2024"
+          >
+            <div class="diamond-container w-full h-full bg-white shadow-md">
+              <div class="diamond-content">
+                <img
+                  src="https://readdy.ai/api/search-image?query=packaging%20design%20mockup%20with%20elegant%20branding%20and%20premium%20product%20presentation%2C%20luxury%20brand%20identity%20design%2C%20professional%20commercial%20design&width=400&height=400&seq=6&orientation=squarish"
+                  alt="Packaging Design"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="diamond-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center"
+                >
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-lg font-semibold mb-1">Packaging Design</h3>
+                    <p class="text-sm mb-2">Alex Thompson</p>
+                    <span
+                      class="inline-block bg-primary text-white text-xs px-2 py-1 rounded-full"
+                      >Design</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="diamond-tile aspect-square"
+            data-category="photography"
+            data-type="academic"
+            data-year="2023"
+          >
+            <div class="diamond-container w-full h-full bg-white shadow-md">
+              <div class="diamond-content">
+                <img
+                  src="https://readdy.ai/api/search-image?query=architectural%20photography%20with%20geometric%20patterns%20and%20modern%20building%20design%2C%20urban%20landscape%20photography%2C%20professional%20architectural%20documentation&width=400&height=400&seq=7&orientation=squarish"
+                  alt="Architecture Series"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="diamond-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center"
+                >
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-lg font-semibold mb-1">
+                      Architecture Series
+                    </h3>
+                    <p class="text-sm mb-2">Maria Garcia</p>
+                    <span
+                      class="inline-block bg-secondary text-white text-xs px-2 py-1 rounded-full"
+                      >Photography</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="diamond-tile aspect-square"
+            data-category="illustration"
+            data-type="personal"
+            data-year="2022"
+          >
+            <div class="diamond-container w-full h-full bg-white shadow-md">
+              <div class="diamond-content">
+                <img
+                  src="https://readdy.ai/api/search-image?query=watercolor%20illustration%20with%20botanical%20elements%20and%20delicate%20artistic%20details%2C%20nature-inspired%20artwork%20with%20soft%20colors%2C%20artistic%20illustration%20portfolio&width=400&height=400&seq=8&orientation=squarish"
+                  alt="Botanical Illustrations"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="diamond-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center"
+                >
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-lg font-semibold mb-1">Botanical Series</h3>
+                    <p class="text-sm mb-2">James Wilson</p>
+                    <span
+                      class="inline-block bg-green-500 text-white text-xs px-2 py-1 rounded-full"
+                      >Illustration</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="diamond-tile aspect-square"
+            data-category="web"
+            data-type="commercial"
+            data-year="2023"
+          >
+            <div class="diamond-container w-full h-full bg-white shadow-md">
+              <div class="diamond-content">
+                <img
+                  src="https://readdy.ai/api/search-image?query=mobile%20app%20interface%20design%20with%20intuitive%20user%20experience%20and%20modern%20visual%20elements%2C%20smartphone%20app%20mockup%2C%20professional%20mobile%20UI%20design&width=400&height=400&seq=9&orientation=squarish"
+                  alt="Mobile App Design"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="diamond-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center"
+                >
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-lg font-semibold mb-1">
+                      Mobile App Design
+                    </h3>
+                    <p class="text-sm mb-2">Sophie Brown</p>
+                    <span
+                      class="inline-block bg-orange-500 text-white text-xs px-2 py-1 rounded-full"
+                      >Web Design</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="diamond-tile aspect-square"
+            data-category="animation"
+            data-type="academic"
+            data-year="2024"
+          >
+            <div class="diamond-container w-full h-full bg-white shadow-md">
+              <div class="diamond-content">
+                <img
+                  src="https://readdy.ai/api/search-image?query=2D%20animation%20frame%20with%20expressive%20character%20design%20and%20vibrant%20storytelling%20elements%2C%20animated%20short%20film%20concept%20art%2C%20creative%20animation%20portfolio&width=400&height=400&seq=10&orientation=squarish"
+                  alt="Short Film Animation"
+                  class="w-full h-full object-cover object-top"
+                />
+                <div
+                  class="diamond-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center"
+                >
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-lg font-semibold mb-1">Short Film</h3>
+                    <p class="text-sm mb-2">Ryan Martinez</p>
+                    <span
+                      class="inline-block bg-purple-500 text-white text-xs px-2 py-1 rounded-full"
+                      >Animation</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      id="modal"
+      class="fixed inset-0 bg-black bg-opacity-80 modal-backdrop flex items-center justify-center z-50 opacity-0 invisible transition-all duration-300"
+    >
+      <div class="relative max-w-4xl max-h-[90vh] w-full mx-4">
+        <button
+          id="close-modal"
+          class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
+        >
+          <div class="w-8 h-8 flex items-center justify-center">
+            <i class="ri-close-line ri-2x"></i>
+          </div>
+        </button>
+        <div
+          class="zoom-container relative overflow-hidden rounded-lg bg-white"
+        >
+          <img
+            id="modal-image"
+            src=""
+            alt=""
+            class="w-full h-auto max-h-[80vh] object-contain"
+          />
+          <div
+            class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6"
+          >
+            <div class="text-white">
+              <h2 id="modal-title" class="text-2xl font-bold mb-2"></h2>
+              <p id="modal-student" class="text-lg mb-2"></p>
+              <div class="flex items-center gap-4">
+                <span
+                  id="modal-category"
+                  class="bg-primary text-white px-3 py-1 rounded-full text-sm"
+                ></span>
+                <span id="modal-year" class="text-sm"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute top-1/2 -translate-y-1/2 -left-16">
+          <button
+            id="prev-btn"
+            class="text-white hover:text-gray-300 transition-colors"
+          >
+            <div class="w-12 h-12 flex items-center justify-center">
+              <i class="ri-arrow-left-line ri-2x"></i>
+            </div>
+          </button>
+        </div>
+        <div class="absolute top-1/2 -translate-y-1/2 -right-16">
+          <button
+            id="next-btn"
+            class="text-white hover:text-gray-300 transition-colors"
+          >
+            <div class="w-12 h-12 flex items-center justify-center">
+              <i class="ri-arrow-right-line ri-2x"></i>
+            </div>
+          </button>
+        </div>
+        <div class="absolute top-4 right-4 flex gap-2">
+          <button
+            id="zoom-in"
+            class="bg-black bg-opacity-50 text-white p-2 rounded-button hover:bg-opacity-70 transition-colors"
+          >
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-zoom-in-line"></i>
+            </div>
+          </button>
+          <button
+            id="zoom-out"
+            class="bg-black bg-opacity-50 text-white p-2 rounded-button hover:bg-opacity-70 transition-colors"
+          >
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-zoom-out-line"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <section class="bg-[#582A78] py-6 px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+        
+            <!-- Text Section -->
+            <div class="text-white mb-4 md:mb-0">
+                <h2 class="text-2xl md:text-3xl font-bold">Want your work to be featured?</h2>
+                <p class="text-sm md:text-base text-white/80">Fill out the form for a chance of your work to be showcased.</p>
+            </div>
+
+             <!-- Button -->
+            <a href="#submit-form" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold text-sm md:text-base px-6 py-3 rounded-full transition-all whitespace-nowrap">
+                SUBMIT YOUR WORK!
+            </a>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-[#00364D] text-white px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <!-- Left: Social Icons -->
+            <div class="flex space-x-4">
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+                    <img src="instagram.png" alt="Instagram" class="h-8 w-8" />
+                </a>
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="facebook.png" alt="Facebook" class="h-7 w-7" />
+                </a>
+            </div>
+            
+            <!-- Center: Copyright -->
+            <div class="text-sm text-center md:text-left">
+                © 2025. All works are owned by their respective artists. See 
+                <a href="/privacy-policy.html" class="underline hover:text-yellow-400">Privacy Policy</a>.
+            </div>
+
+            <!-- Right: Logo -->
+            <div class="flex items-center space-x-2">
+                <img src="CIITLOGO.png" alt="CIIT Logo" class="h-10 w-auto">
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPTS -->
+    <script id="slider-functionality">
+        document.addEventListener('DOMContentLoaded', function() {
+            const featuredWorks = [
+                {
+                    title: 'Portrait',
+                    artist: 'Halley Carvajal',
+                    image: 'Portrait.jpeg'
+                },
+
+                {
+                    title: 'Philippines',
+                    artist: 'Unknown',
+                    image: 'Philippines.png'
+                },
+
+                {
+                    title: 'Newly Open',
+                    artist: 'Maia Elise Sano',
+                    image: 'NewlyOpen.png'
+                },
+            ];
+            
+            let currentIndex = 0;
+            const imageElement = document.querySelector('.featured-image');
+            const titleElement = document.querySelector('.featured-title');
+            const artistElement = document.querySelector('.featured-artist');
+            const prevButton = document.querySelector('.slider-prev');
+            const nextButton = document.querySelector('.slider-next');
+            function updateSlide() {
+                const work = featuredWorks[currentIndex];
+                if (imageElement) imageElement.src = work.image;
+                if (titleElement) titleElement.textContent = work.title;
+                if (artistElement) artistElement.textContent = `by ${work.artist}`;
+            }
+            
+            if (prevButton) {
+                prevButton.addEventListener('click', function() {
+                    currentIndex = (currentIndex - 1 + featuredWorks.length) % featuredWorks.length;
+                    updateSlide();
+                });
+            }
+            
+            if (nextButton) {
+                nextButton.addEventListener('click', function() {
+                    currentIndex = (currentIndex + 1) % featuredWorks.length;
+                    updateSlide();
+                });
+            }
+        });
+    </script>
+
+    <script id="smooth-scroll">
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#562C6E',
+                        secondary: '#F59E0B'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script id="filter-functionality">
+        let currentFilters = {
+            category: "all",
+            type: "all",
+            year: "all",
+        };
+        
+        function toggleDropdown(type) {
+            const dropdown = document.getElementById(`${type}-dropdown`);
+            const isActive = dropdown.classList.contains("active");
+            document
+            .querySelectorAll(".dropdown-content")
+            .forEach((d) => d.classList.remove("active"));
+            if (!isActive) {
+                dropdown.classList.add("active");
+            }
+        }
+        
+        function filterBy(filterType, value) {
+            currentFilters[filterType] = value;
+            updateActiveFilters();
+            applyFilters();
+            document
+            .querySelectorAll(".dropdown-content")
+            .forEach((d) => d.classList.remove("active"));
+        }
+      
+        function clearAllFilters() {
+            currentFilters = {
+                category: "all",
+                type: "all",
+                year: "all",
+            };
+            updateActiveFilters();
+            applyFilters();
+        }
+      
+        function updateActiveFilters() {
+            const container = document.getElementById("active-filters");
+            container.innerHTML = "";
+            Object.entries(currentFilters).forEach(([key, value]) => {
+                if (value !== "all") {
+                    const tag = document.createElement("span");
+                    tag.className =
+                    "inline-flex items-center gap-2 bg-primary text-white px-3 py-1 rounded-full text-sm";
+                    tag.innerHTML = `
+                        ${key}: ${value}
+                        <button onclick="filterBy('${key}', 'all')" class="hover:bg-white hover:bg-opacity-20 rounded-full p-1">
+                            <div class="w-3 h-3 flex items-center justify-center">
+                                <i class="ri-close-line text-xs"></i>
+                            </div>
+                        </button>
+                    `;
+                    container.appendChild(tag);
+                }
+            });
+        }
+        
+        function applyFilters() {
+            const tiles = document.querySelectorAll(".diamond-tile");
+            tiles.forEach((tile) => {
+                const category = tile.dataset.category;
+                const type = tile.dataset.type;
+                const year = tile.dataset.year;
+                const categoryMatch =
+                    currentFilters.category === "all" || category === currentFilters.category;
+                const typeMatch =
+                    currentFilters.type === "all" || type === currentFilters.type;
+                const yearMatch =
+                    currentFilters.year === "all" || year === currentFilters.year;
+                if (categoryMatch && typeMatch && yearMatch) {
+                    tile.style.display = "block";
+                    tile.style.opacity = "0";
+                    setTimeout(() => {
+                        tile.style.opacity = "1";
+                    }, 100);
+                } else {
+                    tile.style.opacity = "0";
+                    setTimeout(() => {
+                        tile.style.display = "none";
+                    }, 300);
+                }
+            });
+        }
+        
+        document.addEventListener("click", (e) => {
+            if (!e.target.closest(".filter-dropdown")) {
+                document
+                .querySelectorAll(".dropdown-content")
+                .forEach((d) => d.classList.remove("active"));
+            }
+        });
+    </script>
+
+    <script id="modal-functionality">
+        let currentImageIndex = 0;
+        let visibleTiles = [];
+        let zoomLevel = 1;
+        function openModal(index) {
+            const modal = document.getElementById("modal");
+            const tile = visibleTiles[index];
+            const img = tile.querySelector("img");
+            const title = tile.querySelector("h3").textContent;
+            const student = tile.querySelector("p").textContent;
+            const category = tile.querySelector("span").textContent;
+            const year = tile.dataset.year;
+            document.getElementById("modal-image").src = img.src;
+            document.getElementById("modal-title").textContent = title;
+            document.getElementById("modal-student").textContent = student;
+            document.getElementById("modal-category").textContent = category;
+            document.getElementById("modal-year").textContent = year;
+            currentImageIndex = index;
+            zoomLevel = 1;
+            modal.classList.remove("opacity-0", "invisible");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            modal.classList.add("opacity-0", "invisible");
+            document.body.style.overflow = "auto";
+        }
+
+        function navigateModal(direction) {
+            if (direction === "next") {
+                currentImageIndex = (currentImageIndex + 1) % visibleTiles.length;
+            } else {
+                currentImageIndex =
+                (currentImageIndex - 1 + visibleTiles.length) % visibleTiles.length;
+            }
+            
+            openModal(currentImageIndex);
+        }
+      
+        function updateZoom(delta) {
+            const img = document.getElementById("modal-image");
+            zoomLevel = Math.max(0.5, Math.min(3, zoomLevel + delta));
+            img.style.transform = `scale(${zoomLevel})`;
+        }
+      
+        document.getElementById("close-modal").addEventListener("click", closeModal);
+        document
+        .getElementById("prev-btn")
+        .addEventListener("click", () => navigateModal("prev"));
+        document
+        .getElementById("next-btn")
+        .addEventListener("click", () => navigateModal("next"));
+        document
+        .getElementById("zoom-in")
+        .addEventListener("click", () => updateZoom(0.2));
+        document
+        .getElementById("zoom-out")
+        .addEventListener("click", () => updateZoom(-0.2));
+        document.addEventListener("keydown", (e) => {
+            if (document.getElementById("modal").classList.contains("opacity-0")) return;
+            switch (e.key) {
+                case "Escape":
+                    closeModal();
+                break;
+                case "ArrowLeft":
+                    navigateModal("prev");
+                break;
+                case "ArrowRight":
+                    navigateModal("next");
+                break;
+            }
+        });
+        document.getElementById("modal").addEventListener("click", (e) => {
+            if (e.target === e.currentTarget) {
+                closeModal();
+            }
+        });
+    </script>
+
+    <script id="tile-interactions">
+        function updateVisibleTiles() {
+            visibleTiles = Array.from(document.querySelectorAll(".diamond-tile")).filter(
+                (tile) => tile.style.display !== "none",
+            );
+            visibleTiles.forEach((tile, index) => {
+                tile.onclick = () => openModal(index);
+            });
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            updateVisibleTiles();
+            const observer = new MutationObserver(() => {
+                setTimeout(updateVisibleTiles, 350);
+            });
+            
+            observer.observe(document.getElementById("showcase-grid"), {
+                attributes: true,
+                subtree: true,
+                attributeFilter: ["style"],
+            });
+        });
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6",
+                        secondary: "#8B5CF6",
+                    },
+                    borderRadius: {
+                        none: "0px",
+                        sm: "4px",
+                        DEFAULT: "8px",
+                        md: "12px",
+                        lg: "16px",
+                        xl: "20px",
+                        "2xl": "24px",
+                        "3xl": "32px",
+                        full: "9999px",
+                        button: "8px",
+                    },
+                    fontFamily: {
+                        inter: ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <script id="cta-button">
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButton = document.querySelector('button');
+            ctaButton.addEventListener('click', function() {
+                alert('Submission form would open here!');
+            });
+        });
+    </script>
+    
+</body>
+</html>

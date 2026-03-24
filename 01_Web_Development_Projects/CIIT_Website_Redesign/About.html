@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About CIITLOGO</title>
+  <link rel="icon" type="image/png" href="CIIT logo.png" />
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Krona+One&family=Montserrat:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #0e3c59, #75d0e0);
+      color: #ffffff;
+    }
+
+    nav {
+      background-color: #00364D;
+      padding: 16px 32px;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-left img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ccc;
+    }
+
+    .submit-btn {
+      background-color: #885CF6;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #9f73ff;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      background-color: #5e6670;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .about-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 20px 40px;
+      text-align: center;
+    }
+
+    .about-heading {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .ciit-subheading {
+      font-size: 1.25rem;
+      color: #c0e9f5;
+      margin-bottom: 40px;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #e0f7ff;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .cta-button a {
+      background-color: #40d2ff;
+      color: white;
+      padding: 14px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .cta-button a:hover {
+      background-color: #23bde0;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background-color: #00364D;
+      color: white;
+      padding: 1.5rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icons img {
+      height: 32px;
+      width: 32px;
+    }
+
+    .footer-text {
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .footer-logo img {
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+
+ <!-- Navigation -->
+  <nav class="bg-[#00364D] px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-15 h-10">
+          <img src="CIITLOGO.png" alt="CIIT Logo" class="w-full h-full object-contain" />
+        </div>
+      </div>
+      <div class="flex items-center space-x-8">
+        <a href="index.html" class="text-white hover:text-gray-300 transition-colors">Showcase</a>
+        <a href="featured-creators.html" class="text-white hover:text-gray-300 transition-colors">Featured Creators</a>
+        <a href="About.html" class="text-white hover:text-gray-300 transition-colors">About</a>
+        <a href="worksubmission.html" target="_blank" rel="noopener noreferrer">
+    <button class="bg-secondary text-white px-6 py-2 !rounded-button font-medium hover:bg-yellow-500 transition-colors whitespace-nowrap">
+                    Submit Your Work
+                </button>
+            </a>
+        <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
+          <i class="ri-user-line text-white text-sm"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <h1 class="about-heading">About CIIT</h1>
+    <p class="ciit-subheading">College of Arts and Technology</p>
+
+    <div class="about-text">
+      <p>Welcome to CIIT College of Arts and Technology! We’re a passionate community of artists, innovators, and technologists. Everything you see on this website was created by our talented students, faculty, and staff—CIITzens united by creativity.</p>
+      <p>If you're an aspiring digital artist, filmmaker, game developer, or programmer, you're in the right place. Your journey can begin here, and who knows—your work might be featured on our website someday!</p>
+      <p>Located in Quezon City, CIIT is a premier institution offering programs in Multimedia Arts, Visual Arts, Programming, and Game Development. Get to know us more through our official website.</p>
+    </div>
+
+    <div class="cta-button">
+      <a href="https://www.ciit.edu.ph" target="_blank">Go to CIIT Website ↗</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank"><img src="instagram.png" alt="Instagram" /></a>
+        <a href="https://www.facebook.com" target="_blank"><img src="facebook.png" alt="Facebook" /></a>
+      </div>
+      <div class="footer-text">
+        © 2025. All works are owned by their respective artists. See
+        <a href="/privacy-policy.html" style="text-decoration: underline; color: #ffcc00;">Privacy Policy</a>.
+      </div>
+      <div class="footer-logo">
+        <img src="CIITLOGO.png" alt="CIIT Logo" />
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Work Submission</title>
+  <link rel="icon" type="image/png" href="CIIT logo.png" />
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Krona+One&family=Montserrat:wght@400;500&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#75C7F0",
+            secondary: "#8B4B9C",
+          },
+          borderRadius: {
+            none: "0px",
+            sm: "4px",
+            DEFAULT: "8px",
+            md: "12px",
+            lg: "16px",
+            xl: "20px",
+            "2xl": "24px",
+            "3xl": "32px",
+            full: "9999px",
+            button: "8px",
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+    .header-font {
+      font-family: 'Krona One', monospace;
+    }
+    .body-font {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+<!-- Navigation -->
+  <nav class="bg-[#00364D] px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-15 h-10">
+          <img src="CIITLOGO.png" alt="CIIT Logo" class="w-full h-full object-contain" />
+        </div>
+      </div>
+      <div class="flex items-center space-x-8">
+        <a href="index.html" class="text-white hover:text-gray-300 transition-colors">Showcase</a>
+        <a href="featured-creators.html" class="text-white hover:text-gray-300 transition-colors">Featured Creators</a>
+        <a href="worksubmission.html" target="_blank" rel="noopener noreferrer">
+    <button class="bg-secondary text-white px-6 py-2 !rounded-button font-medium hover:bg-yellow-500 transition-colors whitespace-nowrap">
+                    Submit Your Work
+                </button>
+            </a>
+        <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center">
+          <i class="ri-user-line text-white text-sm"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+<body class="bg-white min-h-screen body-font">
+<main class="max-w-7xl w-full mx-auto px-4 md:px-12 py-8 md:py-16">
+  <div class="relative mb-16 overflow-hidden rounded-xl bg-gradient-to-r from-purple-600 to-purple-800 p-8 text-white">
+    <div class="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-purple-500/30"></div>
+    <div class="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-purple-500/30"></div>
+    <div class="relative">
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-10 h-10 flex items-center justify-center bg-white/10 rounded-full">
+          <i class="ri-file-paper-2-line text-2xl"></i>
+        </div>
+        <h1 class="text-4xl font-bold header-font">Work Submission Form</h1>
+      </div>
+      <div class="body-font space-y-2 text-white/90">
+        <p>Please fill out the form below to submit your work for the final/midterm examination:</p>
+        <ul class="list-decimal list-inside space-y-1 ml-4">
+          <li>Fill out all the necessary information below.</li>
+          <li>Upload all the work you want to submit (Maximum of 5 files).</li>
+          <li>Have a hard copy of your work.</li>
+          <li>Your work will be reviewed and submitted directly to your class, but may take up to 72 hours.</li>
+        </ul>
+        <div class="mt-6">
+          <a href="Guidelines.html" target="_blank" class="inline-block bg-white text-purple-800 font-medium px-6 py-2 rounded-md hover:bg-purple-100 transition-colors">
+            📄 View Guidelines
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form class="space-y-8">
+    <div class="bg-white">
+      <h2 class="text-2xl font-semibold text-primary mb-6 header-font">Basic Information</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2 body-font">Email Address</label>
+          <input type="email" class="w-full px-4 py-3 bg-gray-50 border-none rounded text-sm body-font focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your email address" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2 body-font">Full Name</label>
+          <input type="text" class="w-full px-4 py-3 bg-gray-50 border-none rounded text-sm body-font focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your full name" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2 body-font">Student Number</label>
+          <input type="text" class="w-full px-4 py-3 bg-gray-50 border-none rounded text-sm body-font focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your student number" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2 body-font">Contact Number</label>
+          <input type="tel" class="w-full px-4 py-3 bg-gray-50 border-none rounded text-sm body-font focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your contact number" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2 body-font">Year Level</label>
+          <div class="relative">
+            <select class="w-full px-4 py-3 bg-gray-50 border-none rounded text-sm body-font focus:outline-none focus:ring-2 focus:ring-primary appearance-none pr-8" required>
+              <option>Select Year Level</option>
+              <option>1st Year</option>
+              <option>2nd Year</option>
+              <option>3rd Year</option>
+              <option>4th Year</option>
+            </select>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <i class="ri-arrow-down-s-line text-gray-500"></i>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2 body-font">Course/Program</label>
+          <div class="relative">
+            <select class="w-full px-4 py-3 bg-gray-50 border-none rounded text-sm body-font focus:outline-none focus:ring-2 focus:ring-primary appearance-none pr-8" required>
+              <option>Select Course/Program</option>
+              <option>Computer Science</option>
+              <option>Information System</option>
+              <option>Multimedia Arts</option>
+              <option>Game Development</option>
+            </select>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+              <i class="ri-arrow-down-s-line text-gray-500"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white">
+      <h2 class="text-2xl font-semibold text-primary mb-6 header-font">Files</h2>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2 body-font">Upload Files</label>
+          <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-primary transition-colors">
+            <div class="w-12 h-12 flex items-center justify-center mx-auto mb-4 text-gray-400">
+              <i class="ri-upload-cloud-2-line ri-2x"></i>
+            </div>
+            <p class="text-gray-600 body-font mb-2">Click to upload or drag and drop</p>
+            <p class="text-sm text-gray-500 body-font">Maximum file size: 10MB per file</p>
+            <input type="file" multiple class="hidden" id="fileUpload">
+            <label for="fileUpload" class="inline-block mt-4 bg-primary text-white px-6 py-2 !rounded-button body-font font-medium cursor-pointer hover:bg-blue-600 transition-colors whitespace-nowrap">
+              Choose Files
+            </label>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-center justify-between p-4 bg-gray-50 rounded">
+            <div class="flex items-center">
+              <div class="w-8 h-8 flex items-center justify-center mr-3 text-gray-500">
+                <i class="ri-file-text-line"></i>
+              </div>
+              <span class="text-sm body-font text-gray-700">project_documentation.pdf</span>
+            </div>
+            <div class="w-6 h-6 flex items-center justify-center text-gray-400 cursor-pointer hover:text-red-500">
+              <i class="ri-close-line"></i>
+            </div>
+          </div>
+          <div class="flex items-center justify-between p-4 bg-gray-50 rounded">
+            <div class="flex items-center">
+              <div class="w-8 h-8 flex items-center justify-center mr-3 text-gray-500">
+                <i class="ri-image-line"></i>
+              </div>
+              <span class="text-sm body-font text-gray-700">design_mockups.zip</span>
+            </div>
+            <div class="w-6 h-6 flex items-center justify-center text-gray-400 cursor-pointer hover:text-red-500">
+              <i class="ri-close-line"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center pt-8">
+      <button type="submit" class="bg-primary text-white px-12 py-4 !rounded-button body-font font-semibold text-lg hover:bg-blue-600 transition-colors whitespace-nowrap">
+        Submit Form
+      </button>
+    </div>
+  </form>
+</main>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const fileInput = document.getElementById("fileUpload");
+    const uploadArea = fileInput.closest(".border-dashed");
+    uploadArea.addEventListener("click", function () {
+      fileInput.click();
+    });
+    uploadArea.addEventListener("dragover", function (e) {
+      e.preventDefault();
+      uploadArea.classList.add("border-primary");
+    });
+    uploadArea.addEventListener("dragleave", function (e) {
+      e.preventDefault();
+      uploadArea.classList.remove("border-primary");
+    });
+    uploadArea.addEventListener("drop", function (e) {
+      e.preventDefault();
+      uploadArea.classList.remove("border-primary");
+      const files = e.dataTransfer.files;
+      fileInput.files = files;
+    });
+
+    document.querySelectorAll(".ri-close-line").forEach(button => {
+      button.addEventListener("click", () => {
+        button.closest(".flex").remove();
+      });
+    });
+
+    const form = document.querySelector("form");
+    const submitBtn = form.querySelector('button[type="submit"]');
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const requiredFields = form.querySelectorAll("input[required], select[required]");
+      let isValid = true;
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          isValid = false;
+          field.classList.add("ring-2", "ring-red-500");
+        } else {
+          field.classList.remove("ring-2", "ring-red-500");
+        }
+      });
+      if (isValid) {
+        submitBtn.textContent = "Submitting...";
+        submitBtn.disabled = true;
+        setTimeout(() => {
+          alert("Form submitted successfully!");
+          submitBtn.textContent = "Submit Form";
+          submitBtn.disabled = false;
+        }, 2000);
+      }
+    });
+  });
+</script>
+<footer class="bg-[#00364D] text-white px-6 py-4">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+      <div class="flex space-x-4">
+        <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+          <img src="instagram.png" alt="Instagram" class="h-8 w-8" />
+        </a>
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+          <img src="facebook.png" alt="Facebook" class="h-7 w-7" />
+        </a>
+      </div>
+      <div class="text-sm text-center md:text-left">
+        © 2025. All works are owned by their respective artists. See 
+        <a href="/privacy-policy.html" class="underline hover:text-yellow-400">Privacy Policy</a>.
+      </div>
+      <div class="flex items-center space-x-2">
+        <img src="CIITLOGO.png" alt="CIIT Logo" class="h-10 w-auto" />
+      </div>
+    </div>
+  </footer>  
+</body>
+</html>
