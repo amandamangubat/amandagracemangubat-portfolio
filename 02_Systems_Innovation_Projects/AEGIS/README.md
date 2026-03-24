@@ -1,30 +1,41 @@
-# Arroz Por Favor: Filipino-Mexican Fusion Startup
-**Event:** CESCon 2026 Entrepreneurship Event  
-**Award:** **Highest Sales Award (Food Category)** **Role:** Core Member - Sales Operations & Technical Lead
+# Aegis: Institutional Verification Platform
+**Event:** CIIT Institutional Hackathon  
+**Award:** 2nd Place Overall  
+**Role:** Technical Core Member (Backend & Frontend Logic)
 
-## Project Overview
-Arroz Por Favor is a Filipino-Mexican fusion brand developed to solve the "Student Meal Gap." As a core member of the startup team, I managed the operational and financial tracking that led us to secure the **Highest Sales Award in the Food Category**, outperforming all other food-based student enterprises in revenue and volume during the 3-day Sales Blitz.
+## The Problem
+Traditional verification systems often over-collect personal data, creating security liabilities. Aegis was engineered to verify **legitimacy, not identity**, ensuring organizations confirm eligibility without accessing or storing sensitive personal details.
 
-## Achievement: Food Category Sales Leader
-* **Category Dominance:** Secured the #1 sales spot in the competitive Food & Beverage sector of the bazaar.
-* **Volume Strategy:** Managed high-velocity production to meet peak demand, resulting in consistent Day 1, 2, and 3 sell-outs of primary inventory.
-* **Optimized Yield:** Successfully scaled sales while maintaining a **78% profit margin** on high-turnover items like the *Tacos de Pollo Crujiente*.
+## Technical Stack
+* **Frontend:** Next.js 16 (React 19) with Tailwind CSS.
+* **Backend:** Firebase Admin SDK (Node.js) for privileged operations.
+* **Security:** Token-based "Masking" protocol with automatic TTL (Time-to-Live).
+* **Deployment:** Firebase Hosting with custom rewrite logic for SPA routing.
 
-## Strategic Contributions
+## System Architecture & Logic
 
-### 1. Sales Operations & Demand Forecasting
-* Developed the inventory tracking system to monitor real-time stock of key ingredients (beef, chicken, and horchata base).
-* Implemented "Combo-Upselling" strategies during the bazaar to increase the Average Order Value (AOV), contributing to the total category-winning revenue.
+### 1. The Masking Protocol (`/lib/token.ts`)
+The system follows a **Secure by Default** architecture. Instead of transmitting User IDs, it generates high-entropy, masked tokens (Format: `MX-XXXXXX-XXXXXX`).
+* **Collision Resistance:** Server-side retry loop (5 attempts) to ensure token uniqueness.
+* **Auto-Expiry:** Tokens default to a 10-minute validity window to prevent replay attacks.
 
-### 2. Financial Engineering
-* Conducted detailed unit economics for the menu:
-    * **Tacos de Pollo:** Cost: ₱21.90 | SRP: ₱99.00 (**78% Margin**).
-    * **Tex-Mex Beef Melt:** Positioned as the flagship revenue driver.
-    * **Agua Fresca:** Low-cost, high-margin liquid assets to maximize overall profit.
+### 2. Privacy-First API Layer (`/api/mask/`)
+* **`create.js`**: Generates the token and maps it to a "Purpose" without linking to a persistent user profile.
+* **`verify.js`**: A zero-exposure gateway. It returns a boolean `valid` status and the message **"Identity protected"**.
+* **Audit Logging**: Every verification attempt is logged for institutional accountability.
 
-### 3. Brand Identity & Market Fit
-* Co-developed the "Rice. Spice. Everything Nice" vision.
-* Targeted the "opportunity gap" in campus dining: providing a filling, premium-feel meal at a student-friendly price point.
+### 3. Aegis Shielding Protocol (Live Demo)
+The demo highlights the "Aegis Shield," which is active by default to protect sensitive information until an authorized request is granted.
 
-## Key Results
-The project successfully validated the Filipino-Mexican fusion concept, proving its commercial viability through market-leading sales figures and strong customer retention throughout the event.
+#### Terminal Demo 1: Shielding Activated (Default State)
+![Aegis Terminal Demo 1](./media/Terminal_Demo_1.jpg)
+*The default state of the Aegis protocol: sensitive information is cryptographically shielded, and a secure verification token is issued.*
+
+#### Terminal Demo 2: Shielding Deactivated
+![Aegis Terminal Demo 2](./media/Terminal_Demo_2.jpg)
+*The system state after an authorized permission request is granted, temporarily revealing specific data points for manual verification.*
+
+## Achievement & Recognition
+Our team, **Keyboard Warriors**, secured 2nd Place with a narrow margin of only 0.40 from the top spot, highlighting the high technical standard of our implementation.
+
+![Hackathon Certificate](./awards/hackathon-second-place.png)
