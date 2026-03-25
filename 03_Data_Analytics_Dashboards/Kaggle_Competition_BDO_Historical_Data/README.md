@@ -1,46 +1,42 @@
-# Kaggle Data Analysis Project
+# BDO Historical Data Analysis
 
-## Overview
+Course: Data Analytics / Kaggle Competition Project  
+Type: Exploratory Data Analysis and Financial Data Visualization Project  
+Role: Data Cleaning, Analysis, and Visualization Contributor
 
-This project was developed as part of a class Kaggle competition. It focuses on analyzing real-world data using Google Colab by integrating a dataset with a Jupyter Notebook to generate meaningful insights and visualizations.
+## The Problem
 
-## Objectives
+Stock market data can be difficult to interpret without proper cleaning, analysis, and visualization. This project was developed to analyze BDO historical stock data, identify patterns in price movement, and generate visual insights that support better understanding of market behavior.
 
-* Explore and understand the dataset
-* Perform data cleaning and preprocessing
-* Analyze trends and patterns
-* Generate visualizations for better insight
-* Support data-driven conclusions
+## Technical Stack
 
-## Tools & Technologies
+- **Programming Language:** Python
+- **Notebook Environment:** Jupyter Notebook / Google Colab
+- **Libraries:** Pandas, Matplotlib, Seaborn
+- **Other Tools:** GitHub
 
-* Google Colab
-* Python
-* Pandas
-* Matplotlib / Seaborn (if you used them)
+## System Architecture & Logic
 
-## Project Structure
+### 1. Data Preparation
+The dataset was cleaned and prepared to make the historical stock data more consistent and ready for analysis.
 
-* `Final_Project.ipynb` – Main notebook containing analysis and visualizations
-* `BDO Historical Data.csv` – Dataset used for the project
+### 2. Exploratory Data Analysis
+The project examines price-related patterns, trends, and changes over time using historical BDO stock data.
 
-## Key Features
+### 3. Data Visualization
+Charts and graphs were used to present movements and trends more clearly for easier interpretation.
 
-* Data cleaning and preprocessing
-* Exploratory Data Analysis (EDA)
-* Visual representation of trends and patterns
-* Insight generation based on real-world data
+### 4. Financial Insight Generation
+The analysis focuses on turning raw stock data into useful observations that can support a better understanding of market behavior.
 
-## How to Run
+### 5. Notebook-Based Workflow
+The project was completed through a notebook-based workflow, allowing the full analysis process to be documented in one place.
 
-1. Open the notebook in Google Colab
-2. Upload or connect the dataset (`BDO Historical Data.csv`)
-3. Run all cells to reproduce the analysis
+## Project Files
 
-## Results
+- `BDO Historical Data.csv`
+- `Final_Project.ipynb`
 
-The project provides insights into the dataset through structured analysis and visualizations, helping identify patterns and trends relevant to the competition.
+## Project Outcome
 
-## Author
-
-Ciara Frances P. Comendador
+This project strengthened my skills in data cleaning, exploratory data analysis, and financial data visualization. It also improved my ability to work with real-world historical datasets and present insights through a structured notebook workflow.
