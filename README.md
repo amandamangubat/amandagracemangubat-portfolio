@@ -62,6 +62,8 @@
 
 ## Links
 
+- **LinkedIn:** [Amanda Grace Mangubat](https://www.linkedin.com/in/amanda-grace-mangubat/)
+- **Resume:** [View Resume](./Mangubat%20-%20Resume.pdf)
 - **Live Portfolio:** [Readymag Portfolio](https://readymag.website/u2576807828/6215438/)
 
 ---
