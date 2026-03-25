@@ -1,0 +1,479 @@
+/* === RESET & BASE === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+  
+body {
+    display: flex;
+    background-color: #f9f9f9;
+    transition: background 0.3s, color 0.3s;
+}
+  
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 320px;
+    transition: margin-left 0.3s;
+}
+  
+/* === RED TOP BANNER === */
+.top-red-banner {
+    background: #b01415;
+    height: 240px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}    
+
+.sidebar,
+.topbar,
+.report-container,
+footer {
+  position: relative;
+  z-index: 1;
+}
+  
+/* === SIDEBAR === */
+.sidebar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: all 0.3s ease;
+} 
+  
+.sidebar.collapsed {
+    width: 80px;
+}
+  
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #b01415;
+    margin-bottom: 25px;
+}
+
+.logo-section i {
+    font-size: 40px;
+}  
+  
+.sidebar.collapsed .logo-section {
+    justify-content: center;
+}
+  
+.logo-text {
+    font-weight: bold;
+    font-size: 18px;
+    color: #b01415;
+    margin-left: 8px;
+    white-space: nowrap;
+}
+  
+.toggle-btn {
+    font-size: 24px;
+    color: #b01415;
+    cursor: pointer;
+}
+  
+/* === NAVIGATION === */
+.nav ul {
+    list-style: none;
+}
+  
+.nav li {
+    margin-bottom: 12px;
+}
+  
+.nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+  
+.nav i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+  
+.submenu {
+    display: none;
+    padding-left: 1.5rem;
+    transition: all 0.3s ease;
+}
+  
+.dropdown.open .submenu {
+    display: block;
+}
+  
+.arrow {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+  
+.submenu li {
+    font-size: 13px;
+    color: #444;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: 10px;
+}
+  
+.submenu li i {
+    margin-right: 10px;
+}
+  
+.submenu li:hover {
+    color: #b01415;
+}
+  
+.submenu li.active,
+  .sidebar.collapsed .submenu li.active {
+    background-color: rgba(176, 20, 21, 0.08);
+}
+  
+/* === COLLAPSED SIDEBAR — ICON ONLY === */
+.sidebar.collapsed .logo-text,
+.sidebar.collapsed .nav span,
+.sidebar.collapsed .submenu li span,
+.sidebar.collapsed .pdf-btn span {
+    display: none !important;
+}
+  
+.sidebar.collapsed .nav a,
+.sidebar.collapsed .submenu li {
+    justify-content: center;
+    padding: 12px 0;
+}
+  
+.sidebar.collapsed .nav i,
+.sidebar.collapsed .submenu li i {
+    font-size: 20px;
+    margin-right: 0;
+}
+  
+.sidebar.collapsed .submenu {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+    gap: 10px;
+}
+  
+.sidebar.collapsed .submenu li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+  
+/* === PDF BUTTON === */
+.pdf-btn-container {
+    margin-top: auto;
+    padding-top: 30px;
+}
+  
+.pdf-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #b01415;
+    border: 1.5px solid #b01415;
+    padding: 10px 16px;
+    font-size: 13px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+  
+.pdf-btn:hover {
+    background-color: #b01415;
+    color: white;
+}
+  
+.sidebar.collapsed .pdf-btn {
+    justify-content: center;
+    padding: 10px;
+}
+  
+/* === TOPBAR === */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 30px;
+    background: transparent;
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+  
+.topbar-left {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+  
+.breadcrumbs {
+    font-size: 14px;
+    opacity: 0.9;
+}
+  
+.page-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+}
+  
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+  
+.search-wrapper {
+    background: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+  
+.search-wrapper i {
+    margin-right: 6px;
+    color: #333;
+}
+  
+.search-bar {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: #333;
+}
+  
+.profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+body.dark .topbar,
+body.dark .navbar,
+body.dark header {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+  
+/* === REPORT SECTION === */
+.report-container {
+    padding: 30px;
+    padding-top: 20px;
+    margin-top: -40px;
+    transition: margin-left 0.3s;
+}
+  
+.report-container h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+ }
+  
+iframe {
+    width: 100%;
+    height: 500px;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background-color: white;
+}
+  
+/* === FOOTER === */
+footer {
+    padding: 25px 30px;
+    font-size: 13px;
+    color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+footer a {
+    color: #666;
+    text-decoration: none;
+    margin-left: 10px;
+}
+  
+/* === DARK MODE === */
+body.dark {
+    background-color: #111;
+    color: #eee;
+}
+  
+body.dark .sidebar,
+body.dark .topbar {
+    background: #1e1e1e;
+}
+
+body.dark .nav a,
+body.dark .submenu li {
+    color: #ddd;
+}
+  
+body.dark .pdf-btn {
+    border-color: #fff;
+    color: #fff;
+}
+
+body.dark .pdf-btn:hover {
+    background: #fff;
+    color: #111;
+}
+  
+body.dark .search-bar {
+    background: #333;
+    color: white;
+}
+  
+body.dark .report-container iframe {
+    background: #1a1a1a;
+}
+
+body.dark .top-red-banner {
+    display: none !important;
+}  
+
+body.dark .search-wrapper,
+body.dark .search-container {
+  background-color: #222 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+body.dark .search-wrapper input {
+  background-color: #222 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+body.dark .search-wrapper input::placeholder,
+body.dark .search-box input::placeholder {
+  color: #aaa !important;
+}
+
+body.dark .submenu li:hover,
+body.dark .submenu li.active {
+  background-color: rgba(153, 0, 0, 0.2);
+  color: #fff;
+}
+  
+/* === SCROLLBAR HIDE (optional) === */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+  
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+  
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .sidebar {
+      left: -320px;
+    }
+  
+    .sidebar.show {
+      left: 20px;
+    }
+  
+    main {
+      margin-left: 0;
+    }
+  
+    .report-container {
+      padding: 20px;
+    }
+  
+    footer {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+}
+
+/* === ARROW ROTATION FOR DROPDOWNS === */
+.arrow {
+    transition: transform 0.3s ease;
+}
+  
+.dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+
+/* === CHART CONTAINERS === */
+.chart-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+  
+.chart-box iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 12px;
+}
+
+.chart-box.small {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    width: 35%;
+}
+
+.chart-box.small iframe {
+    height: 120px;
+    width: 100%;
+}
+/* === GRID LAYOUT FOR TWO COLUMNS === */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}  

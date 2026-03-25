@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Daily Revenue Report</title>
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-section">
+            <i class='bx bxl-postgresql' style="font-size: 26px;"></i>
+            <span class="logo-text">EMC001</span>
+            <i class='bx bx-menu-alt-left toggle-btn' id="toggleSidebar" style="font-size: 20px;"></i>
+        </div>
+
+        <nav class="nav">
+            <ul>
+                <!-- Section 1 -->
+                <li class="dropdown open">
+                    <a href="#" class="dropdown-toggle d-flex justify-content-between align-items-center text-dark" role="button">
+                        <div class="d-flex align-items-center">
+                            <i class='bx bx-line-chart me-2'></i>
+                            <span>Medicine & Inventory Analytics</span>
+                        </div>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </a>
+                
+                    <ul class="submenu">
+                        <li><a href="index.html"><i class='bx bxs-capsule'></i><span>Medicine Insights Dashboard</span></a></li>
+                        <li><a href="inventory-status.html"><i class='bx bx-box'></i><span>Inventory Status Report</span></a></li>
+                        <li><a href="low-stock.html"><i class='bx bxs-report'></i><span>Low Stock Report</span></a></li>
+                        <li><a href="expiration-monitoring.html"><i class='bx bx-file-find'></i><span>Expiration Monitoring Report</span></a></li>
+                    </ul>
+                </li>
+
+                <!-- Section 2 -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle d-flex justify-content-between align-items-center text-dark" role="button">
+                        <div class="d-flex align-items-center">
+                            <i class='bx bx-money-withdraw'></i>
+                            <span>Sales & Revenue Performance</span>
+                        </div>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </a>
+                    
+                    <ul class="submenu">
+                        <li><a href="srd.html"><i class='bx bxs-dashboard'></i><span>Sales & Revenue Dashboard</span></a></li>
+                        <li><a href="monthly-revenue.html"><i class='bx bx-calendar-star'></i><span>Monthly Revenue Report</span></a></li>
+                        <li class="active"><a href="daily-revenue.html"><i class='bx bx-calendar-x'></i><span>Daily Revenue Report</span></a></li>
+                        <li><a href="revenue-medicine.html"><i class='bx bx-pie-chart-alt-2'></i><span>Revenue by Medicine Report</span></a></li>
+                    </ul>
+                </li>
+
+                <!-- Section 3 -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle d-flex justify-content-between align-items-center text-dark" role="button">
+                        <div class="d-flex align-items-center">
+                            <i class='bx bx-paper-plane'></i>
+                            <span>Supplier & Procurement Overview</span>
+                        </div>
+                        <i class='bx bx-chevron-down arrow'></i>
+                    </a>
+                
+                    <ul class="submenu">
+                        <li><a href="spd.html"><i class='bx bx-chalkboard'></i><span>Supplier & Procurement Dashboard</span></a></li>
+                        <li><a href="supplier-order.html"><i class='bx bx-server'></i><span>Supplier Orders Summary</span></a></li>
+                        <li><a href="unused-medicine.html"><i class='bx bx-task-x'></i><span>Unused Medicines Report</span></a></li>
+                        <li><a href="controlled-medicine.html"><i class='bx bx-folder'></i><span>Controlled Medicines Report</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- PDF Button -->
+        <div class="pdf-btn-container">
+            <a href="assets/documents/FINAL OUTPUT _ Pharmacy Inventory.pdf" class="pdf-btn" download>
+                <i class='bx bx-download'></i>
+                <span>Download PDF Report</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <div class="top-red-banner"></div>
+
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <span class="breadcrumbs">Pages / <strong>Sales & Revenue Performance</strong></span>
+                <h1 class="page-title">Daily Revenue Report</h1>
+            </div>
+
+            <div class="topbar-right">
+                <div class="search-wrapper">
+                    <i class='bx bx-search'></i>
+                    <input type="text" class="search-bar" placeholder="Search..." />
+                </div>
+                <i class='bx bx-bell'></i>
+                <i class='bx bx-sun' id="toggleTheme"></i>
+                <img src="assets/img/user profile.jpg" class="profile-pic" />
+            </div>
+        </header>
+
+        <!-- Report Container -->
+        <section class="report-container">
+            <div class="chart-box">
+                <iframe src="http://localhost:3000/public/question/ecdeb307-86e1-4fc8-b4ee-5571ca6bb3fd"></iframe>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <span>© 2025, made with by <a href="https://www.creative-tim.com/" target="_blank">Creative Tim</a> for a better web.</span>
+            <div>
+                <a href="https://www.creative-tim.com/?_ga=2.256739918.472656909.1743534928-1363455197.1743446765">Creative Tim</a>
+                <a href="about-us.html">About Us</a>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Script -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

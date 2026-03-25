@@ -1,0 +1,31 @@
+id,name,gender,birth_date,math_score,english_score,science_score,address,guardian_contact,guardian_name
+1,James Schneider,Male,2007-02-23,88.0,76.0,,"USCGC Flores, FPO AA 67418",,
+2,Kristina Weeks,Male,2008-07-03,,75.0,70.0,"54202 Daniel Spur, East Jennifer, ID 59341",,
+3,Danielle Norman,Female,2009-01-02,87.0,,86.0,"USS Richardson, FPO AE 76519",,
+4,Susan Morgan,Female,2008-12-06,97.0,73.0,,"21808 Kendra Terrace Apt. 517, Barnettstad, SD 68699",,Kenneth Jenkins
+5,Erika Wilson,Female,2008-12-26,70.0,60.0,90.0,"187 Luke Plains Apt. 556, Nelsonport, VT 67229",,
+6,Deborah Ford,Male,2008-10-30,62.0,90.0,99.0,"USNV Parker, FPO AE 59040",,
+7,Craig Johnson,Female,2006-11-12,,89.0,96.0,"PSC 8912, Box 8147, APO AA 98772",474-999-7190,
+8,Derek Lee,Female,2006-12-30,77.0,78.0,91.0,"41007 Yates Camp, Port Joseph, TX 56229",,
+9,Michael Ward,Male,2009-07-29,93.0,87.0,66.0,"593 Richard Pass, Lake Wendybury, HI 61402",+1-907-219-4037,
+10,Carlos Nash,Male,2008-06-28,78.0,,,"944 Barbara Mountains, Lawrencemouth, IN 35926",229.374.1299,Randall Rodriguez
+11,Lisa Spencer,Female,2009-10-15,,96.0,,"7361 Courtney Fort, Boyerbury, NM 76482",(555)260-2889x4440,
+12,Dawn Bell,Male,2007-06-19,77.0,84.0,71.0,"1880 Thompson Ports, Smithberg, MN 15042",807.382.6156x364,
+13,Brandy Booth,Male,2008-03-15,68.0,,,"8596 Rebecca Ridges Apt. 993, Brianton, GA 19106",,
+14,Angela Gay,Female,2007-07-13,,61.0,85.0,"023 Johnson Lake, East Rebeccaberg, ND 54707",,
+15,Jared Ruiz,Female,2009-05-03,77.0,71.0,68.0,"87108 Matthew Lights Apt. 827, South Robert, WV 85358",,
+16,Corey Grimes,Male,2007-12-23,87.0,91.0,71.0,"Unit 3773 Box 0859, DPO AP 37403",,
+17,Amanda Williams,Female,2009-12-06,84.0,78.0,67.0,"35516 Christopher Isle, Hooverchester, UT 64884",854-117-9538x3476,
+18,Christina Collins,Female,2009-08-30,93.0,64.0,67.0,"574 Dennis Road, Port Sandra, WV 03759",,
+19,Christopher Cuevas,Male,2007-09-17,75.0,78.0,73.0,"868 Brandt Village Apt. 955, Zacharyfurt, SD 40217",,
+20,Shannon Byrd,Female,2008-09-09,62.0,80.0,82.0,"1722 Edwards Lodge Apt. 760, West Allison, WI 49050",,
+21,Kristen Eaton,Male,2007-07-30,86.0,65.0,78.0,"169 Douglas Hollow, Port Shaneport, NY 63256",,
+22,Joel Carlson,Female,2008-12-30,84.0,86.0,91.0,"230 Wise Spring Suite 989, Parkview, VT 50222",,
+23,Robert Allen,Female,2008-11-13,60.0,88.0,61.0,"430 Ricardo Forest Suite 282, Lake Austin, NM 72337",,
+24,Chelsea Bell,Male,2009-09-28,,76.0,80.0,"946 Martin Isle, North Joshuamouth, IN 33644",+1-292-143-5438x93742,
+25,Jeremy Johnson,Male,2007-07-14,77.0,91.0,,"6800 Sherri Lodge, Kelleyview, DE 35993",,Amanda Murphy
+26,Barbara Clark,Male,2007-12-19,94.0,73.0,,"PSC 3072, Box 3543, APO AA 73681",268-423-5326x57676,Justin Collier
+27,Jay Wilkins,Male,2006-11-23,88.0,,70.0,"380 Thompson Meadow Suite 066, Thompsonside, TN 61002",238.932.9033,
+28,Wendy Baker,Female,2009-05-23,,88.0,65.0,"0848 Michael Skyway Suite 986, Garyton, OK 35197",(625)391-6595,
+29,Daniel Crawford,Female,2007-07-29,75.0,,84.0,"265 Mccormick Highway Suite 353, South Jennifer, CA 36300",(849)139-8565,
+30,Lauren Long,Male,2007-09-15,92.0,67.0,98.0,"979 David Ranch, South Shawn, WA 28159",,
