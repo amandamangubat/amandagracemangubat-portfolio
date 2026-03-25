@@ -1,59 +1,42 @@
 # Student Scores Dataset Analysis
 
-This project focuses on analyzing student performance data using Google Colab. It demonstrates data cleaning, exploratory data analysis (EDA), and visualization techniques to extract meaningful insights from academic datasets.
+Course: Data Analytics / Academic Project  
+Type: Exploratory Data Analysis and Visualization Project  
+Role: Data Cleaning, Analysis, and Visualization Contributor
 
----
+## The Problem
 
-## Project Overview
+Student performance data can contain patterns that are difficult to understand without proper cleaning, analysis, and visualization. This project was developed to examine student score data, identify trends in academic performance, and present the findings through exploratory data analysis in Google Colab.
 
-The goal of this project is to:
-- Understand patterns in student performance
-- Perform data preprocessing and cleaning
-- Apply basic statistical analysis
-- Visualize data for better interpretation
+## Technical Stack
 
----
+- **Programming Language:** Python
+- **Notebook Environment:** Google Colab
+- **Libraries:** Pandas, NumPy, Matplotlib, Seaborn
+- **Other Tools:** GitHub
 
-## Tools & Technologies
+## System Architecture & Logic
 
-- Python  
-- Google Colab  
-- Pandas  
-- NumPy  
-- Matplotlib / Seaborn  
+### 1. Data Preparation
+The dataset was cleaned and processed to make the information more consistent and suitable for analysis.
 
----
+### 2. Exploratory Data Analysis
+The project examines student scores to identify trends, distributions, and possible relationships within the dataset.
 
-## Key Features
+### 3. Data Visualization
+Charts and graphs were used to make the results easier to interpret and communicate.
 
-- Data cleaning and preprocessing  
-- Exploratory Data Analysis (EDA)  
-- Data visualization (graphs and charts)  
-- Interpretation of student performance trends  
+### 4. Academic Performance Insights
+The analysis focuses on understanding patterns in student results and highlighting useful observations from the data.
 
----
+### 5. Notebook-Based Workflow
+The project was completed in Google Colab, allowing the full process of cleaning, analysis, and visualization to be documented in one notebook.
 
-## Dataset
+## Project Files
 
-The dataset contains student scores and related variables used to analyze academic performance. It is processed and analyzed within the notebook.
+- `Mangubat_Midterms (1).ipynb`
+- `processed_student_scores (2).csv`
 
----
+## Project Outcome
 
-## How to Run
-
-1. Open the `.ipynb` file in Google Colab  
-2. Run the cells step-by-step  
-3. View outputs, charts, and analysis  
-
----
-
-## Purpose
-
-This project is part of an academic and portfolio work to demonstrate foundational skills in data analysis and data visualization.
-
----
-
-## 👩‍💻 Author
-
-**Ciara Comendador**  
-Bachelor of Science in Information Systems
+This project strengthened my skills in data cleaning, exploratory data analysis, and data visualization. It also improved my ability to use Python and Google Colab to turn raw academic data into clear and meaningful insights.
