@@ -1,30 +1,36 @@
-# Arroz Por Favor: Filipino-Mexican Fusion Startup
-**Event:** CESCon 2026 Entrepreneurship Event  
-**Award:** **Highest Sales Award (Food Category)** **Role:** Core Member - Sales Operations & Technical Lead
+# Nextep: AI-Powered Career Guidance and Job Tracking Platform
 
-## Project Overview
-Arroz Por Favor is a Filipino-Mexican fusion brand developed to solve the "Student Meal Gap." As a core member of the startup team, I managed the operational and financial tracking that led us to secure the **Highest Sales Award in the Food Category**, outperforming all other food-based student enterprises in revenue and volume during the 3-day Sales Blitz.
+Course: Technopreneurship 2 / Academic Project  
+Type: System Concept and Presentation Project  
+Role: Project Concept, Structure, and Presentation Contributor
 
-## Achievement: Food Category Sales Leader
-* **Category Dominance:** Secured the #1 sales spot in the competitive Food & Beverage sector of the bazaar.
-* **Volume Strategy:** Managed high-velocity production to meet peak demand, resulting in consistent Day 1, 2, and 3 sell-outs of primary inventory.
-* **Optimized Yield:** Successfully scaled sales while maintaining a **78% profit margin** on high-turnover items like the *Tacos de Pollo Crujiente*.
+## The Problem
 
-## Strategic Contributions
+Students often struggle with career planning, skill development, and tracking job opportunities in one organized system. Nextep was developed as an AI-powered platform concept that helps students and institutions through personalized career guidance, skill recommendations, job tracking, and career readiness support.
 
-### 1. Sales Operations & Demand Forecasting
-* Developed the inventory tracking system to monitor real-time stock of key ingredients (beef, chicken, and horchata base).
-* Implemented "Combo-Upselling" strategies during the bazaar to increase the Average Order Value (AOV), contributing to the total category-winning revenue.
+## Technical Stack
 
-### 2. Financial Engineering
-* Conducted detailed unit economics for the menu:
-    * **Tacos de Pollo:** Cost: ₱21.90 | SRP: ₱99.00 (**78% Margin**).
-    * **Tex-Mex Beef Melt:** Positioned as the flagship revenue driver.
-    * **Agua Fresca:** Low-cost, high-margin liquid assets to maximize overall profit.
+- **Presentation Tools:** PowerPoint, Canva
+- **Concept and Planning Tools:** Figma
+- **Other Tools:** GitHub
 
-### 3. Brand Identity & Market Fit
-* Co-developed the "Rice. Spice. Everything Nice" vision.
-* Targeted the "opportunity gap" in campus dining: providing a filling, premium-feel meal at a student-friendly price point.
+## System Architecture & Logic
 
-## Key Results
-The project successfully validated the Filipino-Mexican fusion concept, proving its commercial viability through market-leading sales figures and strong customer retention throughout the event.
+### 1. Personalized Career Guidance
+The platform is designed to provide students with tailored career paths and recommendations based on their goals and skills.
+
+### 2. Job Tracking System
+Nextep includes a job tracking feature that helps users organize and monitor their applications and opportunities.
+
+### 3. Career Readiness Support
+The concept focuses on helping students improve their readiness through feedback and skill development suggestions.
+
+### 4. Institutional Insights
+The system is also designed to support schools by providing analytics and progress insights related to student career development.
+
+### 5. AI-Powered Platform Concept
+The project was developed as a system concept to show how AI can support career planning, decision-making, and employability preparation.
+
+## Project Outcome
+
+This project helped me strengthen my skills in system concept development, solution structuring, and presentation design. It also improved my ability to build and communicate a platform idea that is practical, innovative, and student-centered.

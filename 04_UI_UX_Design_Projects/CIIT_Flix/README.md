@@ -1,36 +1,36 @@
-# CIIT-Flix: Media Platform Website Project
+# Fluxx: Business and Booth Experience UI/UX Design Project
 
-Course: Web Development / Academic Project  
-Type: Frontend Website Project  
-Role: UI and Layout Development Contributor
+Course: Business / Academic Project  
+Type: Figma Prototype and Interface Design  
+Role: UI, Layout, and Presentation Designer  
+Live Prototype: **[View Here](https://www.figma.com/proto/C1p6E8flI5lILE6Ci5DC3k/Finals-Fluxx?node-id=1-23197&p=f&t=FdMA2NM2OKYr7TgB-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A23197)**
 
 ## The Problem
 
-Creative and media-focused content needs a platform that presents information in a way that is organized, engaging, and easy for users to explore. CIIT-Flix was developed as a website project that applies modern media-inspired design principles to create a clean and user-friendly viewing experience.
+Student-led business concepts need a digital presentation that clearly communicates their products, branding, and overall customer experience. Fluxx was developed as a Figma-based design project that presents a business concept through an organized interface, cohesive branding, and visually engaging layout.
 
 ## Technical Stack
 
-- **Frontend:** HTML, CSS, JavaScript
-- **Design Tools:** Figma, Canva
-- **Other Tools:** GitHub
+- **Design Tool:** Figma
+- **Supporting Tools:** Canva, GitHub
 
 ## System Architecture & Logic
 
-### 1. Media-Inspired Interface
-The platform uses a media-style layout to present content in a visually engaging and structured way.
+### 1. Brand-Focused Interface
+The project was designed to reflect the identity and visual style of the Fluxx concept through a cohesive interface.
 
 ### 2. Organized Content Presentation
-Sections are arranged to help users view featured content clearly and navigate the platform more easily.
+Sections are arranged to present products, information, and key business details in a clear and structured way.
 
-### 3. Responsive Layout Design
-The interface is designed to remain readable and visually balanced across different screen sizes.
+### 3. User Experience Focus
+The design emphasizes readability, accessibility, and a smoother viewing experience for users.
 
-### 4. User Experience Focus
-The project emphasizes clarity, accessibility, and polished presentation to improve overall interaction with the site.
+### 4. Visual Hierarchy and Layout
+The project uses spacing, grouping, and layout structure to make the interface more engaging and easier to understand.
 
-### 5. Frontend Structure
-The website is built through organized page sections and interface components that support a smoother content-browsing experience.
+### 5. Prototype Development
+The project was created as a Figma prototype to showcase the concept, interface flow, and overall presentation of the business idea.
 
 ## Project Outcome
 
-This project helped me strengthen my skills in frontend development, interface layout, and user-focused visual presentation. It also improved my ability to design a website that balances structure, engagement, and usability.
+This project helped me strengthen my skills in interface design, branding presentation, and layout planning. It also improved my ability to turn a business concept into a polished and user-centered digital design.

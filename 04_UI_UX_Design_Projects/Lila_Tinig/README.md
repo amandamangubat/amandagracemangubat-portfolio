@@ -1,42 +1,36 @@
-# Wine Quality: Predictive Modeling and Data Mining
-**Project Type:** EMC005 - Datamining Research Project
-**Tools Used:** Altair AI Studio | **Methodology:** Decision Tree, Logistic Regression, K-Means Clustering
-**Status:** Research Model | 84.24% Accuracy Achieved
+# Lila Tinig: Creative Branding and Interface Design Project
 
-**The Problem:** Manually assessing wine quality through professional tasters is costly and subjective, making it difficult for producers to maintain consistent standards at scale.
-**The Solution:** A multi-method predictive model developed in Altair AI Studio that evaluates physicochemical properties to classify wine quality, reducing reliance on manual sensory evaluation.
+Course: Design Project / Academic Project  
+Type: Figma Prototype and Visual Design  
+Role: UI, Layout, and Presentation Designer  
+Live Prototype: [https://lilatinig.framer.website](https://lilatinig.framer.website)
 
-## Statistical Methodology
-This research compared three data mining methods across two validation strategies (Split Data vs. Cross-Validation) to ensure model stability and accuracy:
+## The Problem
 
-* **Decision Tree:** Used to establish a clear classification hierarchy and identify thresholds for "High Quality" vs. "Standard" wine.
-* **Logistic Regression:** Applied to determine the probability of a wine batch meeting quality standards based on chemical inputs.
-* **K-Means Clustering:** Implemented to segment the dataset into distinct clusters, uncovering hidden patterns in wine composition.
-* **Validation Strategy:** Cross-Validation was selected as the superior method, as it improved performance across 3 out of 4 key metrics.
+Creative platforms need a visual identity that communicates their message clearly while remaining engaging and cohesive. Lila Tinig was developed as a Figma-based design project focused on combining branding, interface layout, and presentation into a meaningful digital concept.
 
-## Statistical Model Output
-| Correlations Heatmap | Decision Tree Logic | Model Performance |
-| :---: | :---: | :---: |
-| ![Correlations](Media/Correlations_Heatmap.png) | ![Decision_Tree](Media/Decision_Tree_Visualization.png) | ![Model_Performance](Media/Performance_Comparison.png) |
+## Technical Stack
 
-## Performance Comparison
-The following table demonstrates the performance gains achieved by moving from a standard 60/20/20 Split to a Cross-Validation approach:
+- **Design Tool:** Figma
+- **Supporting Tools:** Canva, GitHub
 
-| Performance Vector | Split Data Method | Cross Validation Method |
-| :--- | :--- | :--- |
-| **Accuracy** | 82.50% | **84.24%** |
-| **Precision** | 41.10% | **44.68%** |
-| **Recall** | **69.77%** | 67.74% |
-| **AUC** | 84.8% | **86.2%** |
+## System Architecture & Logic
 
-## Data Availability
-* **Analysis Processes:** Includes five `.rmp` files covering Decision Tree, Logistic Regression (Split/Cross), and K-Means.
-* **Raw Dataset:** `Wine_Quality_Dataset.csv` (Physicochemical attributes of Vinho Verde wine).
-* **Technical Report:** `Datamining_Final_Report.pdf` (The full 28-page research paper detailing feature selection and performance evaluation).
+### 1. Visual Identity Development
+The project focuses on creating a distinct and consistent visual style that reflects the concept of the platform.
 
-## Dataset Citation
-The dataset used in this research is sourced from the **UCI Machine Learning Repository**:
-*Cortez, P., Cerdeira, A., Almeida, F., Matos, T., & Reis, J. (2009). Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553.*
+### 2. Organized Content Layout
+Sections are arranged to present information clearly and guide users through the design in a structured way.
 
----
-*Developed for EMC005 | CIIT College of Innovation and Integrated Technology.*
+### 3. User Experience Focus
+The interface is designed to remain visually engaging while also being easy to understand and navigate.
+
+### 4. Branding and Presentation
+The project combines layout, typography, and visual hierarchy to build a cohesive creative experience.
+
+### 5. Prototype Development
+The project was created as a Figma prototype to present the concept, interface flow, and overall design direction.
+
+## Project Outcome
+
+This project helped me strengthen my skills in branding, interface layout, and visual storytelling. It also improved my ability to turn a creative concept into a polished and user-centered design presentation.
